@@ -11,6 +11,10 @@ export class LoginFormComponent implements OnInit {
   
   constructor() {}
 
+  submit(){
+    console.log(this.userLogin.value)
+  }
+
   ngOnInit(): void {
     this.userLogin = new FormGroup({
       email: new FormControl('', [

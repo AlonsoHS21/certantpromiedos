@@ -12,17 +12,24 @@
     <mat-form-field class="login-form-input" appearance="fill">
       <mat-label>Email</mat-label>
       <input matInput type="email" formControlName="email" />
-      <mat-error> Tu email debe ser el Institucional Ej: yo@certant.com </mat-error>
+      <mat-error>
+        Tu email debe ser el Institucional Ej: yo@certant.com
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field class="login-form-input" appearance="fill">
       <mat-label>Password</mat-label>
       <input type="password" matInput formControlName="password" />
-      <mat-error>
-        Este Campo es obligatorio
-      </mat-error>
+      <mat-error> Este Campo es obligatorio </mat-error>
     </mat-form-field>
 
-    <button [disabled]="userLogin.invalid" mat-raised-button class="login-form-button">Login</button>
+    <button
+      [disabled]="userLogin.invalid"
+      mat-raised-button
+      class="login-form-button"
+      (click)="submit()"
+    >
+      Login
+    </button>
   </form>
 </div>
