@@ -1,6 +1,12 @@
+@media only screen and (min-width: 992px) {
+    .login-form-container{
+        background-image: url(../../../../assets/desktop-login-back.png);
+        background-size: cover;
+    }
+}
+
 .login-form-container{
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
 
