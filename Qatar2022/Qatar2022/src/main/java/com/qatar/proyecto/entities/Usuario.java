@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="usuarios")
+@Table(name="usuario")
 public class Usuario {
 	
 	@Id
@@ -27,6 +27,9 @@ public class Usuario {
 	
 	@Column(name="email")
 	private String email;
+	
+	@Column(name = "puntos")
+	private int puntos;
 
 	public Usuario() {
 		
@@ -35,11 +38,11 @@ public class Usuario {
 	public Long getId() {
 		return id;
 	}
-
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
-
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -71,6 +74,13 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public int getPuntos() {
+		return puntos;
+	}
+
+	public void setPuntos(int puntos) {
+		this.puntos = puntos;
+	}
 	
 }

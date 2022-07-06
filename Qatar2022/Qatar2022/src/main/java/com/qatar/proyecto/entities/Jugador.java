@@ -27,6 +27,9 @@ public class Jugador {
 	@NotEmpty(message="El apellido no debe estar vacio")
 	private String apellido;
 	
+	@Column(name = "goles")
+	private int goles;
+	
 	@ManyToOne
 	@JoinColumn(name="equipo_idEquipo")	
 	@NotNull
@@ -36,11 +39,12 @@ public class Jugador {
 	    	
 	    }
 
-	public Jugador(String nombre,String apellido, Equipo equipo) {
+	public Jugador(String nombre,String apellido, Equipo equipo, int goles) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.equipo = equipo;
+		this.goles = goles;
 	}
 
 	public long getIdJugador() {
@@ -73,5 +77,14 @@ public class Jugador {
 	public void setEquipo(Equipo equipo) {
 		this.equipo = equipo;
 	}
+
+	public int getGoles() {
+		return goles;
+	}
+
+	public void setGoles(int goles) {
+		this.goles = goles;
+	}
+	
 }
 

@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -22,17 +20,21 @@ public class Equipo {
 	@NotEmpty(message="El nombre no debe estar vacio")
 	private String nombre;
 	
+	@Column(name = "direccionImagen")
+	private String direccionImagen; //Por ahora recibe una url de la imagen
 	
-	
-	
+	@Column(name = "scoreTotal")
+	private int cantidadTotalGoles;
 	
 	 public Equipo() {
 	    	
 	    }
 
-	public Equipo(String nombre) {
+	public Equipo(String nombre, String direccionImagen, int cantidadTotalGoles) {
 		super();
 		this.nombre = nombre;
+		this.direccionImagen = direccionImagen;
+		this.cantidadTotalGoles = cantidadTotalGoles;
 		
 	}
 
@@ -52,7 +54,22 @@ public class Equipo {
 		this.nombre = nombre;
 	}
 
-	
+	public String getDireccionImagen() {
+		return direccionImagen;
+	}
+
+	public void setDireccionImagen(String direccionImagen) {
+		this.direccionImagen = direccionImagen;
+	}
+
+	public int getCantidadTotalGoles() {
+		return cantidadTotalGoles;
+	}
+
+	public void setCantidadTotalGoles(int cantidadTotalGoles) {
+		this.cantidadTotalGoles = cantidadTotalGoles;
+	}
+
 
 }
 
