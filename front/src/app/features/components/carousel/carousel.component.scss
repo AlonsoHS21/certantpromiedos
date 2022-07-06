@@ -9,6 +9,17 @@
   }
 }
 
+@media only screen and (min-width: 1400px) {
+  .igx-slide img {
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .igx-slide {
+    background: none;
+  }
+}
+
 .image-container {
   display: flex;
   justify-content: center;

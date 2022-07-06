@@ -8,13 +8,28 @@ import { Component, OnInit } from '@angular/core';
 export class CarouselComponent implements OnInit {
   public slides = [
     {
-      src: '../../../assets/carousel.png'
+      src: '../../../assets/grupo_a.png'
     },
     {
-      src: '../../../assets/Slide.png'
+      src: '../../../assets/grupo_b.png'
     },
     {
-      src: 'https://previews.123rf.com/images/patterndesign/patterndesign1706/patterndesign170601027/80050303-resumen-de-fondo-de-imagen-16-9-relaci%C3%B3n-de-aspecto-en-el-estilo-de-arte-de-p%C3%ADxeles-.jpg'
+      src: '../../../assets/grupo_c.png'
+    },
+    {
+      src: '../../../assets/grupo_d.png'
+    },
+    {
+      src: '../../../assets/grupo_e.png'
+    },
+    {
+      src: '../../../assets/grupo_f.png'
+    },
+    {
+      src: '../../../assets/grupo_g.png'
+    },
+    {
+      src: '../../../assets/grupo_h.png'
     }
 ];
 
