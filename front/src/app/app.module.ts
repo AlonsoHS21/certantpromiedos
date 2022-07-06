@@ -12,12 +12,14 @@ import { AppComponent } from './app.component';
 import { LoginFormComponent } from './features/components/login-form/login-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './features/components/carousel/carousel.component';
+import { NavBarComponent } from './features/components/nav-bar/nav-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
-    CarouselComponent
+    CarouselComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
