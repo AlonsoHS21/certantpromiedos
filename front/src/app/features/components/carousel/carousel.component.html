@@ -1,5 +1,5 @@
 <div class="carousel-container">
-    <igx-carousel #carousel>
+    <igx-carousel #carousel [loop]="true" animationType="fade">
         <igx-slide *ngFor="let slide of slides;">
             <div class="image-container">
                 <img class="slide" [src]="slide.src">
