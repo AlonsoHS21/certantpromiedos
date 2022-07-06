@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -24,13 +26,13 @@ public class Equipo {
 	private String direccionImagen; //Por ahora recibe una url de la imagen
 	
 	@Column(name = "scoreTotal")
-	private int cantidadTotalGoles;
+	private Long cantidadTotalGoles;
 	
 	 public Equipo() {
 	    	
 	    }
 
-	public Equipo(String nombre, String direccionImagen, int cantidadTotalGoles) {
+	public Equipo(String nombre, String direccionImagen, Long cantidadTotalGoles) {
 		super();
 		this.nombre = nombre;
 		this.direccionImagen = direccionImagen;
@@ -62,14 +64,13 @@ public class Equipo {
 		this.direccionImagen = direccionImagen;
 	}
 
-	public int getCantidadTotalGoles() {
+	public Long getCantidadTotalGoles() {
 		return cantidadTotalGoles;
 	}
 
-	public void setCantidadTotalGoles(int cantidadTotalGoles) {
+	public void setCantidadTotalGoles(Long cantidadTotalGoles) {
 		this.cantidadTotalGoles = cantidadTotalGoles;
 	}
-
 
 }
 

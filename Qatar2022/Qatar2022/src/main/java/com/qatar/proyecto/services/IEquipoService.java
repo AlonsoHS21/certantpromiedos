@@ -17,7 +17,6 @@ public interface IEquipoService {
 	public void save(Equipo equipo);
 	
 	public Equipo findByNombre(@Param("nombre") String nombre);
-
 	
 	public Double calculateTotal(Equipo equipo);
 

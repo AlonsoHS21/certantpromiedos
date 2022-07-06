@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.sun.istack.NotNull;
+
 @Entity
 @Table(name="usuario")
 public class Usuario {
@@ -28,8 +30,9 @@ public class Usuario {
 	@Column(name="email")
 	private String email;
 	
+	@NotNull
 	@Column(name = "puntos")
-	private int puntos;
+	private Long puntos;
 
 	public Usuario() {
 		
@@ -75,11 +78,11 @@ public class Usuario {
 		this.email = email;
 	}
 
-	public int getPuntos() {
+	public Long getPuntos() {
 		return puntos;
 	}
 
-	public void setPuntos(int puntos) {
+	public void setPuntos(Long puntos) {
 		this.puntos = puntos;
 	}
 	
