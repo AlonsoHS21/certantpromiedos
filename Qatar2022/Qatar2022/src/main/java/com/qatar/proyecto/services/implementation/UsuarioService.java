@@ -23,15 +23,20 @@ public class UsuarioService implements IUsuarioService{
 	}
 
 	@Override
-	public void guardar(Usuario usuario) {
-		// TODO Auto-generated method stub
-		
+	public Usuario guardar(Usuario usuario) {
+		return usuarioRepository.save(usuario);
 	}
 
 	@Override
 	public void eliminar(long id) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public Usuario actualizar(Long id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

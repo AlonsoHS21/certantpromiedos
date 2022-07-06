@@ -9,7 +9,10 @@ public interface IUsuarioService {
 	
 	public List<Usuario> listarUsuarios(); //Para probar si trae los empleados con endpoints
 	
-	public void guardar(Usuario usuario);
+	public Usuario guardar(Usuario usuario);
 	
-	public void eliminar(long id); 
+	public Usuario actualizar(Long id);
+	
+	public void eliminar(long id);
+
 }
