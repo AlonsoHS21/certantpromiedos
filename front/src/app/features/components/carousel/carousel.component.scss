@@ -1,3 +1,14 @@
+@media only screen and (max-width: 600px) {
+  .igx-slide img {
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .igx-slide {
+    background: none;
+  }
+}
+
 .image-container {
   display: flex;
   justify-content: center;
@@ -33,7 +44,6 @@
     align-items: center;
     max-width: 100%;
     width: unset;
-    background: #151515;
   }
 
   .igx-slide img {
@@ -41,15 +51,4 @@
     object-position: center;
     width: 100%;
   }
-  /* 
-AGREGAR COMO MEDIA QUERIE PARA MOBILE MEDIA QUERIE
-    .igx-slide img {
-        object-fit:contain;
-        width: 100%;
-    } 
-    
-        .igx-slide {
-        background: none;
-    }
-    */
 }
