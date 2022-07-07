@@ -32,17 +32,26 @@
     <br>
     <br>
         <div class="container" id="advanced-search-form">
-            <form action="#" th:action="@{/equipo/}" th:object="${equipo}" method="post">
+            <form action="#" th:action="@{/guardar}" th:object="${equipo}" method="post">
                 <div class="form-group">
+                	
+                	<input type="hidden" name="idPersona" th:field="*{idEquipo}" />
+                	 
                     <label for="first-name" class="text-white mb-2">Nombre</label>
                     <input type="text" class="form-control" placeholder="Nombre del equipo" id="first-name" th:field="*{nombre}">
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
-                        th:errors="*{nombre}" >
-                    </small> 
                     
+                    <!--  <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+                        th:errors="*{nombre}" >
+                    </small> -->
                     <br>
                     
-                   
+                    <label for="image" class="text-white mb-2">URL Imagen</label>
+                    <input type="text" class="form-control" id="image" th:field="*{direccionImagen}">
+                    
+                   	<!-- <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+                        th:errors="*{nombre}" >
+                    </small>  -->
+                    
                 </div>
                 <div class="clearfix"></div>
                  <br>

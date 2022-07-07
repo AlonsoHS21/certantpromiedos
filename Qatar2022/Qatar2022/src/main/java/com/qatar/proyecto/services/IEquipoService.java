@@ -10,14 +10,13 @@ public interface IEquipoService {
 	
 	public List<Equipo> getAll();
 
-	public Equipo buscar(long id);
+	public Equipo buscar(String nombre);
 
 	public void eliminar(long id);
 	
 	public void save(Equipo equipo);
 	
 	public Equipo findByNombre(@Param("nombre") String nombre);
-
 	
 	public Double calculateTotal(Equipo equipo);
 

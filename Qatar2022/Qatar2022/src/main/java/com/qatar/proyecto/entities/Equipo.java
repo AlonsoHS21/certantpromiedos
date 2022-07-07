@@ -23,19 +23,14 @@ public class Equipo {
 	@Column(name = "direccionImagen")
 	private String direccionImagen; //Por ahora recibe una url de la imagen
 	
-	@Column(name = "scoreTotal")
-	private int cantidadTotalGoles;
-	
 	 public Equipo() {
 	    	
 	    }
 
-	public Equipo(String nombre, String direccionImagen, int cantidadTotalGoles) {
+	public Equipo(String nombre, String direccionImagen) {
 		super();
 		this.nombre = nombre;
 		this.direccionImagen = direccionImagen;
-		this.cantidadTotalGoles = cantidadTotalGoles;
-		
 	}
 
 	public long getIdEquipo() {
@@ -61,15 +56,6 @@ public class Equipo {
 	public void setDireccionImagen(String direccionImagen) {
 		this.direccionImagen = direccionImagen;
 	}
-
-	public int getCantidadTotalGoles() {
-		return cantidadTotalGoles;
-	}
-
-	public void setCantidadTotalGoles(int cantidadTotalGoles) {
-		this.cantidadTotalGoles = cantidadTotalGoles;
-	}
-
 
 }
 

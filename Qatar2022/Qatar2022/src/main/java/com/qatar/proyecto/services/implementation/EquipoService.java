@@ -37,7 +37,6 @@ public class EquipoService implements IEquipoService{
 	@Override
 	public void save(Equipo equipo) {
 		equipoRepository.save(equipo);
-		
 	}
 
 	@Override

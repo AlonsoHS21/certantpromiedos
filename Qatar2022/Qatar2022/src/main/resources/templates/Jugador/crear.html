@@ -10,6 +10,7 @@
         <link th:href="@{/https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css}" rel="stylesheet" />
         <link th:href="@{/css/styles.css}" rel="stylesheet" />
     </head>
+    
     <body class="py-3 bg-dark">
        <div class="alert alert-success alert-dismissable" th:if="${success != null}">
 			<label th:text="${success}"></label>
@@ -48,9 +49,6 @@
                         th:errors="*{apellido}" >
                     </small>
                     
-                   
-                    
-               
                     
                     <p class="text-white mb-2"> Equipo:</p>
 					<select th:field="*{equipo}" id="equipo">
@@ -60,7 +58,7 @@
 					</select>
 					
 					<small class="form-text text-danger" th:if="${#fields.hasErrors('equipo')}"
-					th:errors="*{equipo}" >
+					th:errors="*{equipo}">
 				</small>
 	
                 </div>
