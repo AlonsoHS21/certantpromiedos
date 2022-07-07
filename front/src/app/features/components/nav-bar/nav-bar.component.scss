@@ -1,0 +1,39 @@
+@media only screen and (max-width: 700px) {
+  .nav-link-container {
+    display: none;
+  }
+  .nav-menu-button {
+    display: block;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .nav-menu-button {
+    display: none;
+  }
+}
+
+.nav-logo {
+  max-height: 100px;
+  max-width: auto;
+}
+
+.nav-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: "Bebas Neue", cursive;
+
+  margin: auto 25px auto 5px;
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.nav-menu-button {
+  margin-right: 25px;
+  margin-bottom: 5px;
+
+}
