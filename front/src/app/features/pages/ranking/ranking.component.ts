@@ -7,7 +7,7 @@ import { Usuario } from 'src/app/models/Usuario';
   styleUrls: ['./ranking.component.scss'],
 })
 export class RankingComponent implements OnInit {
-  displayedColumns = ['nombre', 'apellido', 'puntos'];
+  displayedColumns = ['posicion','nombre', 'apellido', 'puntos'];
   usuarios: Usuario[] = [
     {
       id: 1,
