@@ -2,20 +2,33 @@ package com.qatar.proyecto.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.mysql.cj.xdevapi.Result;
+import com.qatar.proyecto.entities.Equipo;
+import com.qatar.proyecto.entities.Jugador;
 import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.services.implementation.UsuarioService;
 
-@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600) // es un protocolo estándar que define la interacción entre un navegador y un servidor para manejar de forma segura las solicitudes HTTP de origen cruzado.
-@RestController //Es en esencia una combinacion de @Controller y @ResponseBody
+@Controller 
 @RequestMapping("/usuario")
 public class UsuarioController {
 	
@@ -23,17 +36,64 @@ public class UsuarioController {
 	@Qualifier("usuarioService") //Se usa para diferenciar las implementaciones
 	private UsuarioService usuarioService;
 	
+	@GetMapping("/")
+	public String inicio(Model model) {
+		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
+		model.addAttribute("usuarios", listaUsuarios);
+		return "usuario/lista";		
+	}
+	
+	@GetMapping("/ingresar")
+	public String ingresar(Usuario usuario) {
+		return "usuario/ingresar";
+	}
+	
+	@PostMapping("/buscar")
+	public String ingresar(@Valid @ModelAttribute Usuario usuario, Errors errores, Model model) {
+		
+		if(errores.hasErrors()) { //Si hay errores no hace nada
+			return "usuario/ingresar";
+		}
+		usuario = usuarioService.buscarEmailContrasenia(usuario.getEmail(),usuario.getContrasenia()); //Por ahora busca por email
+		model.addAttribute("usuarioEncontrado", "Bienvenido " + usuario.getNombre() + "!");
+		return "usuario/ingresar";
+		
+	}
+	
+	/*
+	@PostMapping("/")
+	public String guardar(@Valid @ModelAttribute Usuario usuario,BindingResult result, Model model, RedirectAttributes attribute ) {
+
+		if(result.hasErrors()) {
+			System.out.println("Hubo error en el formulario!");
+			return "usuario/crear";
+		}
+		usuarioService.guardar(usuario);
+		System.out.println("Usuario guardado con exito!");
+		attribute.addFlashAttribute("success","Usuario creado con exito");
+		return "redirect:/usuario/";
+	
+	/*
 	
 	//@GetMapping es un atajo para @RequestMapping(method = RequestMethod.GET) y se utiliza para mapear HTTP GET solicitudes a los métodos de controlador asignados. 
-	@GetMapping("/listaUsuarios") 
+	@GetMapping 
 	public List<Usuario> listar() {
 		return usuarioService.listarUsuarios();
 	}
 	
-	@PostMapping 
-	public Usuario agregar(@RequestBody Usuario usuario) {
-		return usuarioService.guardar(usuario);
-	}
+	@PostMapping("/save")
+	public String guardar(@Valid @ModelAttribute Usuario usuario,BindingResult result, Model model, RedirectAttributes attribute ) {
+
+		if(result.hasErrors()) {
+			System.out.println("Hubo error en el formulario!");
+			return "usuario/crear";
+		}
+		usuarioService.guardar(usuario);
+		System.out.println("Usuario guardado con exito!");
+		attribute.addFlashAttribute("success","Usuario creado con exito");
+		return "redirect:/usuario/";
+		*/
+	
 	
 	
 	
