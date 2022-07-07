@@ -10,7 +10,7 @@ public interface IEquipoService {
 	
 	public List<Equipo> getAll();
 
-	public Equipo buscar(long id);
+	public Equipo buscar(String nombre);
 
 	public void eliminar(long id);
 	
