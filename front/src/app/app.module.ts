@@ -16,6 +16,7 @@ import { NavBarComponent } from './features/components/nav-bar/nav-bar.component
 import { TeamCardComponent } from './features/components/team-card/team-card.component';
 import { MatchCardComponent } from './features/components/match-card/match-card.component';
 import { RankingComponent } from './features/pages/ranking/ranking.component';
+import { TopScorersComponent } from './features/pages/top-scorers/top-scorers.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { RankingComponent } from './features/pages/ranking/ranking.component';
     NavBarComponent,
     TeamCardComponent,
     MatchCardComponent,
-    RankingComponent
+    RankingComponent,
+    TopScorersComponent
   ],
   imports: [
     BrowserModule,
