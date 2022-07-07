@@ -39,5 +39,4 @@ public class JugadorService implements IJugadorService{
 		jugadorRepository.save(jugador);
 		
 	}
-
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,7 +31,7 @@ public class JugadorController {
 	@Autowired
 	@Qualifier("equipoService")
 	private IEquipoService equipoService;
-	
+
 	@RequestMapping("/")
 	public String crear(Model model) {
 		Jugador jugador = new Jugador();
@@ -42,7 +43,6 @@ public class JugadorController {
 	
 	@PostMapping("/")
 	public String guardar(@Valid @ModelAttribute Jugador jugador, BindingResult result, Model model, RedirectAttributes attribute) {
-		
 		
 		if(result.hasErrors()) {
 			List<Equipo> listaEquipos = equipoService.getAll();
