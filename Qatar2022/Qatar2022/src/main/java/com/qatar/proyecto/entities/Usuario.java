@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 import com.sun.istack.NotNull;
 
@@ -18,10 +19,19 @@ public class Usuario {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(name = "nombre")
+	private String nombre;
+	
+	@Column(name = "apellido")
+	private String apellido;
+	
+	@NotEmpty
 	@Column(name="contrasenia")
 	private String contrasenia;
 	
+	
 	@Column(name="email")
+	@NotEmpty //No nula y no vacia
 	private String email;
 
 	public Usuario() {
@@ -50,5 +60,21 @@ public class Usuario {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellido() {
+		return apellido;
+	}
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
 	}
 }
