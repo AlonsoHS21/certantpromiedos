@@ -5,18 +5,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>Hola</h1>
-	<a th:href="@{/}">Regresar</a>
-	
-	<form th:action="@{/buscar}" method="post" th:object="${usuario}">
+
+	<form th:action="@{buscar}" method="post" th:object="${usuario}">
 		<label for="email">Email</label>
 			<input type="text" name="email" th:field="*{email}"/>
+		<p th:text="${usuarioEncontrado}"></p>
 		<label for="contrasenia">Contraseña</label>
 			<input type="password" name="contrasenia" th:field="*{contrasenia}" />
-			
-		<button type="submit" >Ingresar</button>
+		
+		<button type="submit">Ingresar</button>
 		
 	</form>
-
+	
 </body>
 </html>
