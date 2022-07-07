@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.repositories.IUsuarioRepository;
@@ -18,11 +19,13 @@ public class UsuarioService implements IUsuarioService{
 	private IUsuarioRepository usuarioRepository;
 	
 	@Override
+	@Transactional(readOnly = true)
 	public List<Usuario> listarUsuarios() {
 		return usuarioRepository.findAll(); //findAll() ya vienen preestablecidos 
 	}
 
 	@Override
+	@Transactional //Debe hacer commit o rollback
 	public Usuario guardar(Usuario usuario) {
 		return usuarioRepository.save(usuario);
 	}
@@ -37,6 +40,11 @@ public class UsuarioService implements IUsuarioService{
 	public Usuario actualizar(Long id) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public Usuario buscarEmailContrasenia(String email, String contrasenia) {
+		return usuarioRepository.buscarEmailContrasenia(email, contrasenia);
 	}
 
 }

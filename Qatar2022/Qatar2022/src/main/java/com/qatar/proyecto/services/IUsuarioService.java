@@ -14,6 +14,8 @@ public interface IUsuarioService {
 	public Usuario actualizar(Long id);
 	
 	public void eliminar(long id);
+	
+	public Usuario buscarEmailContrasenia(String email,String contrasenia);
 
 
 }
