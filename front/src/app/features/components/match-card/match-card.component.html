@@ -1,0 +1,45 @@
+<div class="matches-container">
+  <div *ngFor="let partido of partidos">
+    <div class="match-card-container">
+      <div class="match-title-container">
+        {{ partido.fasePartido }}
+      </div>
+      <div class="versus-container">
+        <div class="team-container">
+          <img
+            class="team-image"
+            src="{{ partido.equiposPartido[0].equipo1.direccionImagen }}"
+            alt="Equipo Flag 1"
+          />
+          {{ partido.equiposPartido[0].equipo1.nombre }}
+          <div *ngIf="partido.resultadoPartido">
+            {{ partido.resultadoPartido[0].equipo1Goles }}
+          </div>
+        </div>
+        <div class="vs-container">vs</div>
+        <div class="team-container">
+          <img
+            class="team-image"
+            src="{{ partido.equiposPartido[1].equipo2.direccionImagen }}"
+            alt="Equipo Flag 2"
+          />
+          {{ partido.equiposPartido[1].equipo2.nombre }}
+          <div *ngIf="partido.resultadoPartido">
+            {{ partido.resultadoPartido[1].equipo2Goles }}
+          </div>
+        </div>
+      </div>
+      <div class="match-data-container">
+        <div class="status-container">
+          <span>Estado: </span>{{ partido.statusPartido }}
+        </div>
+        <div class="date-container">
+          <span>Fecha: </span>{{ partido.fechaPartido }}
+        </div>
+        <div class="stadium-container">
+          <span>Estadio: </span>{{ partido.estadioPartido }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
