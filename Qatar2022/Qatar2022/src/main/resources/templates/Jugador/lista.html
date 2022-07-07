@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Lista de Jugadores</h2>
+	
+	<a href="http://localhost:8080/jugador/crear">Ingresar un jugador</a>
+	
+	<div th:if="${jugador != null and !jugador.empty}">
+		<table border="1">
+			<tr>
+				<th>Nombre</th>
+				<th>Apellido</th>
+				<th>Goles</th>
+				<th>id Equipo</th>
+			</tr>
+			<tr th:each="jugador : ${jugador}">
+				<td th:text="${jugador.nombre}">Nombre</td>
+				<td th:text="${jugador.apellido}">Apellido</td>
+				<td th:text="${jugador.goles}">Goles</td>
+				<td th:text="${jugador.getEquipo().getIdEquipo()}">Equipo</td>
+			<tr>
+		</table>
+	
+	</div>
+	
+	<div th:if="${jugador == null and jugador.empty}">
+		Sin datos
+	</div>
+	
+</body>
+</html>
