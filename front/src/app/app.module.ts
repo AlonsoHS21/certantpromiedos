@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CarouselComponent } from './features/components/carousel/carousel.component';
 import { NavBarComponent } from './features/components/nav-bar/nav-bar.component';
 import { TeamCardComponent } from './features/components/team-card/team-card.component';
+import { MatchCardComponent } from './features/components/match-card/match-card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { TeamCardComponent } from './features/components/team-card/team-card.com
     LoginFormComponent,
     CarouselComponent,
     NavBarComponent,
-    TeamCardComponent
+    TeamCardComponent,
+    MatchCardComponent
   ],
   imports: [
     BrowserModule,

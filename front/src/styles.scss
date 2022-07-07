@@ -8,7 +8,10 @@
 /* autoprefixer grid: on */
 
 @include core();
-@include typography($font-family: $material-typeface, $type-scale: $material-type-scale);
+@include typography(
+  $font-family: $material-typeface,
+  $type-scale: $material-type-scale
+);
 @include theme($default-palette);
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
@@ -54,7 +57,8 @@ body {
 }
 body {
   margin: 0;
-  font-family: 'Bebas Neue', cursive;
-  background: linear-gradient(116.59deg, #040F5E 0.34%, #5B000F 100%);
+  font-family: "Bebas Neue", cursive;
+  background: linear-gradient(116.59deg, #040f5e 0.34%, #5b000f 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
-
