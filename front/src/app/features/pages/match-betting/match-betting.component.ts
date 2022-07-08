@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Partido } from 'src/app/models/Partido';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BettingService } from 'src/app/core/services/betting.service';
 
 @Component({
   selector: 'app-match-betting',
@@ -11,15 +12,17 @@ export class MatchBettingComponent implements OnInit {
   apuesta: FormGroup = new FormGroup({});
 
   bet() {
-    console.log(this.partido);
+    this.bettingService.postBet(this.apuesta.value).subscribe((response) => {
+      console.log(response);
+    });
   }
 
-  constructor() {}
+  constructor(private bettingService: BettingService) {}
 
   ngOnInit(): void {
     this.apuesta = new FormGroup({
-      golesEquipo1: new FormControl(0, Validators.required),
-      golesEquipo2: new FormControl(0, Validators.required),
+      golesEquipo1: new FormControl('', [Validators.required]),
+      golesEquipo2: new FormControl('', [Validators.required]),
     });
   }
 

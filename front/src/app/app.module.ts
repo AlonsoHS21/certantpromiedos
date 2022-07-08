@@ -7,6 +7,7 @@ import {
 	IgxCarouselModule,
 	IgxSliderModule
  } from "igniteui-angular";
+ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './features/components/login-form/login-form.component';
@@ -40,7 +41,8 @@ import { MatchBettingComponent } from './features/pages/match-betting/match-bett
     MaterialModule,
     ReactiveFormsModule,
     IgxCarouselModule,
-    IgxSliderModule
+    IgxSliderModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

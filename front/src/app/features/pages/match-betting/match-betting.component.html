@@ -42,14 +42,30 @@
       <div class="input-container">
         <mat-form-field appearance="fill">
           <mat-label>{{ partido.equiposPartido[0].equipo1.nombre }}</mat-label>
-          <input matInput formControlName="golesEquipo1" type="number" />
+          <input
+            matInput
+            formControlName="golesEquipo1"
+            type="number"
+            min="0"
+            max="31"
+          />
+          <mat-error>El máximo numero de goles es 31</mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>{{ partido.equiposPartido[1].equipo2.nombre }}</mat-label>
-          <input matInput formControlName="golesEquipo2" type="number" />
+          <input
+            matInput
+            formControlName="golesEquipo2"
+            type="number"
+            min="0"
+            max="31"
+          />
+          <mat-error>El máximo numero de goles es 31</mat-error>
         </mat-form-field>
       </div>
-      <button class="bet-button" mat-raised-button (click)="bet()">Apostar</button>
+      <button class="bet-button" mat-raised-button [disabled]="apuesta.invalid" (click)="bet()">
+        Apostar
+      </button>
     </form>
   </div>
 </div>
