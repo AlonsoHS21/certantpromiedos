@@ -39,4 +39,10 @@ public class JugadorService implements IJugadorService{
 		jugadorRepository.save(jugador);
 		
 	}
+
+	@Override
+	@Transactional
+	public int actualizarJugador(String apellido, String nombre, int goles, Long idEquipo, Long idJugador) {
+		return jugadorRepository.actualizarJugador(apellido, nombre, goles, idEquipo, idJugador);
+	}
 }
