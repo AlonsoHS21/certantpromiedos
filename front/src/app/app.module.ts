@@ -15,6 +15,9 @@ import { CarouselComponent } from './features/components/carousel/carousel.compo
 import { NavBarComponent } from './features/components/nav-bar/nav-bar.component';
 import { TeamCardComponent } from './features/components/team-card/team-card.component';
 import { MatchCardComponent } from './features/components/match-card/match-card.component';
+import { RankingComponent } from './features/pages/ranking/ranking.component';
+import { TopScorersComponent } from './features/pages/top-scorers/top-scorers.component';
+import { HomeComponent } from './features/pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { MatchCardComponent } from './features/components/match-card/match-card.
     CarouselComponent,
     NavBarComponent,
     TeamCardComponent,
-    MatchCardComponent
+    MatchCardComponent,
+    RankingComponent,
+    TopScorersComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
