@@ -31,6 +31,9 @@ public class Usuario {
 	@Column(name="email")
 	@NotBlank(message = "Ingrese su email")
 	private String email;
+	
+	@Column(name="puntos")
+	private Long puntos;
 
 	public Usuario() {
 		
@@ -55,4 +58,29 @@ public class Usuario {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	
+	public String getApellido() {
+		return apellido;
+	}
+	
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+	public Long getPuntos() {
+		return puntos;
+	}
+
+	public void setPuntos(Long puntos) {
+		this.puntos = puntos;
+	}
+	
 }

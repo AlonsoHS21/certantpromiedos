@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>Lista de Equipos</h2>
+	
+	<!--  <a th:href="@{/crear}">Crear un Equipo</a> -->
+	<a href="http://localhost:8080/equipo/crear">Crear un Equipo</a>
+
+	
+	<div th:if="${equipo != null and !equipo.empty}">
+		<table border="1">
+			<tr>
+				<th>Nombre</th>
+				<th>URL de la imagen del equipo</th>
+				<th>Editar<th>
+				<th>Eliminar<th>
+			</tr>
+			<tr th:each="equipo : ${equipo}">
+				<td th:text="${equipo.nombre}">Nombre</td>
+				<td th:text="${equipo.direccionImagen}">Imagen</td>
+				<td><a th:href="@{editar/} + ${equipo.idEquipo}" th:text="Editar"></a></td> <!-- http://localhost/8090/editar/1 -->
+				<td><a th:href="@{eliminar/} + ${equipo.idEquipo}" th:text="Eliminar"></a></td>
+			<tr>
+		</table>
+	
+	</div>
+	
+	<div th:if="${equipo == null and equipo.empty}">
+		Sin datos
+	</div>
+	
+</body>
+</html>
