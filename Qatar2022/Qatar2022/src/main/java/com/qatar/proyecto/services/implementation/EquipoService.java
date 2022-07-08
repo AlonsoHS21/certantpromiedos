@@ -54,7 +54,8 @@ public class EquipoService implements IEquipoService{
 	@Override
 	@Transactional
 	public int eliminar(Long id) {
-		return equipoRepository.eliminarEquipo(id);
+		//return equipoRepository.eliminarEquipo(id);
+		return 0;
 	}
 
 	@Override
