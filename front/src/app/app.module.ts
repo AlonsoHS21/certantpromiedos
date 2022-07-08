@@ -17,6 +17,7 @@ import { TeamCardComponent } from './features/components/team-card/team-card.com
 import { MatchCardComponent } from './features/components/match-card/match-card.component';
 import { RankingComponent } from './features/pages/ranking/ranking.component';
 import { TopScorersComponent } from './features/pages/top-scorers/top-scorers.component';
+import { HomeComponent } from './features/pages/home/home.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { TopScorersComponent } from './features/pages/top-scorers/top-scorers.co
     TeamCardComponent,
     MatchCardComponent,
     RankingComponent,
-    TopScorersComponent
+    TopScorersComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
