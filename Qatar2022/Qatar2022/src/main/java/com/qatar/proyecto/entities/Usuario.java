@@ -6,9 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
-
-import com.sun.istack.NotNull;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name="usuario")
@@ -25,13 +23,13 @@ public class Usuario {
 	@Column(name = "apellido")
 	private String apellido;
 	
-	@NotEmpty
+	@NotBlank(message = "Ingrese su contraseña")
 	@Column(name="contrasenia")
 	private String contrasenia;
 	
 	
 	@Column(name="email")
-	@NotEmpty //No nula y no vacia
+	@NotBlank(message = "Ingrese su email")
 	private String email;
 
 	public Usuario() {
