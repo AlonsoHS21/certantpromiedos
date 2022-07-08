@@ -12,7 +12,6 @@ export class TeamCardComponent implements OnInit {
     idEquipo: 1,
     nombre: 'Argentina',
     direccionImagen: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Argentina_%282-3%29.png'
-
   } 
 
   constructor() { }

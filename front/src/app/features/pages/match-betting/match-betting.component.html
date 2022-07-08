@@ -1,0 +1,49 @@
+<header>
+  <h4 class="header-title">Apostar</h4>
+</header>
+<div class="container-match">
+  <div class="container-match-teams">
+    <div class="team-container">
+      <app-team-card></app-team-card>
+      <div class="result" *ngIf="partido.resultadoPartido">
+        {{ partido.resultadoPartido[0].equipo1Goles }}
+      </div>
+    </div>
+
+    <span>Vs</span>
+    <div class="team-container">
+      <app-team-card></app-team-card>
+      <div class="result" *ngIf="partido.resultadoPartido">
+        {{ partido.resultadoPartido[1].equipo2Goles }}
+      </div>
+    </div>
+  </div>
+  <div class="container-match-data">
+    <div class="data-container">
+      <span>Estado: </span>{{ partido.statusPartido }}
+    </div>
+    <div class="data-container">
+      <span>Fecha: </span>{{ partido.fechaPartido }}
+    </div>
+    <div class="data-container">
+      <span>Estadio: </span>{{ partido.estadioPartido }}
+    </div>
+  </div>
+</div>
+<div class="form-container">
+  <div class="container">
+    <form autocomplete="off">
+      <div class="input-container">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ partido.equiposPartido[0].equipo1.nombre }}</mat-label>
+          <input matInput type="number" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>{{ partido.equiposPartido[1].equipo2.nombre }}</mat-label>
+          <input matInput type="number" />
+        </mat-form-field>
+      </div>
+      <button class="bet-button" mat-raised-button>Apostar</button>
+    </form>
+  </div>
+</div>

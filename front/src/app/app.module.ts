@@ -18,6 +18,7 @@ import { MatchCardComponent } from './features/components/match-card/match-card.
 import { RankingComponent } from './features/pages/ranking/ranking.component';
 import { TopScorersComponent } from './features/pages/top-scorers/top-scorers.component';
 import { HomeComponent } from './features/pages/home/home.component';
+import { MatchBettingComponent } from './features/pages/match-betting/match-betting.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HomeComponent } from './features/pages/home/home.component';
     MatchCardComponent,
     RankingComponent,
     TopScorersComponent,
-    HomeComponent
+    HomeComponent,
+    MatchBettingComponent
   ],
   imports: [
     BrowserModule,
