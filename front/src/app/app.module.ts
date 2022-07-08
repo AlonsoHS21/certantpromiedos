@@ -20,6 +20,7 @@ import { RankingComponent } from './features/pages/ranking/ranking.component';
 import { TopScorersComponent } from './features/pages/top-scorers/top-scorers.component';
 import { HomeComponent } from './features/pages/home/home.component';
 import { MatchBettingComponent } from './features/pages/match-betting/match-betting.component';
+import { AlertsComponent } from './features/components/alerts/alerts.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { MatchBettingComponent } from './features/pages/match-betting/match-bett
     RankingComponent,
     TopScorersComponent,
     HomeComponent,
-    MatchBettingComponent
+    MatchBettingComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,
