@@ -32,7 +32,11 @@ export class MatchCardComponent implements OnInit {
       estadioPartido: 'Ras Abu Aboud',
       fechaPartido: '14/10/2022',
       statusPartido: 'Finalizado',
-      resultadoPartido: [{ equipo1Goles: 2 }, { equipo2Goles: 1 }],
+      resultadoPartido: {
+        golesEquipo1: 2,
+        golesEquipo2: 1,
+        result: 'equipo1'
+      },
     },
     {
       idPartido: 1,

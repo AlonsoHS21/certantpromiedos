@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Partido } from 'src/app/models/Partido';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Apuesta } from 'src/app/models/Apuesta';
 
 @Component({
   selector: 'app-match-betting',
@@ -11,10 +10,8 @@ import { Apuesta } from 'src/app/models/Apuesta';
 export class MatchBettingComponent implements OnInit {
   apuesta: FormGroup = new FormGroup({});
 
-
-
   bet() {
-    console.log(this.partido)
+    console.log(this.partido);
   }
 
   constructor() {}
@@ -49,7 +46,7 @@ export class MatchBettingComponent implements OnInit {
     ],
     estadioPartido: 'Ras Abu Aboud',
     fechaPartido: '14/10/2022',
-    statusPartido: 'Por Jugar',
+    statusPartido: 'Apuestas Abiertas',
     resultadoPartido: null,
   };
 }

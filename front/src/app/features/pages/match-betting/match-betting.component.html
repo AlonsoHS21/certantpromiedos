@@ -9,7 +9,7 @@
         [nombre]="partido.equiposPartido[0].equipo1.nombre"
       ></app-team-card>
       <div class="result" *ngIf="partido.resultadoPartido">
-        {{ partido.resultadoPartido[0].equipo1Goles }}
+        {{ partido.resultadoPartido.golesEquipo1 }}
       </div>
     </div>
 
@@ -20,7 +20,7 @@
         [nombre]="partido.equiposPartido[01].equipo2.nombre"
       ></app-team-card>
       <div class="result" *ngIf="partido.resultadoPartido">
-        {{ partido.resultadoPartido[1].equipo2Goles }}
+        {{ partido.resultadoPartido.golesEquipo2 }}
       </div>
     </div>
   </div>
