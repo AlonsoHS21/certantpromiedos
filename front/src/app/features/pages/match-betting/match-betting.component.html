@@ -4,7 +4,10 @@
 <div class="container-match">
   <div class="container-match-teams">
     <div class="team-container">
-      <app-team-card></app-team-card>
+      <app-team-card
+        [imagen]="partido.equiposPartido[0].equipo1.direccionImagen"
+        [nombre]="partido.equiposPartido[0].equipo1.nombre"
+      ></app-team-card>
       <div class="result" *ngIf="partido.resultadoPartido">
         {{ partido.resultadoPartido[0].equipo1Goles }}
       </div>
@@ -12,7 +15,10 @@
 
     <span>Vs</span>
     <div class="team-container">
-      <app-team-card></app-team-card>
+      <app-team-card
+        [imagen]="partido.equiposPartido[1].equipo2.direccionImagen"
+        [nombre]="partido.equiposPartido[01].equipo2.nombre"
+      ></app-team-card>
       <div class="result" *ngIf="partido.resultadoPartido">
         {{ partido.resultadoPartido[1].equipo2Goles }}
       </div>

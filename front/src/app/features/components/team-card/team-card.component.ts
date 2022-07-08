@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Equipo } from 'src/app/models/Equipo';
+import { Component, OnInit, Input } from '@angular/core';
+
 
 @Component({
   selector: 'app-team-card',
@@ -7,12 +7,8 @@ import { Equipo } from 'src/app/models/Equipo';
   styleUrls: ['./team-card.component.scss']
 })
 export class TeamCardComponent implements OnInit {
-
-  equipo:Equipo = {
-    idEquipo: 1,
-    nombre: 'Argentina',
-    direccionImagen: 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Flag_of_Argentina_%282-3%29.png'
-  } 
+@Input() imagen:string = ''
+@Input() nombre:string = ''
 
   constructor() { }
 

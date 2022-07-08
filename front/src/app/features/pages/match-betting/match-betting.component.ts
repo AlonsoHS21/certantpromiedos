@@ -16,7 +16,7 @@ export class MatchBettingComponent implements OnInit {
           idEquipo: 1,
           nombre: 'Argentina',
           direccionImagen:
-            'https://i.pinimg.com/736x/84/c9/cb/84c9cb46eb47eb70e09e0f2db5ef67dc--argentina-country-argentina-flag.jpg',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/Flag_of_Argentina.svg/2560px-Flag_of_Argentina.svg.png',
         },
       },
       {
@@ -24,21 +24,14 @@ export class MatchBettingComponent implements OnInit {
           idEquipo: 2,
           nombre: 'Brasil',
           direccionImagen:
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/640px-Flag_of_Brazil.svg.png',
+            'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/640px-Flag_of_Brazil.svg.png',
         },
       },
     ],
     estadioPartido: 'Ras Abu Aboud',
     fechaPartido: '14/10/2022',
     statusPartido: 'Por Jugar',
-    resultadoPartido: [
-      {
-        equipo1Goles: 3,
-      },
-      {
-        equipo2Goles: 3,
-      },
-    ],
+    resultadoPartido: null,
   };
 
   constructor() {}
