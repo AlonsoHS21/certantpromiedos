@@ -31,15 +31,15 @@ public class UsuarioService implements IUsuarioService{
 	}
 
 	@Override
-	public void eliminar(long id) {
-		// TODO Auto-generated method stub
-		
+	@Transactional //Debe hacer commit o rollback
+	public int eliminarUsuario(Long id) {
+		return usuarioRepository.eliminarUsuario(id);
 	}
 
 	@Override
-	public Usuario actualizar(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional //Debe hacer commit o rollback
+	public int actualizarUsuario(String contrasenia, Long id) {
+		return usuarioRepository.actualizarUsuario(contrasenia, id);
 	}
 
 	@Override
@@ -47,4 +47,8 @@ public class UsuarioService implements IUsuarioService{
 		return usuarioRepository.buscarEmailContrasenia(email, contrasenia);
 	}
 
+	@Override
+	public Usuario buscarUsuarioPorId(Long id) {
+		return usuarioRepository.buscarPorId(id);
+	}
 }
