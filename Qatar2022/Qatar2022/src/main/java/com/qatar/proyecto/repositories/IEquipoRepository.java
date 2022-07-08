@@ -21,5 +21,9 @@ public interface IEquipoRepository extends JpaRepository<Equipo, Long>{
 	@Query("Update Equipo set nombre=(:nombre), direccion_imagen=(:direccionImagen) Where id_equipo=(:idEquipo)")
 	public abstract int actualizarEquipo(@Param("idEquipo") Long idEquipo, @Param("direccionImagen") String direccionImagen,@Param("nombre") String nombre);
 	
+	@Modifying
+	@Query("Delete from Equipo u Where u.id=(:id)")
+	public abstract int eliminarEquipo(@Param("id") Long id);
+	
 	
 }
