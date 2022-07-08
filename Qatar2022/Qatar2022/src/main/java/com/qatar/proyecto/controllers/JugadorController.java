@@ -11,7 +11,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Equipo;
@@ -20,8 +22,10 @@ import com.qatar.proyecto.services.IEquipoService;
 import com.qatar.proyecto.services.IJugadorService;
 
 
-@Controller
-@RequestMapping("/jugador")
+//@Controller
+//@RequestMapping("/jugador")
+@RestController
+@RequestMapping("/api/jugador")
 public class JugadorController {
 	
 	@Autowired
@@ -32,7 +36,20 @@ public class JugadorController {
 	@Qualifier("equipoService")
 	private IEquipoService equipoService;
 	
-	@GetMapping("/")
+	@GetMapping
+	public List<Jugador> listaJugadores(){
+		return jugadorService.getAll();
+	}
+	
+	@PostMapping
+	public void agregarJugador(@RequestBody Jugador jugador) {
+		jugadorService.save(jugador);
+	}
+	
+	}
+/*
+ * 
+ * @GetMapping("/")
 	public String lista(Jugador jugador, Model model) {
 		List<Jugador> listaJugadores = jugadorService.getAll();
 		model.addAttribute("jugador", listaJugadores);
@@ -62,6 +79,5 @@ public class JugadorController {
 		
 		attribute.addFlashAttribute("success","Jugador creado con exito");
 		return "redirect:/jugador/";
-	}
+ */
 
-}
