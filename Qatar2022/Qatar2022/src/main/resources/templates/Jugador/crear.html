@@ -33,7 +33,7 @@
     <br>
     <br>
         <div class="container" id="advanced-search-form">
-            <form action="#" th:action="@{/jugador/}" th:object="${jugador}" method="post">
+            <form action="#" th:action="@{guardar}" th:object="${jugador}" method="post">
                 <div class="form-group">
                     <label for="first-name" class="text-white mb-2">Nombre</label>
                     <input type="text" class="form-control" placeholder="Nombre del jugador" id="first-name" th:field="*{nombre}">

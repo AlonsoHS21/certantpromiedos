@@ -14,7 +14,7 @@ public class Equipo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idEquipo;
+	private Long idEquipo;
 	
 	@Column(name = "nombre")
 	@NotEmpty(message="El nombre no debe estar vacio")

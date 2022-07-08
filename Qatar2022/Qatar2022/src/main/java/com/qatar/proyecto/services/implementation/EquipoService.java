@@ -1,10 +1,12 @@
 package com.qatar.proyecto.services.implementation;
 
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.repositories.IEquipoRepository;
@@ -23,18 +25,12 @@ public class EquipoService implements IEquipoService{
 	}
 
 	@Override
-	public Equipo buscar(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Equipo buscar(String nombre) {
+		return equipoRepository.findByNombre(nombre);
 	}
 
 	@Override
-	public void eliminar(long id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
+	@Transactional
 	public void save(Equipo equipo) {
 		equipoRepository.save(equipo);
 	}
@@ -48,6 +44,24 @@ public class EquipoService implements IEquipoService{
 	@Override
 	public Equipo findByNombre(@Param("nombre")String nombre) {
 		return equipoRepository.findByNombre(nombre);
+	}
+
+	@Override
+	public Equipo buscarPorId(Long id) {
+		return equipoRepository.buscarPorId(id);
+	}
+
+	@Override
+	@Transactional
+	public int eliminar(Long id) {
+		//return equipoRepository.eliminarEquipo(id);
+		return 0;
+	}
+
+	@Override
+	@Transactional
+	public int actualizarEquipo(Long idEquipo, String direccionImagen, String nombre) {
+		return equipoRepository.actualizarEquipo(idEquipo, direccionImagen, nombre);
 	}
 
 }

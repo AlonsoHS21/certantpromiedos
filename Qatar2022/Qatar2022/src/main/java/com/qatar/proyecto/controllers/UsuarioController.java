@@ -1,16 +1,18 @@
 package com.qatar.proyecto.controllers;
 
 import java.util.List;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -28,37 +31,68 @@ import com.qatar.proyecto.entities.Jugador;
 import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.services.implementation.UsuarioService;
 
-@Controller 
-@RequestMapping("/usuario")
+@RestController
+@RequestMapping("/api/v1")
 public class UsuarioController {
 	
 	@Autowired //La anotación se usa para inyectar automáticamente dependencias del tipo especificado en el bean actual.
 	@Qualifier("usuarioService") //Se usa para diferenciar las implementaciones
 	private UsuarioService usuarioService;
-	
-	@GetMapping("/")
-	public String inicio(Model model) {
-		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
-		model.addAttribute("usuarios", listaUsuarios);
-		return "usuario/lista";		
+
+	//GET ALL
+	@GetMapping("/usuario")
+	public List<Usuario> listaUsuario() {
+		return usuarioService.listarUsuarios();
 	}
 	
-	@GetMapping("/ingresar")
-	public String ingresar(Usuario usuario) {
-		return "usuario/ingresar";
-	}
-	
-	@PostMapping("/buscar")
-	public String ingresar(@Valid @ModelAttribute Usuario usuario, Errors errores, Model model) {
+	//POST
+	@PostMapping
+	public ResponseEntity<Usuario> ingresar(@RequestBody Usuario usuario) {
 		
-		if(errores.hasErrors()) { //Si hay errores no hace nada
-			return "usuario/ingresar";
+		usuario = usuarioService.buscarEmailContrasenia(usuario.getEmail(), usuario.getContrasenia()); //busca y me trae usuario y contra
+		
+		if(usuario == null) { //Si no trajo nada
+			return new ResponseEntity<Usuario>(HttpStatus.EXPECTATION_FAILED);
+		} else { //No hace falta el else
+			return ResponseEntity.ok(usuario); //Devuelve 200 porque encontro el usuario
 		}
-		usuario = usuarioService.buscarEmailContrasenia(usuario.getEmail(),usuario.getContrasenia()); //Por ahora busca por email
-		model.addAttribute("usuarioEncontrado", "Bienvenido " + usuario.getNombre() + "!");
-		return "usuario/ingresar";
-		
 	}
+	
+	//PUT
+	@PutMapping("/usuario/{id}")
+	public ResponseEntity<Usuario> actualizarUsuario(
+			@PathVariable(value = "id") Long id,
+			@RequestBody Usuario usuario)
+	{
+		usuario = usuarioService.buscarUsuarioPorId(id); //Busco para ver si existe el usuario
+		
+		if(usuario != null) {
+			
+			int rows = usuarioService.actualizarUsuario(usuario.getContrasenia(),usuario.getId());
+			
+			if(rows > 0 ) {
+				return new ResponseEntity<Usuario>(HttpStatus.CREATED); //Se modifico correctamente
+			}else {
+				return new ResponseEntity<Usuario>(HttpStatus.INTERNAL_SERVER_ERROR); //Hubo un error y la solicitud no pude ser completada
+			}
+		}
+		return new ResponseEntity<Usuario>(HttpStatus.BAD_REQUEST); //Envia un 400 sintaxis invalida o que no existe el usuario
+	}
+	
+	//DELETE
+	@DeleteMapping("/usuario/{id}")
+	public ResponseEntity<Usuario> eliminarUsuario(
+			@PathVariable(value = "id") Long id)
+	{		
+			int rows = usuarioService.eliminarUsuario(id);
+			
+			if(rows > 0) {
+				return new ResponseEntity<Usuario>(HttpStatus.CREATED); //Se modifico correctamente
+			}else {
+				return new ResponseEntity<Usuario>(HttpStatus.INTERNAL_SERVER_ERROR); //Hubo un error y la solicitud no pude ser completada
+			}
+	}
+}
 	
 	/*
 	@PostMapping("/")
@@ -106,4 +140,4 @@ public class UsuarioController {
  *  Nota: @ResponseBody Cuando los controladores de solicitudes devuelven datos, como return repository.findById(), la respuesta se serializará en JSON antes de devolverse al cliente.
  * */
 	
-}
+
