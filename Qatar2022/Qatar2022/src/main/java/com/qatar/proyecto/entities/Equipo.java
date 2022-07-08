@@ -37,10 +37,6 @@ public class Equipo {
 		return idEquipo;
 	}
 
-	protected void setIdEquipo(long idEquipo) {
-		this.idEquipo = idEquipo;
-	}
-
 	public String getNombre() {
 		return nombre;
 	}
