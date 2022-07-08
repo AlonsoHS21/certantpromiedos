@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertsService } from 'src/app/core/services/alerts.service';
+import { LoginService } from 'src/app/core/services/login.service';
 
 @Component({
   selector: 'app-login-form',
@@ -9,12 +10,17 @@ import { AlertsService } from 'src/app/core/services/alerts.service';
 })
 export class LoginFormComponent implements OnInit {
   userLogin: FormGroup = new FormGroup({});
-  
-  constructor(private alert:AlertsService) {}
 
-  submit(){
-    console.log(this.userLogin.value)
-    this.alert.confirmAlert('Oh Yeah!')
+  constructor(
+    private alert: AlertsService,
+    private loginService: LoginService
+  ) {}
+
+  submit() {
+    this.loginService.login(this.userLogin.value).subscribe({
+      error: ()=> this.alert.errorAlert('Hubo un error en el Logueo'),
+      complete: ()=> this.alert.confirmAlert('Bienvenido!')
+    });
   }
 
   ngOnInit(): void {
