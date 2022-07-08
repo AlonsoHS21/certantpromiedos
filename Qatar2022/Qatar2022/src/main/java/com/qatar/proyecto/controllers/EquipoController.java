@@ -2,34 +2,81 @@ package com.qatar.proyecto.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.services.IEquipoService;
-import com.qatar.proyecto.services.IJugadorService;
 
 
-@Controller
-@RequestMapping("/equipo")
+//@Controller
+//@RequestMapping("/equipo")
+@RestController
+@RequestMapping("/api/equipo")
 public class EquipoController {
 	
 	@Autowired
 	@Qualifier("equipoService")
 	private IEquipoService equipoService;
 	
-	@GetMapping("/")
+	//GET
+	@GetMapping
+	public List<Equipo> listaEquipos(){
+		return equipoService.getAll();
+	}
+	
+	//GET BY ID
+	@GetMapping("/{id}")
+	public Equipo buscarEquipo(@PathVariable Long id) {
+		return equipoService.buscarPorId(id);
+	}
+	
+	//POST
+	@PostMapping
+	public void agregarEquipo(@RequestBody Equipo equipo){
+		equipoService.save(equipo);
+	}
+	
+	//PUT
+	@PutMapping("/{id}")
+	public ResponseEntity<Equipo> actualizarEquipo(
+			@PathVariable(value = "id") Long id,
+			@RequestBody Equipo equipo)
+	{
+		Equipo equipoEncontrado = equipoService.buscarPorId(id); //Busco para ver si existe el equipo porque quizas el id recibido no exista
+		
+		if(equipoEncontrado != null) {
+			int rows = equipoService.actualizarEquipo(equipo.getIdEquipo(),equipo.getDireccionImagen(),equipo.getNombre());
+			if(rows > 0 ) {
+				return new ResponseEntity<Equipo>(HttpStatus.CREATED);
+			}else {
+				return new ResponseEntity<Equipo>(HttpStatus.INTERNAL_SERVER_ERROR); 			}
+		}
+		return new ResponseEntity<Equipo>(HttpStatus.BAD_REQUEST); 
+	}
+	
+	@DeleteMapping("/{id}") //TODO:No esta terminado el delete de equipocontroller
+	public ResponseEntity<Equipo> eliminarEquipo(
+			@PathVariable(value = "id") Long id,
+			Equipo equipo
+			){
+		return ResponseEntity.ok(equipo);
+	}
+	
+	
+	
+	/*
+	 * @GetMapping("/")
 	public String lista(Model model) {
 		List<Equipo> listaEquipo = equipoService.getAll();
 		model.addAttribute("equipo",listaEquipo);
@@ -50,17 +97,17 @@ public class EquipoController {
 	@GetMapping("/editar/{idEquipo}")
 	public String editar(Equipo equipo, Model model) { //Inicializa con los datos del idEquipo
 		equipo = equipoService.findByNombre(equipo.getNombre());
-		model.addAttribute("persona",equipo);
+		model.addAttribute("equipo",equipo);
 		return "equipo/crear"; //crear.html sirve para modificar y crear
 	}
 	
 	@GetMapping("/eliminar/{idEquipo}")
-	public String eliminar(Equipo equipo) {
-		equipoService.eliminar(equipo.getIdEquipo());
+	public String eliminar(@PathVariable Long id) {
+		equipoService.eliminar(id);
 		return "redirect:/equipo/";	//Me envia a la lista de equipos
 	}
-	
-	/*
+	 * 
+	 * 
 	@PostMapping("/")
 	public String guardar(@Valid @ModelAttribute Equipo equipo, BindingResult result, Model model, RedirectAttributes attribute) {
 		if(equipoService.findByNombre(equipo.getNombre())!= null) {

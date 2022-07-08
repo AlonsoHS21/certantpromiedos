@@ -12,12 +12,15 @@ public interface IEquipoService {
 
 	public Equipo buscar(String nombre);
 
-	public void eliminar(long id);
+	public int eliminar(Long id);
 	
 	public void save(Equipo equipo);
 	
 	public Equipo findByNombre(@Param("nombre") String nombre);
 	
+	public Equipo buscarPorId(Long id);
+	
 	public Double calculateTotal(Equipo equipo);
-
+	
+	public int actualizarEquipo(Long idEquipo, String direccionImagen, String nombre );
 }
