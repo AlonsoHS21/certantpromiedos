@@ -38,18 +38,18 @@
 </div>
 <div class="form-container">
   <div class="container">
-    <form autocomplete="off">
+    <form autocomplete="off" [formGroup]="apuesta">
       <div class="input-container">
         <mat-form-field appearance="fill">
           <mat-label>{{ partido.equiposPartido[0].equipo1.nombre }}</mat-label>
-          <input matInput type="number" />
+          <input matInput formControlName="golesEquipo1" type="number" />
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>{{ partido.equiposPartido[1].equipo2.nombre }}</mat-label>
-          <input matInput type="number" />
+          <input matInput formControlName="golesEquipo2" type="number" />
         </mat-form-field>
       </div>
-      <button class="bet-button" mat-raised-button>Apostar</button>
+      <button class="bet-button" mat-raised-button (click)="bet()">Apostar</button>
     </form>
   </div>
 </div>
