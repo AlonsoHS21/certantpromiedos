@@ -10,9 +10,9 @@ public interface IJugadorService {
 	
 	public List<Jugador> getAll();
 
-	public Jugador buscar(long id);
+	public Jugador buscar(Long id);
 
-	public void eliminar(long id);
+	public int eliminarJugador(Long id);
 	
 	public void save(Jugador jugador);
 

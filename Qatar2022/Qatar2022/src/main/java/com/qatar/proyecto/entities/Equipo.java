@@ -1,10 +1,14 @@
 package com.qatar.proyecto.entities;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -23,6 +27,9 @@ public class Equipo {
 	@Column(name = "direccionImagen")
 	private String direccionImagen; //Por ahora recibe una url de la imagen
 	
+	@OneToMany(mappedBy="jugador", cascade = CascadeType.ALL)
+	private List<Jugador> jugadores;
+	
 	 public Equipo() {
 	    	
 	    }
@@ -35,10 +42,6 @@ public class Equipo {
 
 	public long getIdEquipo() {
 		return idEquipo;
-	}
-
-	protected void setIdEquipo(long idEquipo) {
-		this.idEquipo = idEquipo;
 	}
 
 	public String getNombre() {
@@ -55,6 +58,14 @@ public class Equipo {
 
 	public void setDireccionImagen(String direccionImagen) {
 		this.direccionImagen = direccionImagen;
+	}
+
+	public List<Jugador> getJugadores() {
+		return jugadores;
+	}
+
+	public void setJugadores(List<Jugador> jugadores) {
+		this.jugadores = jugadores;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qatar.proyecto.entities.Jugador;
 import com.qatar.proyecto.repositories.IJugadorRepository;
@@ -23,15 +24,14 @@ public class JugadorService implements IJugadorService{
 	}
 
 	@Override
-	public Jugador buscar(long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Jugador buscar(Long id) {
+		return jugadorRepository.buscarJugadorPorId(id);
 	}
 
 	@Override
-	public void eliminar(long id) {
-		// TODO Auto-generated method stub
-		
+	@Transactional
+	public int eliminarJugador(Long id) {
+		return jugadorRepository.eliminarJugador(id);
 	}
 
 	@Override

@@ -1,6 +1,7 @@
 package com.qatar.proyecto.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.qatar.proyecto.entities.Usuario;
 
@@ -11,11 +12,11 @@ public interface IUsuarioService {
 	
 	public Usuario guardar(Usuario usuario);
 	
-	public Usuario actualizar(Long id);
+	public int actualizarUsuario(String contrasenia, Long id); //Un usuario solo modifica la contrasenia
 	
-	public void eliminar(long id);
+	public int eliminarUsuario(Long id);
 	
 	public Usuario buscarEmailContrasenia(String email,String contrasenia);
 
-
+	public Usuario buscarUsuarioPorId(Long id);
 }

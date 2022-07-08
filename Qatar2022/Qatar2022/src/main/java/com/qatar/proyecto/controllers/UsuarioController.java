@@ -32,7 +32,7 @@ import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.services.implementation.UsuarioService;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api")
 public class UsuarioController {
 	
 	@Autowired //La anotación se usa para inyectar automáticamente dependencias del tipo especificado en el bean actual.
@@ -41,8 +41,14 @@ public class UsuarioController {
 
 	//GET ALL
 	@GetMapping("/usuario")
-	public List<Usuario> listaUsuario() {
-		return usuarioService.listarUsuarios();
+	public ResponseEntity<List<Usuario>> listaUsuario() {
+		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
+		
+		if(listaUsuarios != null) {
+			return ResponseEntity.ok(listaUsuarios);
+		} else {
+			return new ResponseEntity<List<Usuario>>(HttpStatus.EXPECTATION_FAILED); 
+		}
 	}
 	
 	//POST
@@ -64,11 +70,11 @@ public class UsuarioController {
 			@PathVariable(value = "id") Long id,
 			@RequestBody Usuario usuario)
 	{
-		usuario = usuarioService.buscarUsuarioPorId(id); //Busco para ver si existe el usuario
+		Usuario usuarioEncontrado = usuarioService.buscarUsuarioPorId(id); //Busco para ver si existe el usuario
 		
-		if(usuario != null) {
+		if(usuarioEncontrado != null) {
 			
-			int rows = usuarioService.actualizarUsuario(usuario.getContrasenia(),usuario.getId());
+			int rows = usuarioService.actualizarUsuario(usuario.getContrasenia(),id);
 			
 			if(rows > 0 ) {
 				return new ResponseEntity<Usuario>(HttpStatus.CREATED); //Se modifico correctamente

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qatar.proyecto.entities.Equipo;
+import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.services.IEquipoService;
 
 
@@ -56,7 +57,9 @@ public class EquipoController {
 		Equipo equipoEncontrado = equipoService.buscarPorId(id); //Busco para ver si existe el equipo porque quizas el id recibido no exista
 		
 		if(equipoEncontrado != null) {
-			int rows = equipoService.actualizarEquipo(equipo.getIdEquipo(),equipo.getDireccionImagen(),equipo.getNombre());
+			
+			int rows = equipoService.actualizarEquipo(id,equipo.getDireccionImagen(),equipo.getNombre());
+			
 			if(rows > 0 ) {
 				return new ResponseEntity<Equipo>(HttpStatus.CREATED);
 			}else {
@@ -67,10 +70,15 @@ public class EquipoController {
 	
 	@DeleteMapping("/{id}") //TODO:No esta terminado el delete de equipocontroller
 	public ResponseEntity<Equipo> eliminarEquipo(
-			@PathVariable(value = "id") Long id,
-			Equipo equipo
+			@PathVariable(value = "id") Long id
 			){
-		return ResponseEntity.ok(equipo);
+		int rows = equipoService.eliminar(id);
+		
+		if(rows > 0) {
+			return new ResponseEntity<Equipo>(HttpStatus.CREATED); //Se modifico correctamente
+		}else {
+			return new ResponseEntity<Equipo>(HttpStatus.INTERNAL_SERVER_ERROR); //Hubo un error y la solicitud no pude ser completada
+		}
 	}
 	
 	

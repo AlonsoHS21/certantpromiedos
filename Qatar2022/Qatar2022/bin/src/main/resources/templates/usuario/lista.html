@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h2>Lista de Usuarios</h2>
+	
+	<a href="http://localhost:8080/usuario/ingresar">Crear</a>
+	
+	<div th:if="${usuarios != null and !usuarios.empty}">
+		<table border="1">
+			<tr>
+				<th>Email</th>
+				<th>Contraseña</th>
+			</tr>
+			<tr th:each="usuarios : ${usuarios}">
+				<td th:text="${usuarios.email}">Email</td>
+				<td th:text="${usuarios.contrasenia}">Contrasenia</td>
+			<tr>
+		</table>
+	
+	</div>
+	
+	<div th:if="${usuarios == null and usuarios.empty}">
+		Sin datos
+	</div>
+	
+</body>
+</html>
