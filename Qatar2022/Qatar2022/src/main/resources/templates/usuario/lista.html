@@ -26,11 +26,9 @@
 	</nav>
 	
 	<h2>Lista de Usuarios</h2>
-	
-	
 
-	<div th:if="${usuarios != null and !usuarios.empty}">
-		<table id="example" class="table table-striped" style="width: 60%">
+	<div th:if="${usuarios != null and !usuarios.empty}" id="table-list">
+		<table id="user-list" class="table table-striped" style="width: 60%">
 			<thead>
 				<tr>
 					<th>Nombre</th>
@@ -44,13 +42,13 @@
 			</thead>
 			<tbody>
 				<tr th:each="usuario : ${usuarios}">
-					<td th:text="${usuario.nombre}">Tiger Nixon</td>
-					<td th:text="${usuario.apellido}">System Architect</td>
-					<td th:text="${usuario.contrasenia}">Edinburgh</td>
-					<td th:text="${usuario.email}">61</td>
-					<td th:text="${usuario.puntos}">2011-04-25</td>
-					<td>editar</td>
-					<td>eliminar</td>
+					<td th:text="${usuario.nombre}">Sin datos</td>
+					<td th:text="${usuario.apellido}">Sin datos</td>
+					<td th:text="${usuario.contrasenia}">Sin datos</td>
+					<td th:text="${usuario.email}">Sin datos</td>
+					<td th:text="${usuario.puntos}">Sin datos</td>
+					<td><a th:href="@{/editar/} + ${usuario.id}" th:text="Editar"></a></td>
+					<td><a th:href="@{/eliminar/} + ${usuario.id}" th:text="Eliminar"></a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -58,7 +56,7 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#example').DataTable();
+			$('#user-list').DataTable();
 		});
 	</script>
 	
