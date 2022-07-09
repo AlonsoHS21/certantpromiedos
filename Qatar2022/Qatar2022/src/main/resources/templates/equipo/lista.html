@@ -1,37 +1,66 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+	<meta charset="utf-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/estilos.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />   
+        <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />      
+		<title>Lista de Equipos</title>
 </head>
 <body>
+	
+	<nav class="navbar navbar-expand-lg bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Mundial Qatar 2022</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" th:href="@{/index}">Inicio</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/equipo/}">Equipo</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/jugador/}">Jugador</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/partido/}">Partido</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/usuario/}">Usuario</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
 	<h2>Lista de Equipos</h2>
-	
-	<!--  <a th:href="@{/crear}">Crear un Equipo</a> -->
-	<a href="http://localhost:8080/equipo/crear">Crear un Equipo</a>
 
-	
-	<div th:if="${equipo != null and !equipo.empty}">
-		<table border="1">
-			<tr>
-				<th>Nombre</th>
-				<th>URL de la imagen del equipo</th>
-				<th>Editar<th>
-				<th>Eliminar<th>
-			</tr>
-			<tr th:each="equipo : ${equipo}">
-				<td th:text="${equipo.nombre}">Nombre</td>
-				<td th:text="${equipo.direccionImagen}">Imagen</td>
-				<td><a th:href="@{editar/} + ${equipo.idEquipo}" th:text="Editar"></a></td> <!-- http://localhost/8090/editar/1 -->
-				<td><a th:href="@{eliminar/} + ${equipo.idEquipo}" th:text="Eliminar"></a></td>
-			<tr>
+	<div th:if="${equipos != null and !equipos.empty}" id="table-list">
+		<table id="equipment-list" class="table table-striped" style="width: 60%">
+			<thead>
+				<tr>
+					<th>Imagen</th>
+					<th>Nombre</th>
+					<th>Jugadores</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="equipo : ${equipos}">
+					<td th:text="${equipo.direccionImagen}">Sin datos</td>
+					<td th:text="${equipo.nombre}">Sin datos</td>
+					<td th:text="${equipo.getJugador().getClass()}"></td>
+					<td><a th:href="@{/editar/} + ${equipo.idEquipo}" th:text="Editar"></a></td>
+					<td><a th:href="@{/eliminar/} + ${equipo.idEquipo}" th:text="Eliminar"></a></td>
+				</tr>
+			</tbody>
 		</table>
-	
 	</div>
+
+	<script>
+		$(document).ready(function() {
+			$('#equipment-list').DataTable();
+		});
+	</script>
 	
-	<div th:if="${equipo == null and equipo.empty}">
-		Sin datos
-	</div>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+	
+	
 	
 </body>
 </html>
