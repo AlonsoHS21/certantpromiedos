@@ -1,8 +1,10 @@
 package com.qatar.proyecto.entities;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,29 +14,30 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-/*
+
 @Entity
 @Table(name = "partido")
 public class Partido {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPartido;
 	
-	@Column(name = "resultado_final")
-	private String resultadoFinal; //Posibles resultados 3 - 2 o guardaria al ganador
-	
-	@Column(name = "estado_partido")
-	private String estadoPartido;
+	@Column(name = "fase")
+	private String fasePartido;
 	
 	@Column(name = "estadio")
-	private String nombreEstadio;
+	private String estadio;
 	
 	@Column(name = "fecha")
-	private Timestamp fecha;
+	private Timestamp fechaPartido;
 	
-	@OneToMany
-	@JoinColumn(name = "id_equipo")
-	private List<Equipo> listaEquipos;
+	@Column(name = "estado_apuesta")
+	private String estadoApuesta;
+	
+	@OneToMany(cascade = (CascadeType.ALL))
+	@JoinColumn(name = "idEquipo")
+	private List<Equipo> listaEquipos = new ArrayList<Equipo>();
 	
 	public Partido() {}
 
@@ -46,36 +49,36 @@ public class Partido {
 		this.idPartido = idPartido;
 	}
 
-	public String getResultadoFinal() {
-		return resultadoFinal;
+	public String getFasePartido() {
+		return fasePartido;
 	}
 
-	public void setResultadoFinal(String resultadoFinal) {
-		this.resultadoFinal = resultadoFinal;
+	public void setFasePartido(String fasePartido) {
+		this.fasePartido = fasePartido;
 	}
 
-	public String getEstadoPartido() {
-		return estadoPartido;
+	public String getEstadio() {
+		return estadio;
 	}
 
-	public void setEstadoPartido(String estadoPartido) {
-		this.estadoPartido = estadoPartido;
+	public void setEstadio(String estadio) {
+		this.estadio = estadio;
 	}
 
-	public String getNombreEstadio() {
-		return nombreEstadio;
+	public Timestamp getFechaPartido() {
+		return fechaPartido;
 	}
 
-	public void setNombreEstadio(String nombreEstadio) {
-		this.nombreEstadio = nombreEstadio;
+	public void setFechaPartido(Timestamp fechaPartido) {
+		this.fechaPartido = fechaPartido;
 	}
 
-	public Timestamp getFecha() {
-		return fecha;
+	public String getEstadoApuesta() {
+		return estadoApuesta;
 	}
 
-	public void setFecha(Timestamp fecha) {
-		this.fecha = fecha;
+	public void setEstadoApuesta(String estadoApuesta) {
+		this.estadoApuesta = estadoApuesta;
 	}
 
 	public List<Equipo> getListaEquipos() {
@@ -85,9 +88,7 @@ public class Partido {
 	public void setListaEquipos(List<Equipo> listaEquipos) {
 		this.listaEquipos = listaEquipos;
 	}
-
+	
+	
 	
 }
-ERROR: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in class path resource [org/springframework/boot/autoconfigure/orm/jpa/HibernateJpaConfiguration.class]: Invocation of init method failed; nested exception is org.hibernate.DuplicateMappingException: Table [equipo] contains physical column name [id_equipo] referred to by multiple logical column names: [id_equipo], [idEquipo]
-
-*/ 
