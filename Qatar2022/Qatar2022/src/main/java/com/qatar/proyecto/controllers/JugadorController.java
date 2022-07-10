@@ -47,7 +47,24 @@ public class JugadorController {
 		model.addAttribute("jugadores", listaJugadores);
 		return "jugador/lista";
 	}
-}
+ 	
+ 	@GetMapping("/agregar")
+ 	public String crear(Model model) {
+ 		Jugador jugador = new Jugador();
+ 		List<Equipo> listaEquipos = equipoService.getAll();
+		model.addAttribute("jugador", jugador);
+		model.addAttribute("equipos", listaEquipos);
+		return "jugador/crear";
+ 	}
+ 	
+ 	@PostMapping("/guardar")
+	public String guardar(Jugador jugador) {
+		jugadorService.save(jugador);
+		return "redirect:/jugador/";
+ 	}
+}	
+
+	
 	/*
 	@RequestMapping("/crear")
 	public String crear(Model model) {
