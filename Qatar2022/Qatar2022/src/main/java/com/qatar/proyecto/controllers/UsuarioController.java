@@ -11,6 +11,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,6 +34,27 @@ public class UsuarioController {
 		return "usuario/lista";
 	}
 	
+	@GetMapping("/ingresar")
+	public String ingresar(Usuario usuario, Model model) {
+		model.addAttribute("usuario", usuario);
+		return "usuario/ingresar";
+	}
+	
+	@PostMapping("/buscar")
+	public String buscar(
+			Usuario usuario,
+			Model model
+			) {
+		System.out.println("Entro login");
+		usuario = usuarioService.buscarEmailContrasenia(usuario.getEmail(), usuario.getContrasenia());
+		if(usuario != null) { //Si encontro el usuario no viene nulo
+			System.out.println("Usuario correcto");	
+			return "redirect:/"; //Me envia a home
+		} 
+		System.out.println("mensaje error");
+		model.addAttribute("mensaje", "Usuario no encontrado");
+		return "redirect:/usuario/ingresar"; //Se queda en la misma pagina
+	}
 }
 		/*
 		@PostMapping("/")
