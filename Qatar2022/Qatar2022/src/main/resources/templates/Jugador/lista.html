@@ -25,11 +25,15 @@
 		</div>
 	</nav>
 	
-	<h2>Lista de Jugadores</h2>
-	
-	<a th:href="@{agregar}">Crear Equipo</a>
 
+
+	<!--  Tabla de jugadores por parte de JugadorController -->
 	<div th:if="${jugadores != null and !jugadores.empty}" id="table-list">
+	
+		<h2>Lista de Jugadores</h2>
+	
+	<a th:href="@{agregar}">Ingresar Jugador</a>
+		
 		<table id="player-list" class="table table-striped" style="width: 60%">
 			<thead>
 				<tr>
@@ -49,6 +53,31 @@
 					<td th:text="${jugador.getEquipo().getNombre()}">Sin datos</td>
 					<td><a th:href="@{/editar/} + ${jugador.idJugador}" th:text="Editar"></a></td>
 					<td><a th:href="@{/eliminar/} + ${jugador.idJugador}" th:text="Eliminar"></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<!--  Tabla de jugadores por parte de EquipoController -->
+	<div th:if="${listaJugadoresPorEquipo != null and !listaJugadoresPorEquipo.empty}" id="table-list">
+		
+			<h2>Lista de Jugadores</h2>
+		
+		<table id="player-list" class="table table-striped" style="width: 60%">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Apellido</th>
+					<th>Goles</th>
+					<th>Nombre de Equipo</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="jugador : ${listaJugadoresPorEquipo}">
+					<td th:text="${jugador.nombre}">Sin datos</td>
+					<td th:text="${jugador.apellido}">Sin datos</td>
+					<td th:text="${jugador.goles}">Sin datos</td>
+					<td th:text="${jugador.getEquipo().getNombre()}">Sin datos</td>
 				</tr>
 			</tbody>
 		</table>

@@ -11,6 +11,7 @@
         <link th:href="@{/css/styles.css}" rel="stylesheet" />
     </head>
     <body class="py-3 bg-dark">
+    
        <div class="alert alert-success alert-dismissable" th:if="${success != null}">
 			<label th:text="${success}"></label>
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -45,6 +46,7 @@
                     <!--  <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
                         th:errors="*{nombre}" >
                     </small> -->
+                    
                     <br>
                     
                     <label for="image" class="text-white mb-2">URL Imagen</label>
