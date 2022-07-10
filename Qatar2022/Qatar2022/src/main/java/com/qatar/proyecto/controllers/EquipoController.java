@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.qatar.proyecto.entities.Equipo;
+import com.qatar.proyecto.entities.Jugador;
 import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.services.IEquipoService;
+import com.qatar.proyecto.services.IJugadorService;
 import com.qatar.proyecto.services.implementation.EquipoService;
 import com.qatar.proyecto.services.implementation.UsuarioService;
 
@@ -32,23 +34,30 @@ public class EquipoController {
 	@Qualifier("equipoService") 
 	private EquipoService equipoService;
 	
+	@Autowired
+	@Qualifier("jugadorService")
+	private IJugadorService jugadorService;
+	
 	@GetMapping("/")
 	public String lista(Model model) {
 		List<Equipo> listaEquipo = equipoService.getAll();
 		model.addAttribute("equipos",listaEquipo);
 		return "equipo/lista";
 	}
-	/*
-	@GetMapping("/crear")
-	public String crear(Equipo equipo) {
-		return "equipo/crear"; //Me envia a crear.html
+	
+	@GetMapping("/agregar")
+	public String agregar(Equipo equipo, Model model) {
+		return "equipo/crear";
 	}
 	
 	@PostMapping("/guardar")
 	public String guardar(Equipo equipo) {
-		equipoService.save(equipo);
-		return "redirect:/equipo/"; //Me envia a la lista de equipos
+		equipoService.guardarEquipo(equipo.getNombre(), equipo.getDireccionImagen());
+		return "redirect:/equipo/"; 
 	}
+	
+	
+	/*
 	
 	@GetMapping("/editar/{idEquipo}")
 	public String editar(Equipo equipo, Model model) { //Inicializa con los datos del idEquipo
