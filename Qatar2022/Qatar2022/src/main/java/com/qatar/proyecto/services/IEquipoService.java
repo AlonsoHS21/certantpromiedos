@@ -23,4 +23,6 @@ public interface IEquipoService {
 	public Double calculateTotal(Equipo equipo);
 	
 	public int actualizarEquipo(Long idEquipo, String direccionImagen, String nombre );
+	
+	public int guardarEquipo(String nombre, String direccionImagen);
 }

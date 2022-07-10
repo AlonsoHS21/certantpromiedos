@@ -25,5 +25,9 @@ public interface IEquipoRepository extends JpaRepository<Equipo, Long>{
 	@Query("Delete from Equipo u Where u.id=(:id)")
 	public abstract int eliminarEquipo(@Param("id") Long id);
 	
+	@Modifying
+	@Query( value = "insert into Equipo (direccion_imagen, nombre) values (:direccionImagen, :nombre)" , nativeQuery = true)
+	public abstract int guardarEquipo(@Param("nombre") String nombre, @Param("direccionImagen") String direccionImagen);
+	
 	
 }
