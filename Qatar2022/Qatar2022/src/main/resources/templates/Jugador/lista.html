@@ -26,6 +26,8 @@
 	</nav>
 	
 	<h2>Lista de Jugadores</h2>
+	
+	<a th:href="@{agregar}">Crear Equipo</a>
 
 	<div th:if="${jugadores != null and !jugadores.empty}" id="table-list">
 		<table id="player-list" class="table table-striped" style="width: 60%">
