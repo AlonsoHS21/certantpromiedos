@@ -41,7 +41,9 @@ public class EquipoController {
 	@GetMapping("/")
 	public String lista(Model model) {
 		List<Equipo> listaEquipo = equipoService.getAll();
+		List<Jugador> listaJugadores = jugadorService.getAll();
 		model.addAttribute("equipos",listaEquipo);
+		model.addAttribute("jugadores", listaJugadores);
 		return "equipo/lista";
 	}
 	
@@ -50,13 +52,21 @@ public class EquipoController {
 		return "equipo/crear";
 	}
 	
+	@GetMapping("/listarJugadores/{idEquipo}")
+	public String listaJugadorePorEquipo(
+			@PathVariable Long idEquipo,
+			Model model) {
+		System.out.println("entro lista jugadores en controller equipo");
+		List<Jugador> listaJugadores = jugadorService.buscarJugadoresPorIdEquipo(idEquipo);
+		model.addAttribute("listaJugadoresPorEquipo", listaJugadores);
+		return "jugador/lista";
+	}
+	
 	@PostMapping("/guardar")
 	public String guardar(Equipo equipo) {
 		equipoService.guardarEquipo(equipo.getNombre(), equipo.getDireccionImagen());
 		return "redirect:/equipo/"; 
 	}
-	
-	
 	/*
 	
 	@GetMapping("/editar/{idEquipo}")
