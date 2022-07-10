@@ -26,6 +26,8 @@
 	</nav>
 	
 	<h2>Lista de Usuarios</h2>
+	
+	<a th:href="@{ingresar}">Ingresar</a>
 
 	<div th:if="${usuarios != null and !usuarios.empty}" id="table-list">
 		<table id="user-list" class="table table-striped" style="width: 60%">

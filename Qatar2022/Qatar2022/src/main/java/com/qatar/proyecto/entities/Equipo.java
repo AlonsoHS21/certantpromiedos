@@ -1,5 +1,6 @@
 package com.qatar.proyecto.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -27,8 +28,13 @@ public class Equipo {
 	@Column(name = "direccionImagen")
 	private String direccionImagen; //Por ahora recibe una url de la imagen
 	
-	@OneToMany(mappedBy="jugador", cascade = CascadeType.ALL)
-	private List<Jugador> jugadores;
+	@OneToMany(
+			mappedBy = "equipo",
+			cascade = CascadeType.ALL,
+			orphanRemoval = true
+			)
+	private List<Jugador> jugadores = new ArrayList<>();
+	
 	
 	 public Equipo() {
 	    	
@@ -59,14 +65,14 @@ public class Equipo {
 	public void setDireccionImagen(String direccionImagen) {
 		this.direccionImagen = direccionImagen;
 	}
-
-	public List<Jugador> getJugadores() {
+	
+	public List<Jugador> getJugador() {
 		return jugadores;
 	}
 
-	public void setJugadores(List<Jugador> jugadores) {
-		this.jugadores = jugadores;
+	public void setJugador(List<Jugador> jugador) {
+		this.jugadores = jugador;
 	}
-
+	
 }
 
