@@ -15,15 +15,18 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private alert: AlertsService,
     private loginService: LoginService,
-    private route:Router
+    private route: Router
   ) {}
 
   submit() {
     this.loginService.login(this.userLogin.value).subscribe({
-      error: ()=> this.alert.errorAlert('Hubo un error en el Logueo'),
-      complete: ()=> this.alert.confirmAlert('Bienvenido!')
+      error: () => this.alert.errorAlert('Hubo un error en el Logueo'),
+      complete: () => {
+        this.alert.confirmAlert('Bienvenido!');
+        localStorage.setItem('token', this.userLogin.get('email')?.value)
+        this.route.navigate(['home']);
+      },
     });
-    this.route.navigate([''])
   }
 
   ngOnInit(): void {

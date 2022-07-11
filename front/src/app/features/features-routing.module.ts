@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { LoginGuard } from '../guards/login.guard';
 import { FeaturesComponent } from './features.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MatchBettingComponent } from './pages/match-betting/match-betting.component';
@@ -10,6 +11,7 @@ const routes: Routes = [
   {
     path: '',
     component: FeaturesComponent,
+    canActivate: [LoginGuard],
     children: [
       { path: '', component: HomeComponent },
       { path: 'ranking', component: RankingComponent },
