@@ -14,6 +14,7 @@ import { MatchCardComponent } from './components/match-card/match-card.component
 import { RankingComponent } from './pages/ranking/ranking.component';
 import { TopScorersComponent } from './pages/top-scorers/top-scorers.component';
 import { HomeComponent } from './pages/home/home.component';
+import { FeaturesComponent } from './features.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { HomeComponent } from './pages/home/home.component';
     MatchCardComponent,
     RankingComponent,
     TopScorersComponent,
-    HomeComponent
+    HomeComponent,
+    FeaturesComponent
   ],
   imports: [
     CommonModule,
