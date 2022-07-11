@@ -25,14 +25,15 @@
 			</div>
 		</div>
 	</nav>
-	 
-	 <div class="title">
-			<h2>Lista de Equipos</h2>
-			<a th:href="@{agregar}" class="btn btn-primary">Crear Equipo</a>
+
+	<div class="title">
+		<h2>Lista de Equipos</h2>
+		<a th:href="@{agregar}" class="btn btn-primary">Crear Equipo</a>
 	</div>
-	
+
 	<div th:if="${equipos != null and !equipos.empty}" id="table-list">
-		<table id="equipment-list" class="table table-striped" style="width: 60%">
+		<table id="equipment-list" class="table table-striped"
+			style="width: 60%">
 			<thead>
 				<tr>
 					<th>Imagen</th>
@@ -44,22 +45,25 @@
 			</thead>
 			<tbody>
 				<tr th:each="equipo : ${equipos}">
-					<td th:text="${equipo.direccionImagen}">Sin datos</td>
+					<td th:text="${equipo.direccionImagen}"></td>
 					<td th:text="${equipo.nombre}"></td>
-					<td><a th:href="@{listarJugadores/} + ${equipo.idEquipo}" th:text="ir"></a></td>
-					<td><a th:href="@{/editar/} + ${equipo.idEquipo}" th:text="Editar"></a></td>
-					<td><a th:href="@{/eliminar/} + ${equipo.idEquipo}" th:text="Eliminar"></a></td>
+					<td><a th:href="@{listarJugadores/} + ${equipo.idEquipo}"
+						th:text="ir"></a></td>
+					<td><a th:href="@{editar/} + ${equipo.idEquipo}"
+						th:text="Editar"></a></td>
+					<td><a th:href="@{eliminar/} + ${equipo.idEquipo}"
+						th:text="Eliminar"></a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-	
+
 	<script>
 		$(document).ready(function() {
 			$('#equipment-list').DataTable();
 		});
 	</script>
-	
+
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
