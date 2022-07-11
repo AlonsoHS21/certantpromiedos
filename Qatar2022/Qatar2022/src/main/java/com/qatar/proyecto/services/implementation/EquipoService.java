@@ -64,4 +64,10 @@ public class EquipoService implements IEquipoService{
 		return equipoRepository.actualizarEquipo(idEquipo, direccionImagen, nombre);
 	}
 
+	@Override
+	@Transactional
+	public int guardarEquipo(String nombre, String direccionImagen) {
+		return equipoRepository.guardarEquipo(nombre, direccionImagen);
+	}
+
 }

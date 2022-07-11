@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8" />
+		<meta charset="utf-8" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="css/estilos.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />   
         <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />      
-		<link th:href="@{/css/estilos.css}" rel="stylesheet" />
-		<title>Lista de Equipos</title>
+		<title>Lista de Partidos</title>
 </head>
 <body>
-	
 	<nav class="navbar navbar-expand-lg bg-light">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#">Mundial Qatar 2022</a>
@@ -25,34 +23,29 @@
 			</div>
 		</div>
 	</nav>
+	
+	<h2>Lista de Partidos</h2>
+	
+	<a th:href="@{agregar}">Crear Partido</a>
 
-	<div class="title">
-		<h2>Lista de Equipos</h2>
-		<a th:href="@{agregar}" class="btn btn-primary">Crear Equipo</a>
-	</div>
-
-	<div th:if="${equipos != null and !equipos.empty}" id="table-list">
-		<table id="equipment-list" class="table table-striped"
-			style="width: 60%">
+	<div th:if="${partidos != null and !partidos.empty}" id="match-list">
+		<table id="match-list" class="table table-striped" style="width: 60%">
 			<thead>
 				<tr>
-					<th>Imagen</th>
-					<th>Nombre</th>
-					<th>Lista de Jugadores</th>
+					<th>Fase</th>
+					<th>Estadio</th>
+					<th>Fecha Partido</th>
+					<th>Estado</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="equipo : ${equipos}">
-					<td th:text="${equipo.direccionImagen}"></td>
-					<td th:text="${equipo.nombre}"></td>
-					<td><a th:href="@{listarJugadores/} + ${equipo.idEquipo}"
-						th:text="ir"></a></td>
-					<td><a th:href="@{editar/} + ${equipo.idEquipo}"
-						th:text="Editar"></a></td>
-					<td><a th:href="@{eliminar/} + ${equipo.idEquipo}"
-						th:text="Eliminar"></a></td>
+				<tr th:each="partido : ${partidos}">
+					<td th:text="${partido.fasePartido}">Sin datos</td>
+					<td th:text="${partido.estadio}"></td>
+					<td><a th:href="@{/editar/} + ${partido.idPartido}" th:text="Editar"></a></td>
+					<td><a th:href="@{/eliminar/} + ${partido.idPartido}" th:text="Eliminar"></a></td>
 				</tr>
 			</tbody>
 		</table>
@@ -60,10 +53,10 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#equipment-list').DataTable();
+			$('#match-list').DataTable();
 		});
 	</script>
-
+	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>

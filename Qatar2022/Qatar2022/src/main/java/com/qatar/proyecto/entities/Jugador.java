@@ -30,7 +30,7 @@ public class Jugador {
 	@Column(name = "goles")
 	private int goles;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne()
 	@JoinColumn(name="equipo_idEquipo")	
 	@NotNull
 	private Equipo equipo;

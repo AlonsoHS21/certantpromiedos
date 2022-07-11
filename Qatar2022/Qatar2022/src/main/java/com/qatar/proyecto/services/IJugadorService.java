@@ -15,5 +15,7 @@ public interface IJugadorService {
 	public int eliminarJugador(Long id);
 	
 	public void save(Jugador jugador);
+	
+	public int actualizarJugador(String apellido, String nombre, int goles, Long idEquipo, Long idJugador);
 
 }
