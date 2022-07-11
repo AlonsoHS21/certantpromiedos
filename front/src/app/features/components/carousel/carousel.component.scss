@@ -1,7 +1,15 @@
+.carousel-container{
+  height: 90%;
+}
+
 @media only screen and (max-width: 600px) {
   .igx-slide img {
     object-fit: contain;
     width: 90%;
+  }
+
+  .carousel-container{
+    height: 45%;
   }
 
   .igx-slide {
@@ -64,9 +72,4 @@
     object-position: center;
     width: 100%;
   }
-}
-
-
-.carousel-container{
-  height: 90%;
 }
