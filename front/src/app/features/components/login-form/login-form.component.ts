@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertsService } from 'src/app/core/services/alerts.service';
 import { LoginService } from 'src/app/core/services/login.service';
 
@@ -13,7 +14,8 @@ export class LoginFormComponent implements OnInit {
 
   constructor(
     private alert: AlertsService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private route:Router
   ) {}
 
   submit() {
@@ -21,6 +23,7 @@ export class LoginFormComponent implements OnInit {
       error: ()=> this.alert.errorAlert('Hubo un error en el Logueo'),
       complete: ()=> this.alert.confirmAlert('Bienvenido!')
     });
+    this.route.navigate([''])
   }
 
   ngOnInit(): void {
