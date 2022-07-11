@@ -10,9 +10,10 @@ const routes: Routes = [
     path: '',
     component: FeaturesComponent,
     children: [
-      { path: 'home', component: HomeComponent },
+      { path: '', component: HomeComponent },
       { path: 'ranking', component: RankingComponent },
       { path: 'goleadores', component: TopScorersComponent },
+      { path: '**', component: HomeComponent },
     ],
   },
 ];
