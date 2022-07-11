@@ -32,7 +32,7 @@
 	
 		<h2>Lista de Jugadores</h2>
 	
-	<a th:href="@{agregar}">Ingresar Jugador</a>
+	<a th:href="@{agregar}" class="btn btn-success">Ingresar Jugador</a>
 		
 		<table id="player-list" class="table table-striped" style="width: 60%">
 			<thead>
@@ -51,8 +51,8 @@
 					<td th:text="${jugador.apellido}">Sin datos</td>
 					<td th:text="${jugador.goles}">Sin datos</td>
 					<td th:text="${jugador.getEquipo().getNombre()}">Sin datos</td>
-					<td><a th:href="@{/editar/} + ${jugador.idJugador}" th:text="Editar"></a></td>
-					<td><a th:href="@{/eliminar/} + ${jugador.idJugador}" th:text="Eliminar"></a></td>
+					<td><a th:href="@{editar/} + ${jugador.idJugador}" th:text="Editar" class="btn btn-warning"></a></td>
+					<td><a th:href="@{eliminar/} + ${jugador.idJugador}" th:text="Eliminar" class="btn btn-danger"></a></td>
 				</tr>
 			</tbody>
 		</table>

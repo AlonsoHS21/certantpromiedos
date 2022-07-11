@@ -39,6 +39,8 @@ public class JugadorController {
 		return "jugador/lista";
 	}
  	
+ 	/* ----------------- GUARDAR JUGADOR ----------------- */ 
+ 	
  	@GetMapping("/agregar")
  	public String crear(Model model) {
  		Jugador jugador = new Jugador();
@@ -47,8 +49,6 @@ public class JugadorController {
 		model.addAttribute("equipos", listaEquipos);
 		return "jugador/crear";
  	}
- 	
- 	/* ----------------- GUARDAR JUGADOR ----------------- */ 
  	
  	@PostMapping("/guardar")
 	public String guardar(Jugador jugador) {
@@ -66,6 +66,7 @@ public class JugadorController {
  		List<Equipo> listaEquipos = equipoService.getAll();
 		model.addAttribute("jugador", jugadorService.buscar(idJugador));
 		model.addAttribute("equipos", listaEquipos);
+		System.out.println("Entro redireccion editar");
 		return "jugador/editar";
 	}
 	
