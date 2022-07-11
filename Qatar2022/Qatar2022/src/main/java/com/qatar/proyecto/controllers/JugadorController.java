@@ -2,29 +2,18 @@ package com.qatar.proyecto.controllers;
 
 import java.util.List;
 
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.entities.Jugador;
-import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.services.IEquipoService;
 import com.qatar.proyecto.services.IJugadorService;
 
@@ -40,6 +29,8 @@ public class JugadorController {
 	@Autowired
 	@Qualifier("equipoService")
 	private IEquipoService equipoService;
+	
+	/* ----------------- LISTAR JUGADOR ----------------- */ 
 	
  	@GetMapping("/")
 	public String lista(Jugador jugador, Model model) {
@@ -57,11 +48,51 @@ public class JugadorController {
 		return "jugador/crear";
  	}
  	
+ 	/* ----------------- GUARDAR JUGADOR ----------------- */ 
+ 	
  	@PostMapping("/guardar")
 	public String guardar(Jugador jugador) {
 		jugadorService.save(jugador);
 		return "redirect:/jugador/";
  	}
+ 	
+ 	/* ----------------- EDITAR JUGADOR ----------------- */ 
+ 	
+ 	@GetMapping("/editar/{idJugador}")
+	public String redirigirEditar(
+			@PathVariable Long idJugador,
+			Model model
+			) {
+ 		List<Equipo> listaEquipos = equipoService.getAll();
+		model.addAttribute("jugador", jugadorService.buscar(idJugador));
+		model.addAttribute("equipos", listaEquipos);
+		return "jugador/editar";
+	}
+	
+	@PostMapping("/editar/{idJugador}")
+	public String editar(
+			@PathVariable Long idJugador,
+			@ModelAttribute("jugador") Jugador jugador,
+			Model model
+			) {
+		Jugador jugadorEncontrado = jugadorService.buscar(idJugador);
+		if(jugadorEncontrado != null) {
+			jugadorService.actualizarJugador(jugador.getApellido(), jugador.getNombre(), jugador.getGoles(), jugador.getEquipo().getIdEquipo(), idJugador);
+			return "redirect:/jugador/";
+		}
+		return "equipo/editar/{idJugador}";
+	}
+ 	
+ 	/* ----------------- ELIMINAR JUGADOR ----------------- */ 
+ 	
+ 	@GetMapping("eliminar/{idJugador}")
+ 	public String eliminar(
+ 			@PathVariable Long idJugador
+ 			) {
+ 		jugadorService.eliminarJugador(idJugador);
+ 		return "redirect:/jugador/";
+ 	}
+ 	
 }	
 
 	
