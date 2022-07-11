@@ -1,24 +1,16 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { 
-	IgxCarouselModule,
-	IgxSliderModule
- } from "igniteui-angular";
 import { FeaturesModule } from './features/features.module';
 
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './features/components/login-form/login-form.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginFormComponent,
-  ],
+  declarations: [AppComponent, LoginFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -26,11 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FeaturesModule,
     MaterialModule,
     ReactiveFormsModule,
-    IgxCarouselModule,
-    IgxSliderModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
