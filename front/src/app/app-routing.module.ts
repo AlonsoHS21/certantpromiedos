@@ -7,9 +7,7 @@ import { TopScorersComponent } from './features/pages/top-scorers/top-scorers.co
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'login', component: LoginFormComponent },
-  { path: 'ranking', component: RankingComponent },
-  { path: 'goleadores', component: TopScorersComponent },
+  { path: 'login', component: LoginFormComponent }
 ];
 
 @NgModule({
