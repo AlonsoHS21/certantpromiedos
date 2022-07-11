@@ -1,53 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { 
-	IgxCarouselModule,
-	IgxSliderModule
- } from "igniteui-angular";
- import { HttpClientModule } from '@angular/common/http';
+import { FeaturesModule } from './features/features.module';
 
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './features/components/login-form/login-form.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CarouselComponent } from './features/components/carousel/carousel.component';
-import { NavBarComponent } from './features/components/nav-bar/nav-bar.component';
-import { TeamCardComponent } from './features/components/team-card/team-card.component';
-import { MatchCardComponent } from './features/components/match-card/match-card.component';
-import { RankingComponent } from './features/pages/ranking/ranking.component';
-import { TopScorersComponent } from './features/pages/top-scorers/top-scorers.component';
-import { HomeComponent } from './features/pages/home/home.component';
-import { MatchBettingComponent } from './features/pages/match-betting/match-betting.component';
-import { AlertsComponent } from './features/components/alerts/alerts.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginFormComponent,
-    CarouselComponent,
-    NavBarComponent,
-    TeamCardComponent,
-    MatchCardComponent,
-    RankingComponent,
-    TopScorersComponent,
-    HomeComponent,
-    MatchBettingComponent,
-    AlertsComponent
-  ],
+  declarations: [AppComponent, LoginFormComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FeaturesModule,
     MaterialModule,
     ReactiveFormsModule,
-    IgxCarouselModule,
-    IgxSliderModule,
-    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
