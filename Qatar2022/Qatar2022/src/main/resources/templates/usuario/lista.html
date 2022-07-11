@@ -27,7 +27,7 @@
 	
 	<h2>Lista de Usuarios</h2>
 	
-	<a th:href="@{ingresar}">Ingresar</a>
+	<a th:href="@{ingresar}" class="btn btn-success">Ingresar</a>
 
 	<div th:if="${usuarios != null and !usuarios.empty}" id="table-list">
 		<table id="user-list" class="table table-striped" style="width: 60%">
@@ -49,8 +49,8 @@
 					<td th:text="${usuario.contrasenia}">Sin datos</td>
 					<td th:text="${usuario.email}">Sin datos</td>
 					<td th:text="${usuario.puntos}">Sin datos</td>
-					<td><a th:href="@{/editar/} + ${usuario.id}" th:text="Editar"></a></td>
-					<td><a th:href="@{/eliminar/} + ${usuario.id}" th:text="Eliminar"></a></td>
+					<td><a th:href="@{editar/} + ${usuario.id}" th:text="Editar" class="btn btn-warning"></a></td>
+					<td><a th:href="@{eliminar/} + ${usuario.id}" th:text="Eliminar" class="btn btn-danger"></a></td>
 				</tr>
 			</tbody>
 		</table>
