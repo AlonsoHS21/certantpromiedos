@@ -21,7 +21,6 @@ form {
   padding: 15px;
   border-radius: 10px;
   width: 90%;
-  height: 175px;
 }
 
 .form--team--card {
@@ -90,5 +89,9 @@ input[type="number"] {
     flex-direction: column;
 
     width: 100%;
+  }
+
+  form{
+    height: 240px;
   }
 }

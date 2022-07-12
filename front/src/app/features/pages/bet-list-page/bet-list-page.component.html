@@ -1,0 +1,8 @@
+<header>
+  <h4 class="header-title">Apuestas</h4>
+</header>
+<div *ngFor="let item of apuestas">
+    <app-bet-list
+    [apuesta]="item"
+    ></app-bet-list>
+</div>

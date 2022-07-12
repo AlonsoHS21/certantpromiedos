@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BettingService } from 'src/app/core/services/betting.service';
-import { Apuesta } from 'src/app/models/Apuesta';
 
 @Component({
   selector: 'app-bet-list',
@@ -10,7 +9,7 @@ import { Apuesta } from 'src/app/models/Apuesta';
 })
 export class BetListComponent implements OnInit {
   apuestaForm: FormGroup = new FormGroup({});
-  apuesta: any;
+  @Input() apuesta:any;
 
   constructor(private bettingService: BettingService) {}
 
@@ -31,8 +30,8 @@ export class BetListComponent implements OnInit {
       });
     } else {
       this.apuestaForm = new FormGroup({
-        golesEquipo1: new FormControl(0, Validators.required),
-        golesEquipo2: new FormControl(0, Validators.required),
+        golesEquipo1: new FormControl(this.apuesta.golesEquipo1, Validators.required),
+        golesEquipo2: new FormControl(this.apuesta.golesEquipo2, Validators.required),
       });
     }
   }
