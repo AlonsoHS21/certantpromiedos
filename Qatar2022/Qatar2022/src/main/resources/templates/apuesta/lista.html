@@ -31,20 +31,19 @@
 			style="width: 60%">
 			<thead>
 				<tr>
+					<th>Id Usuario</th>
+					<th>Nombre del Usuario</th>
 					<th>Goles Equipo 1</th>
 					<th>Goles Equipo 2</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="apuesta : ${apuestas}">
+					
+					<tr th:each="apuesta : ${apuestas}">
+					<td th:text="${apuesta.getUsuario().getId()}"></td>
+					<td th:text="${apuesta.getUsuario().getNombre()}"></td>
 					<td th:text="${apuesta.golesEquipo1}"></td>
 					<td th:text="${apuesta.golesEquipo2}"></td>
-					<td><a th:href="@{editar/} + ${apuesta.idApuesta}"
-						th:text="Editar" class="btn btn-warning"></a></td>
-					<td><a th:href="@{eliminar/} + ${apuesta.idApuesta}"
-						th:text="Eliminar" class="btn btn-danger"></a></td>
 				</tr>
 			</tbody>
 			

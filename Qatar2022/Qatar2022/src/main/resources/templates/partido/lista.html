@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 		<meta charset="utf-8" />
@@ -27,7 +27,7 @@
 
 	<div class="title">
 		<h2>Lista de Partidos</h2>
-		<a th:href="@{agregar}">Crear Partido</a>
+		<a th:href="@{agregar}" class="btn btn-success">Crear Partido</a>
 	</div>
 
 	<div th:if="${partidos != null and !partidos.empty}" id="match-list">
@@ -46,15 +46,18 @@
 			</thead>
 			<tbody>
 				<tr th:each="partido : ${partidos}">
-					<td th:text="${partido.fasePartido}">Sin datos</td>
+					<td th:text="${partido.fasePartido}"></td>
 					<td th:text="${partido.estadio}"></td>
 					<td th:text="${partido.fechaPartido}"></td>
 					<td th:text="${partido.estadoApuesta}"></td>
-					<td><a th:href="@{/editar/} + ${partido.idPartido}" th:text="Editar"></a></td>
-					<td><a th:href="@{/eliminar/} + ${partido.idPartido}" th:text="Eliminar"></a></td>
+					<td th:text="${local.getNombre()}"></td>
+					<td th:text="${visitante.getNombre()}"></td>
+					<td><a th:href="@{editar/} + ${partido.idPartido}" th:text="Editar" class="btn btn-warning"></a></td>
+					<td><a th:href="@{eliminar/} + ${partido.idPartido}" th:text="Eliminar" class="btn btn-danger"></a></td>
 				</tr>
 			</tbody>
 		</table>
+		
 	</div>
 
 	<script>
