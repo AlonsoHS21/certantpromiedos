@@ -1,17 +1,13 @@
 package com.qatar.proyecto.entities;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -30,14 +26,16 @@ public class Partido {
 	private String estadio;
 	
 	@Column(name = "fecha")
-	private Timestamp fechaPartido;
+	private Date fechaPartido;
 	
 	@Column(name = "estado_apuesta")
 	private String estadoApuesta;
 	
-	@OneToMany(cascade = (CascadeType.ALL))
-	@JoinColumn(name = "idEquipo")
-	private List<Equipo> listaEquipos = new ArrayList<Equipo>();
+	@Column(name = "idequipo_local")
+	private Long idEquipoLocal;
+	
+	@Column(name = "idequipo_visitante")
+	private Long idEquipoVisitante;
 	
 	public Partido() {}
 
@@ -65,7 +63,7 @@ public class Partido {
 		this.estadio = estadio;
 	}
 
-	public Timestamp getFechaPartido() {
+	public Date getFechaPartido() {
 		return fechaPartido;
 	}
 
@@ -81,14 +79,20 @@ public class Partido {
 		this.estadoApuesta = estadoApuesta;
 	}
 
-	public List<Equipo> getListaEquipos() {
-		return listaEquipos;
+	public Long getIdEquipoLocal() {
+		return idEquipoLocal;
 	}
 
-	public void setListaEquipos(List<Equipo> listaEquipos) {
-		this.listaEquipos = listaEquipos;
+	public void setIdEquipoLocal(Long idEquipoLocal) {
+		this.idEquipoLocal = idEquipoLocal;
 	}
-	
-	
+
+	public Long getIdEquipoVisitante() {
+		return idEquipoVisitante;
+	}
+
+	public void setIdEquipoVisitante(Long idEquipoVisitante) {
+		this.idEquipoVisitante = idEquipoVisitante;
+	}
 	
 }

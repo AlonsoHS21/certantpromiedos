@@ -20,19 +20,23 @@ public class Jugador {
 	private long idJugador;
 	
 	@Column(name = "nombre")
-	@NotEmpty(message="El nombre no debe estar vacio")
+	@NotEmpty(message="{NotEmpty.Jugador.nombre}")
 	private String nombre;
 	
 	@Column(name = "apellido")
-	@NotEmpty(message="El apellido no debe estar vacio")
+	@NotEmpty(message="{NotEmpty.Jugador.apellido}")
 	private String apellido;
 	
-	@Column(name = "goles")
+	@Column(name = "goles") //Puede estar vacio empieza en 0
 	private int goles;
+	
+	@Column
+	@NotNull(message="{NotNull.jugador.dorsal}")
+	private int dorsal;
 	
 	@ManyToOne()
 	@JoinColumn(name="equipo_idEquipo")	
-	@NotNull
+	@NotNull(message="{NotNull.Jugador.equipo}")
 	private Equipo equipo;
 	
 	 public Jugador() {
@@ -85,5 +89,13 @@ public class Jugador {
 	public void setGoles(int goles) {
 		this.goles = goles;
 	}
-	
+
+	public int getDorsal() {
+		return dorsal;
+	}
+
+	public void setDorsal(int dorsal) {
+		this.dorsal = dorsal;
+	}
+
 }

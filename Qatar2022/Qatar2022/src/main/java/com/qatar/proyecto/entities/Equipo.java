@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "equipo")
@@ -22,7 +22,7 @@ public class Equipo {
 	private Long idEquipo;
 	
 	@Column(name = "nombre")
-	@NotEmpty(message="El nombre no debe estar vacio")
+	@NotBlank
 	private String nombre;
 	
 	@Column(name = "direccionImagen")
