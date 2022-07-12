@@ -11,6 +11,7 @@ import com.qatar.proyecto.entities.Equipo;
 @Repository("equipoRepository")
 
 public interface IEquipoRepository extends JpaRepository<Equipo, Long>{
+	
 	@Query("SELECT e FROM Equipo e WHERE e.nombre = (:nombre)")
 	public abstract Equipo findByNombre(@Param("nombre") String nombre); 
 	
