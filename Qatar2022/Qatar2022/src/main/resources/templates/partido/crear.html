@@ -46,18 +46,35 @@
 						<option value="Semifinal">Semifinal</option>
 						<option value="Final">Final</option>
 					</select>
+					
+					<br>
                 
                     <label for="estadium" class="text-white mb-2">Estadio</label>
                     <input type="text" class="form-control" placeholder="Nombre del estadio" id="estadium" th:field="*{estadio}">
-                    
-                     <label for="first-name" class="text-white mb-2">Fecha Partido</label>
-                    <input type="date" class="form-control" th:field="*{fechaPartido}">
-                    
+             
+                    <label for="first-name" class="text-white mb-2">Fecha Partido</label>
+                    <input type="datetime-local" class="form-control" th:field="*{fechaPartido}">
+                  
                     <p class="text-white mb-2">Estado Apuesta</p>
 					<select th:field="*{estadoApuesta}" id="estadoApuesta">
-						<option value="Fase de Grupos">Vigente</option>
-						<option value="Octavos">Terminado</option>
-						<option value="Cuartos">Finalizado</option>
+						<option value="Apuestas Abiertas">Abiertas</option>
+						<option value="Apuestas Cerradas">Cerradas</option>
+						<option value="Apuestas Finalizadas">Finalizadas</option>
+					</select>
+		
+					  <p class="text-white mb-2"> Equipo 1:</p>
+					<select th:field="*{idEquipoLocal}" id="EquipoLocal">
+						<option th:each="equipo:${listaEquipos}"
+						th:value="${equipo.idEquipo}"
+						th:text="${equipo.nombre}"/>
+					</select>
+					
+				
+					  <p class="text-white mb-2"> Equipo 2:</p>
+					<select th:field="*{idEquipoVisitante}" id="EquipoVisitante">
+						<option th:each="equipo:${listaEquipos}"
+						th:value="${equipo.idEquipo}"
+						th:text="${equipo.nombre}"/>
 					</select>
 
                     <br>
