@@ -19,14 +19,16 @@
 					<li class="nav-item"><a class="nav-link" th:href="@{/jugador/}">Jugador</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/partido/}">Partido</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/usuario/}">Usuario</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/apuesta/}">Apuesta</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	
-	<h2>Lista de Partidos</h2>
-	
-	<a th:href="@{agregar}">Crear Partido</a>
+
+	<div class="title">
+		<h2>Lista de Partidos</h2>
+		<a th:href="@{agregar}">Crear Partido</a>
+	</div>
 
 	<div th:if="${partidos != null and !partidos.empty}" id="match-list">
 		<table id="match-list" class="table table-striped" style="width: 60%">
@@ -36,6 +38,8 @@
 					<th>Estadio</th>
 					<th>Fecha Partido</th>
 					<th>Estado</th>
+					<th>Equipo Local</th>
+					<th>Equipo Visitante</th>
 					<th>Editar</th>
 					<th>Eliminar</th>
 				</tr>
@@ -44,6 +48,8 @@
 				<tr th:each="partido : ${partidos}">
 					<td th:text="${partido.fasePartido}">Sin datos</td>
 					<td th:text="${partido.estadio}"></td>
+					<td th:text="${partido.fechaPartido}"></td>
+					<td th:text="${partido.estadoApuesta}"></td>
 					<td><a th:href="@{/editar/} + ${partido.idPartido}" th:text="Editar"></a></td>
 					<td><a th:href="@{/eliminar/} + ${partido.idPartido}" th:text="Eliminar"></a></td>
 				</tr>
