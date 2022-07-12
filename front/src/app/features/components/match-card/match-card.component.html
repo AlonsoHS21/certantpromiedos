@@ -13,7 +13,7 @@
           />
           {{ partido.equiposPartido[0].equipo1.nombre }}
           <div *ngIf="partido.resultadoPartido">
-            {{ partido.resultadoPartido.golesEquipo1}}
+            {{ partido.resultadoPartido.golesEquipo1 }}
           </div>
         </div>
         <div class="vs-container">vs</div>
@@ -39,6 +39,9 @@
         <div class="stadium-container">
           <span>Estadio: </span>{{ partido.estadioPartido }}
         </div>
+      </div>
+      <div class="button--container" *ngIf="partido.statusPartido === 'Apuestas Abiertas'">
+        <button mat-raised-button (click)="betById(partido.idPartido)">Apostar</button>
       </div>
     </div>
   </div>

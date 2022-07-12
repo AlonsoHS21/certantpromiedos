@@ -1,20 +1,35 @@
-.td-image{
-    height: 25px;
-    width: 30px;
+.td-image {
+  height: 25px;
+  width: 30px;
 }
 
 .table-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 20px;
-    margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-top: 20px;
+}
+
+table {
+  width: 80%;
+}
+
+th.mat-header-cell,
+td.mat-cell {
+  text-align: center;
+}
+
+header {
+  background-image: url(../../../../assets/bet-header.png);
+  background-position: center;
+  height: 6rem;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  h4 {
+    margin: 0px !important;
   }
-  
-  table {
-    width: 80%;
-  }
-  
-  th.mat-header-cell, td.mat-cell{
-    text-align: center;
-  }
+}

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Partido } from 'src/app/models/Partido';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { BettingService } from 'src/app/core/services/betting.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-match-betting',
@@ -17,9 +18,15 @@ export class MatchBettingComponent implements OnInit {
     });
   }
 
-  constructor(private bettingService: BettingService) {}
+  constructor(private bettingService: BettingService, private router:Router) {}
 
   ngOnInit(): void {
+    this.partido.statusPartido === 'Finalizado' || this.partido.statusPartido === 'Apuestas Cerradas'
+    ?
+    this.router.navigate(['home'])
+    :
+    null
+
     this.apuesta = new FormGroup({
       golesEquipo1: new FormControl('', [Validators.required]),
       golesEquipo2: new FormControl('', [Validators.required]),
