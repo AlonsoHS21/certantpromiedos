@@ -1,5 +1,5 @@
 <div class="bet-section">
-  <form autocomplete="off">
+  <form autocomplete="off" [formGroup]="apuestaForm">
     <div class="match--info">
       <div class="form--team--card">
         <img
@@ -11,7 +11,13 @@
           <mat-label>{{
             apuesta.partido.equiposPartido[0].equipo1?.nombre
           }}</mat-label>
-          <input matInput type="number" min="0" max="31" [disabled]="apuesta.partido.statusPartido === 'Finalizado' || 'Apuestas Cerradas'"/>
+          <input
+            matInput
+            type="number"
+            min="0"
+            max="31"
+            formControlName="golesEquipo1"
+          />
           <mat-error>El máximo numero de goles es 31</mat-error>
         </mat-form-field>
       </div>
@@ -26,7 +32,13 @@
           <mat-label>{{
             apuesta.partido.equiposPartido[1].equipo2?.nombre
           }}</mat-label>
-          <input matInput type="number" min="0" max="31" [disabled]="apuesta.partido.statusPartido === 'Finalizado' || 'Apuestas Cerradas'"/>
+          <input
+            matInput
+            type="number"
+            min="0"
+            max="31"
+            formControlName="golesEquipo2"
+          />
           <mat-error>El máximo numero de goles es 31</mat-error>
         </mat-form-field>
       </div>
@@ -43,7 +55,16 @@
         </div>
       </div>
       <div>
-        <button class="form--button" mat-raised-button [disabled]="apuesta.partido.statusPartido === 'Finalizado' || 'Apuestas Cerradas'">Apostar</button>
+        <button
+          class="form--button"
+          mat-raised-button
+          [disabled]="
+            apuesta.partido.statusPartido == 'Finalizado' ||
+            apuesta.partido.statusPartido == 'Apuestas Cerradas'
+          "
+        >
+          Apostar
+        </button>
       </div>
     </div>
   </form>
