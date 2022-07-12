@@ -4,26 +4,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.entities.Jugador;
-import com.qatar.proyecto.entities.Usuario;
-import com.qatar.proyecto.services.IEquipoService;
 import com.qatar.proyecto.services.IJugadorService;
 import com.qatar.proyecto.services.implementation.EquipoService;
-import com.qatar.proyecto.services.implementation.UsuarioService;
 
 
 @Controller
@@ -38,8 +30,12 @@ public class EquipoController {
 	@Qualifier("jugadorService")
 	private IJugadorService jugadorService;
 	
+	/* ----------------- LISTAR EQUIPO ----------------- */ 
+	
 	@GetMapping("/")
-	public String lista(Model model) {
+	public String lista(
+			Model model
+			) {
 		List<Equipo> listaEquipo = equipoService.getAll();
 		List<Jugador> listaJugadores = jugadorService.getAll();
 		model.addAttribute("equipos",listaEquipo);
@@ -47,42 +43,74 @@ public class EquipoController {
 		return "equipo/lista";
 	}
 	
-	@GetMapping("/agregar")
-	public String agregar(Equipo equipo, Model model) {
-		return "equipo/crear";
-	}
+	/* ----------------- LISTAR JUGADORES X EQUIPO ----------------- */ 
 	
 	@GetMapping("/listarJugadores/{idEquipo}")
 	public String listaJugadorePorEquipo(
 			@PathVariable Long idEquipo,
-			Model model) {
-		System.out.println("entro lista jugadores en controller equipo");
+			Model model
+			) {
 		List<Jugador> listaJugadores = jugadorService.buscarJugadoresPorIdEquipo(idEquipo);
 		model.addAttribute("listaJugadoresPorEquipo", listaJugadores);
 		return "jugador/lista";
 	}
 	
+	/* ----------------- GUARDAR EQUIPO ----------------- */ 
+	
+	@GetMapping("/agregar")
+	public String agregar(
+			Equipo equipo, 
+			Model model
+			) {
+		return "equipo/crear";
+	}
+	
+	
 	@PostMapping("/guardar")
-	public String guardar(Equipo equipo) {
+	public String guardar(
+			Equipo equipo
+			) {
 		equipoService.guardarEquipo(equipo.getNombre(), equipo.getDireccionImagen());
 		return "redirect:/equipo/"; 
 	}
-	/*
+	
+	/* ----------------- EDITAR EQUIPO ----------------- */ 
 	
 	@GetMapping("/editar/{idEquipo}")
-	public String editar(Equipo equipo, Model model) { //Inicializa con los datos del idEquipo
-		equipo = equipoService.findByNombre(equipo.getNombre());
-		model.addAttribute("equipo",equipo);
-		return "equipo/crear"; //crear.html sirve para modificar y crear
+	public String redirigirEditar(
+			@PathVariable Long idEquipo,
+			Model model
+			) {
+		model.addAttribute("equipo", equipoService.buscarPorId(idEquipo));
+		return "equipo/editar";
 	}
 	
-	@GetMapping("/eliminar/{idEquipo}")
-	public String eliminar(@PathVariable Long id) {
-		equipoService.eliminar(id);
-		return "redirect:/equipo/";	//Me envia a la lista de equipos
+	@PostMapping("/editar/{idEquipo}")
+	public String editar(
+			@PathVariable Long idEquipo,
+			@ModelAttribute("equipo") Equipo equipo,
+			Model model
+			) {
+		Equipo equipoEncontrado = equipoService.buscarPorId(idEquipo);
+		System.out.println("Entro al post de editar");
+		if(equipoEncontrado != null) {
+			equipoService.actualizarEquipo(idEquipo, equipo.getDireccionImagen(), equipo.getNombre());
+			return "redirect:/equipo/";
+		}
+		return "equipo/editar/{idEquipo}";
 	}
-	 * 
-	 * 
+	
+	/* ----------------- ELIMINAR EQUIPO ----------------- */ 
+	
+	@GetMapping("/eliminar/{idEquipo}")
+	public String eliminar(
+			@PathVariable Long idEquipo
+			) {
+		equipoService.eliminar(idEquipo);
+		return "redirect:/equipo/";
+	}
+	
+	/*
 	@PostMapping("/")
 	public String guardar(@Valid @ModelAttribute Equipo equipo, BindingResult result, Model model, RedirectAttributes attribute) {
 		if(equipoService.findByNombre(equipo.getNombre())!= null) {
@@ -98,7 +126,8 @@ public class EquipoController {
 		System.out.println("Equipo guardado con exito!");
 		attribute.addFlashAttribute("success","Equipo creado con exito");
 		return "redirect:/equipo/";
-	}*/
+	}
+	*/
 }
 	/* ------------------------------------ SWAGGR ------------------------------------ */
 	/* 

@@ -1,21 +1,20 @@
 package com.qatar.proyecto.controllers;
 
 import java.util.List;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.qatar.proyecto.entities.Apuesta;
 import com.qatar.proyecto.entities.Usuario;
+import com.qatar.proyecto.services.IApuestaService;
 import com.qatar.proyecto.services.implementation.UsuarioService;
 
 
@@ -26,13 +25,35 @@ public class UsuarioController {
 	@Autowired
 	@Qualifier("usuarioService") 
 	private UsuarioService usuarioService;
-
+	
+	@Autowired
+	@Qualifier("apuestaService")
+	private IApuestaService apuestaService;
+	
+	/* ----------------- LISTAR USUARIOS ----------------- */
+	
 	@GetMapping("/")
 	public String lista(Model model) {
 		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
 		model.addAttribute("usuarios",listaUsuarios);
 		return "usuario/lista";
 	}
+	
+	/* ----------------- LISTAR USUARIOS x APUESTA ----------------- */
+	
+	@GetMapping("/listarApuestas/{id}")
+	public String listaApuestasPorUsuario(
+			@PathVariable Long id,
+			Model model
+			) {
+		List<Apuesta> listaApuestas = apuestaService.buscarApuestasPorIdUsuario(id);
+		model.addAttribute("listaApuestasPorUsuario", listaApuestas);
+		model.addAttribute("usuario", usuarioService.buscarUsuarioPorId(id));
+		return "apuesta/lista";
+	}
+	
+	
+	/* ----------------- INGRESAR USUARIOS ----------------- */
 	
 	@GetMapping("/ingresar")
 	public String ingresar(Usuario usuario, Model model) {
@@ -55,6 +76,40 @@ public class UsuarioController {
 		model.addAttribute("mensaje", "Usuario no encontrado");
 		return "redirect:/usuario/ingresar"; //Se queda en la misma pagina
 	}
+	
+	/* ----------------- EDITAR USUARIOS ----------------- */
+	@GetMapping("/editar/{id}")
+	public String redirigirEditar(
+			@PathVariable Long id,
+			Model model
+			) {
+		model.addAttribute("usuario", usuarioService.buscarUsuarioPorId(id));
+		return "usuario/editar";
+	}
+	
+	@PostMapping("/editar/{id}")
+	public String editar(
+			@PathVariable Long id,
+			@ModelAttribute("usuario") Usuario usuario,
+			Model model
+			) {
+		Usuario usuarioEncontrado = usuarioService.buscarUsuarioPorId(id);
+		if(usuarioEncontrado != null) {
+			usuarioService.actualizarUsuario(usuario.getContrasenia(), id);
+			return "redirect:/usuario/";
+		}
+		return "usuario/editar/{id}";
+	}
+	
+	/* ----------------- ELIMINAR USUARIOS ----------------- */
+	@GetMapping("/eliminar/{id}")
+	public String eliminar(
+			@PathVariable Long id
+			) {
+		usuarioService.eliminarUsuario(id);
+		return "redirect:/usuario/";
+	}
+	
 }
 		/*
 		@PostMapping("/")

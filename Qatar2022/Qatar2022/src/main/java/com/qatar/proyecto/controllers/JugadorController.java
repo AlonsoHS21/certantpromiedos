@@ -42,7 +42,9 @@ public class JugadorController {
  	/* ----------------- GUARDAR JUGADOR ----------------- */ 
  	
  	@GetMapping("/agregar")
- 	public String crear(Model model) {
+ 	public String crear(
+ 			Model model
+ 			) {
  		Jugador jugador = new Jugador();
  		List<Equipo> listaEquipos = equipoService.getAll();
 		model.addAttribute("jugador", jugador);
