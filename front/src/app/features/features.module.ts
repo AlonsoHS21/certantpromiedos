@@ -17,6 +17,7 @@ import { FeaturesComponent } from './features.component';
 import { MatchBettingComponent } from './pages/match-betting/match-betting.component';
 import { BetListComponent } from './components/bet-list/bet-list.component';
 import { BetListPageComponent } from './pages/bet-list-page/bet-list-page.component';
+import { JackpotFormComponent } from './components/jackpot-form/jackpot-form.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { BetListPageComponent } from './pages/bet-list-page/bet-list-page.compon
     MatchBettingComponent,
     BetListComponent,
     BetListPageComponent,
+    JackpotFormComponent,
   ],
   imports: [
     CommonModule,
