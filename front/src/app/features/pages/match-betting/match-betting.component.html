@@ -1,0 +1,71 @@
+<header>
+  <h4 class="header-title">Apostar</h4>
+</header>
+<div class="container-match">
+  <div class="container-match-teams">
+    <div class="team-container">
+      <app-team-card
+        [imagen]="partido.equiposPartido[0].equipo1.direccionImagen"
+        [nombre]="partido.equiposPartido[0].equipo1.nombre"
+      ></app-team-card>
+      <div class="result" *ngIf="partido.resultadoPartido">
+        {{ partido.resultadoPartido.golesEquipo1 }}
+      </div>
+    </div>
+
+    <span>Vs</span>
+    <div class="team-container">
+      <app-team-card
+        [imagen]="partido.equiposPartido[1].equipo2.direccionImagen"
+        [nombre]="partido.equiposPartido[01].equipo2.nombre"
+      ></app-team-card>
+      <div class="result" *ngIf="partido.resultadoPartido">
+        {{ partido.resultadoPartido.golesEquipo2 }}
+      </div>
+    </div>
+  </div>
+  <div class="container-match-data">
+    <div class="data-container">
+      <span>Estado: </span>{{ partido.statusPartido }}
+    </div>
+    <div class="data-container">
+      <span>Fecha: </span>{{ partido.fechaPartido }}
+    </div>
+    <div class="data-container">
+      <span>Estadio: </span>{{ partido.estadioPartido }}
+    </div>
+  </div>
+</div>
+<div class="form-container">
+  <div class="container">
+    <form autocomplete="off" [formGroup]="apuesta">
+      <div class="input-container">
+        <mat-form-field appearance="fill">
+          <mat-label>{{ partido.equiposPartido[0].equipo1.nombre }}</mat-label>
+          <input
+            matInput
+            formControlName="golesEquipo1"
+            type="number"
+            min="0"
+            max="31"
+          />
+          <mat-error>El máximo numero de goles es 31</mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>{{ partido.equiposPartido[1].equipo2.nombre }}</mat-label>
+          <input
+            matInput
+            formControlName="golesEquipo2"
+            type="number"
+            min="0"
+            max="31"
+          />
+          <mat-error>El máximo numero de goles es 31</mat-error>
+        </mat-form-field>
+      </div>
+      <button class="bet-button" mat-raised-button [disabled]="apuesta.invalid" (click)="bet()">
+        Apostar
+      </button>
+    </form>
+  </div>
+</div>

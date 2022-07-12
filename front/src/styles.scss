@@ -62,3 +62,29 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
 }
+
+.header-title {
+  color: #ffffff;
+  font-family: "Bebas Neue", cursive !important;
+  text-align: center;
+}
+
+.mat-snack-bar-container {
+  text-align: center;
+}
+
+.mat-simple-snackbar {
+  display: inline-block !important;
+}
+
+.snackbar-confirm{
+  background: #080F5B;
+}
+
+.snackbar-alert{
+  background: #b97f00;
+}
+
+.snackbar-error{
+  background: #e64e4e;
+}

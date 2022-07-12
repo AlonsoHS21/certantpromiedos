@@ -1,0 +1,71 @@
+<div class="bet-section">
+  <form autocomplete="off" [formGroup]="apuestaForm">
+    <div class="match--info">
+      <div class="form--team--card">
+        <img
+          class="teamCard--flag"
+          src="{{ apuesta.partido.equiposPartido[0].equipo1?.direccionImagen }}"
+          alt="Bandera de Equipo Local"
+        />
+        <mat-form-field appearance="fill">
+          <mat-label>{{
+            apuesta.partido.equiposPartido[0].equipo1?.nombre
+          }}</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            max="31"
+            formControlName="golesEquipo1"
+          />
+          <mat-error>El máximo numero de goles es 31</mat-error>
+        </mat-form-field>
+      </div>
+      <span> VS </span>
+      <div class="form--team--card">
+        <img
+          class="teamCard--flag"
+          src="{{ apuesta.partido.equiposPartido[1].equipo2?.direccionImagen }}"
+          alt="Bandera de Equipo Local"
+        />
+        <mat-form-field appearance="fill">
+          <mat-label>{{
+            apuesta.partido.equiposPartido[1].equipo2?.nombre
+          }}</mat-label>
+          <input
+            matInput
+            type="number"
+            min="0"
+            max="31"
+            formControlName="golesEquipo2"
+          />
+          <mat-error>El máximo numero de goles es 31</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="form--bet--info">
+      <div class="form--match--info">
+        <div>
+          {{ apuesta.partido.statusPartido }}
+        </div>
+        <div *ngIf="apuesta.partido.statusPartido === 'Finalizado'">
+          {{ apuesta.partido.resultadoPartido?.golesEquipo1 }}
+          -
+          {{ apuesta.partido.resultadoPartido?.golesEquipo2 }}
+        </div>
+      </div>
+      <div>
+        <button
+          class="form--button"
+          mat-raised-button
+          [disabled]="
+            apuesta.partido.statusPartido == 'Finalizado' ||
+            apuesta.partido.statusPartido == 'Apuestas Cerradas'
+          "
+        >
+          Apostar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

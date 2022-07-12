@@ -14,7 +14,9 @@ export interface Partido {
   estadioPartido:string;
   fechaPartido: string;
   statusPartido: string;
-  resultadoPartido: [
-    { equipo1Goles: number }, 
-    { equipo2Goles: number }] | null;
+  resultadoPartido?: {
+    golesEquipo1:number,
+    golesEquipo2:number,
+    result:string,
+  } | null;
 }

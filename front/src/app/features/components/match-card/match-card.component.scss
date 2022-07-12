@@ -1,6 +1,6 @@
 .match-card-container {
   width: 300px;
-  height: 250px;
+  height: 270px;
 
   background: rgb(0, 0, 0);
   background: linear-gradient(
@@ -20,57 +20,68 @@
   flex-direction: column;
 }
 
-.versus-container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.versus-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.team-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.team-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.team-image {
+  height: 50px;
+  width: 80px;
+}
+
+.match-title-container {
+  color: #ffffff;
+  text-align: center;
+  font-weight: bold;
+}
+
+.vs-container {
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.match-data-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+
+  text-align: center;
+  color: #ffffff;
+}
+
+span {
+  color: #fffd71;
+  font-weight: bold;
+}
+
+.matches-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.button--container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    background: #fe0267;
     color: #ffffff;
-    font-weight: bold;
-}
-
-.team-image{
-    height: 50px;
-    width: 80px;
-}
-
-.match-title-container{
-    color: #ffffff;
-    text-align: center;
-    font-weight: bold;
-}
-
-.vs-container{
-    color: #ffffff;
-    font-weight: bold;
-}
-
-.match-data-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    
-    text-align: center;
-    color: #ffffff;
-}
-
-span{
-    color: #fffd71;
-    font-weight: bold;
-}
-
-.matches-container{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
+  }
 }

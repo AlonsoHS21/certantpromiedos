@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Partido } from 'src/app/models/Partido';
 
 @Component({
@@ -32,10 +33,14 @@ export class MatchCardComponent implements OnInit {
       estadioPartido: 'Ras Abu Aboud',
       fechaPartido: '14/10/2022',
       statusPartido: 'Finalizado',
-      resultadoPartido: [{ equipo1Goles: 2 }, { equipo2Goles: 1 }],
+      resultadoPartido: {
+        golesEquipo1: 2,
+        golesEquipo2: 1,
+        result: 'equipo1'
+      },
     },
     {
-      idPartido: 1,
+      idPartido: 2,
       fasePartido: 'Grupo C',
       equiposPartido: [
         {
@@ -57,12 +62,16 @@ export class MatchCardComponent implements OnInit {
       ],
       estadioPartido: 'Ras Abu Aboud',
       fechaPartido: '14/10/2022',
-      statusPartido: 'A disputarse',
+      statusPartido: 'Apuestas Abiertas',
       resultadoPartido: null,
     },
   ];
 
-  constructor() {}
+  constructor(private router:Router) {}
+
+  betById(idPartido:number){
+    this.router.navigate(['apostarpartido/' + idPartido])
+  }
 
   ngOnInit(): void {}
 }
