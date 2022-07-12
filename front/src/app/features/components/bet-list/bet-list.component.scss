@@ -1,0 +1,93 @@
+.bet-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 15px;
+}
+
+.teamCard--flag {
+  height: 30px;
+  width: 45px;
+  object-fit: fill;
+}
+
+form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #ffffff;
+  flex-wrap: wrap;
+
+  padding: 15px;
+  border-radius: 10px;
+  width: 90%;
+}
+
+.form--team--card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  max-width: 125px;
+  height: 125px;
+}
+
+mat-form-field.mat-form-field {
+  text-align: center;
+}
+
+input {
+  text-align: center;
+}
+
+mat-form-field {
+  width: 80%;
+  margin: 15px;
+}
+
+/* Delete Arrow Indicators on number inputs*/
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+.form--match--info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form--button {
+  background: #fe0267;
+  color: #ffffff;
+}
+
+.match--info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+}
+
+.form--bet--info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+  .form--bet--info {
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+  }
+}
