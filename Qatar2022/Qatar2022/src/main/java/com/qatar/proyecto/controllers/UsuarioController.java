@@ -2,15 +2,21 @@ package com.qatar.proyecto.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.qatar.proyecto.entities.Apuesta;
 import com.qatar.proyecto.entities.Usuario;
@@ -62,19 +68,22 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/buscar")
-	public String buscar(
-			Usuario usuario,
+	public ModelAndView buscar(
+			@Validated Usuario usuario,
+			BindingResult result,
 			Model model
 			) {
-		System.out.println("Entro login");
+		
+		if(result.hasErrors()) {
+			System.out.println("Entro a result has errors");
+			return new ModelAndView("nuevo").addObject("usuario",usuario);
+		}
 		usuario = usuarioService.buscarEmailContrasenia(usuario.getEmail(), usuario.getContrasenia());
 		if(usuario != null) { //Si encontro el usuario no viene nulo
-			System.out.println("Usuario correcto");	
-			return "redirect:/"; //Me envia a home
-		} 
-		System.out.println("mensaje error");
+			return new ModelAndView("redirect:/"); //Me envia a home
+		}  
 		model.addAttribute("mensaje", "Usuario no encontrado");
-		return "redirect:/usuario/ingresar"; //Se queda en la misma pagina
+		return new ModelAndView("redirect:/usuario/ingresar"); //Se queda en la misma pagina
 	}
 	
 	/* ----------------- EDITAR USUARIOS ----------------- */

@@ -1,5 +1,8 @@
 package com.qatar.proyecto.controllers;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +37,8 @@ public class PartidoController {
 	public String lista(Model model) {
 		List<Partido> listaPartidos = partidoService.getAll();
 		model.addAttribute("partidos",listaPartidos);
+		model.addAttribute("local", equipoService.buscarPorId(listaPartidos.get(0).getIdEquipoLocal()));
+		model.addAttribute("visitante", equipoService.buscarPorId(listaPartidos.get(0).getIdEquipoVisitante()));
 		return "partido/lista";
 	}
 	
@@ -43,18 +48,19 @@ public class PartidoController {
 	public String crear(
 			Model model
 			) {
-		System.out.println("Entro a /agregar");
 		Partido partido = new Partido();
 		List<Equipo> listaEquipos = equipoService.getAll();
 		model.addAttribute("partido", partido);
-		model.addAttribute("Equipos", listaEquipos);
-		return "partido/crear"; //Voy al crear.html de partido
+		model.addAttribute("listaEquipos", listaEquipos);
+		return "partido/crear";
 	}
 	
 	@PostMapping("/guardar")
 	public String guardar(
 			Partido partido
 			) {
+	System.out.println(partido.getFechaPartido());
+		
 	partidoService.save(partido);
 	return "redirect:/partido/";
 	}
