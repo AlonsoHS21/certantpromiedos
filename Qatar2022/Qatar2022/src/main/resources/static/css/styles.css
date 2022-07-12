@@ -11298,3 +11298,8 @@ textarea.form-control-lg {
   width: 4rem;
   font-size: 2rem;
 }
+
+.td-image {
+	height: 50px;
+	width: 70px;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="utf-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />   
+        <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />      
+		<link th:href="@{/css/estilos.css}" rel="stylesheet" />
+		<title>Lista de Apuestas</title>
+</head>
+<body>
+	
+	<nav class="navbar navbar-expand-lg bg-light">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Mundial Qatar 2022</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" th:href="@{/index}">Inicio</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/equipo/}">Equipo</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/jugador/}">Jugador</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/partido/}">Partido</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/usuario/}">Usuario</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<div th:if="${apuestas != null and !apuestas.empty}" id="table-list" style="display:flex; justify-content:center;">
+		
+		<table id="equipment-list" class="table table-striped"
+			style="width: 60%">
+			<thead>
+				<tr>
+					<th>Goles Equipo 1</th>
+					<th>Goles Equipo 2</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="apuesta : ${apuestas}">
+					<td th:text="${apuesta.golesEquipo1}"></td>
+					<td th:text="${apuesta.golesEquipo2}"></td>
+					<td><a th:href="@{editar/} + ${apuesta.idApuesta}"
+						th:text="Editar" class="btn btn-warning"></a></td>
+					<td><a th:href="@{eliminar/} + ${apuesta.idApuesta}"
+						th:text="Eliminar" class="btn btn-danger"></a></td>
+				</tr>
+			</tbody>
+			
+		</table>
+	</div>
+	
+	<div th:if="${listaApuestasPorUsuario != null and !listaApuestasPorUsuario.empty}" id="table-list" style="display:flex; justify-content:center;">
+		
+		<div>
+			<h2 th:text="${usuario.getNombre()}"></h2>
+			<h4 th:text="${usuario.getEmail()}"></h4>
+		</div>
+		
+		<table id="equipment-list" class="table table-striped"
+			style="width: 60%">
+			<thead>
+				<tr>
+					<th>Goles Equipo 1</th>
+					<th>Goles Equipo 2</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="apuesta : ${listaApuestasPorUsuario}">
+					<td th:text="${apuesta.golesEquipo1}"></td>
+					<td th:text="${apuesta.golesEquipo2}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+
+	<script>
+		$(document).ready(function() {
+			$('#equipment-list').DataTable();
+		});
+	</script>
+	
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+</body>
+</html>
