@@ -1,5 +1,9 @@
 <div class="nav-bar-container">
-  <img class="nav-logo" src="../../../../assets/CERTANT.svg" alt="CERTANT cup Logo" />
+  <img
+    class="nav-logo"
+    src="../../../../assets/CERTANT.svg"
+    alt="CERTANT cup Logo"
+  />
   <nav class="nav-link-container">
     <a class="nav-link" [routerLink]="'home'">Home</a>
     <a class="nav-link" [routerLink]="'ranking'">Ranking</a>
@@ -10,8 +14,16 @@
     </a>
   </nav>
   <div class="nav-menu-button">
-    <button mat-mini-fab color="primary">
-        <mat-icon>menu</mat-icon>
-      </button>
+    <button [matMenuTriggerFor]="menu" mat-mini-fab color="primary">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button [routerLink]="'home'" mat-menu-item>Home</button>
+      <button [routerLink]="'ranking'" mat-menu-item>Ranking</button>
+      <button [routerLink]="'goleadores'" mat-menu-item>Goleadores</button>
+      <button [routerLink]="'apuestas'" mat-menu-item>Apuestas</button>
+      <button [routerLink]="'micuenta'" mat-menu-item>Mi Cuenta</button>
+    </mat-menu>
+
   </div>
 </div>

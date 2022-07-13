@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material/material.module';
 import { IgxCarouselModule, IgxSliderModule } from 'igniteui-angular';
 import { HttpClientModule } from '@angular/common/http';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
@@ -46,6 +47,7 @@ import { JackpotComponent } from './pages/jackpot/jackpot.component';
     IgxSliderModule,
     ReactiveFormsModule,
     HttpClientModule,
+    SweetAlert2Module
   ],
 })
 export class FeaturesModule {}
