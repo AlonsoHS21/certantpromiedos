@@ -56,7 +56,7 @@ export class MatchBettingComponent implements OnInit {
     ],
     estadioPartido: 'Ras Abu Aboud',
     fechaPartido: '14/10/2022',
-    statusPartido: 'Apuestas Abiertas',
+    statusPartido: 'Finalizado',
     resultadoPartido: null,
   };
 }
