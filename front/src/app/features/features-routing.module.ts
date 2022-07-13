@@ -5,7 +5,9 @@ import { JackpotFormComponent } from './components/jackpot-form/jackpot-form.com
 import { FeaturesComponent } from './features.component';
 import { BetListPageComponent } from './pages/bet-list-page/bet-list-page.component';
 import { HomeComponent } from './pages/home/home.component';
+import { JackpotComponent } from './pages/jackpot/jackpot.component';
 import { MatchBettingComponent } from './pages/match-betting/match-betting.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
 import { RankingComponent } from './pages/ranking/ranking.component';
 import { TopScorersComponent } from './pages/top-scorers/top-scorers.component';
 
@@ -20,7 +22,8 @@ const routes: Routes = [
       { path: 'goleadores', component: TopScorersComponent },
       { path: 'apuestas', component: BetListPageComponent },
       { path: 'apostarpartido/:id', component: MatchBettingComponent },
-      { path: 'jackpot', component: JackpotFormComponent },
+      { path: 'micuenta', component: MyAccountComponent },
+      { path: 'jackpot', component: JackpotComponent },
       { path: '**', component: HomeComponent },
     ],
   },

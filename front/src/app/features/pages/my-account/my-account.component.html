@@ -1,0 +1,16 @@
+<header>
+  <h4 class="header-title">Mi Cuenta</h4>
+</header>
+<div class="form-container">
+  <form [formGroup]="passwordChange">
+    <span>Cambiar Contraseña</span>
+    <mat-form-field class="login-form-input" appearance="fill">
+      <mat-label>Contraseña</mat-label>
+      <input matInput type="password" formControlName="password" />
+      <mat-error>Mínimo 6 caracteres</mat-error>
+    </mat-form-field>
+    <button mat-raised-button>Cambiar Contraseña</button>
+  </form>
+</div>
+
+<app-jackpot-form></app-jackpot-form>

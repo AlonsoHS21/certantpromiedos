@@ -18,6 +18,8 @@ import { MatchBettingComponent } from './pages/match-betting/match-betting.compo
 import { BetListComponent } from './components/bet-list/bet-list.component';
 import { BetListPageComponent } from './pages/bet-list-page/bet-list-page.component';
 import { JackpotFormComponent } from './components/jackpot-form/jackpot-form.component';
+import { MyAccountComponent } from './pages/my-account/my-account.component';
+import { JackpotComponent } from './pages/jackpot/jackpot.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { JackpotFormComponent } from './components/jackpot-form/jackpot-form.com
     BetListComponent,
     BetListPageComponent,
     JackpotFormComponent,
+    MyAccountComponent,
+    JackpotComponent,
   ],
   imports: [
     CommonModule,
