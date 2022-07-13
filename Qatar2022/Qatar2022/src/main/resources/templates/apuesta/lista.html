@@ -6,7 +6,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />   
         <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />      
 		<link th:href="@{/css/estilos.css}" rel="stylesheet" />
-		<title>Lista de Equipos</title>
+		<title>Lista de Apuestas</title>
 </head>
 <body>
 	
@@ -20,45 +20,60 @@
 					<li class="nav-item"><a class="nav-link" th:href="@{/jugador/}">Jugador</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/partido/}">Partido</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/usuario/}">Usuario</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/apuesta/}">Apuesta</a></li>
 				</ul>
 			</div>
 		</div>
 	</nav>
 
-	<div class="title">
-		<h2>Lista de Equipos</h2>
-		<a th:href="@{agregar}" class="btn btn-success">Ingresar Equipo</a>
-	</div>
-
-	<div th:if="${equipos != null and !equipos.empty}" id="table-list" style="display:flex; justify-content:center;">
+	<div th:if="${apuestas != null and !apuestas.empty}" id="table-list" style="display:flex; justify-content:center;">
+		
 		<table id="equipment-list" class="table table-striped"
 			style="width: 60%">
 			<thead>
 				<tr>
-					<th>Imagen</th>
-					<th>Nombre</th>
-					<th>Lista de Jugadores</th>
-					<th>Editar</th>
-					<th>Eliminar</th>
+					<th>Id Usuario</th>
+					<th>Nombre del Usuario</th>
+					<th>Goles Equipo 1</th>
+					<th>Goles Equipo 2</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="equipo : ${equipos}">
-					<td>
-						<img th:src="${equipo.direccionImagen}" style="height: 50px !important; width: 75px !important;">
-					</td>
-					<td th:text="${equipo.nombre}"></td>
-					<td><a th:href="@{listarJugadores/} + ${equipo.idEquipo}"
-						th:text="ir" class="btn btn-info"></a></td>
-					<td><a th:href="@{editar/} + ${equipo.idEquipo}"
-						th:text="Editar" class="btn btn-warning"></a></td>
-					<td><a th:href="@{eliminar/} + ${equipo.idEquipo}"
-						th:text="Eliminar" class="btn btn-danger"></a></td>
+					
+					<tr th:each="apuesta : ${apuestas}">
+					<td th:text="${apuesta.getUsuario().getId()}"></td>
+					<td th:text="${apuesta.getUsuario().getNombre()}"></td>
+					<td th:text="${apuesta.golesEquipo1}"></td>
+					<td th:text="${apuesta.golesEquipo2}"></td>
+				</tr>
+			</tbody>
+			
+		</table>
+	</div>
+	
+	<div th:if="${listaApuestasPorUsuario != null and !listaApuestasPorUsuario.empty}" id="table-list" style="display:flex; justify-content:center;">
+		
+		<div>
+			<h2 th:text="${usuario.getNombre()}"></h2>
+			<h4 th:text="${usuario.getEmail()}"></h4>
+		</div>
+		
+		<table id="equipment-list" class="table table-striped"
+			style="width: 60%">
+			<thead>
+				<tr>
+					<th>Goles Equipo 1</th>
+					<th>Goles Equipo 2</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="apuesta : ${listaApuestasPorUsuario}">
+					<td th:text="${apuesta.golesEquipo1}"></td>
+					<td th:text="${apuesta.golesEquipo2}"></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+	
 
 	<script>
 		$(document).ready(function() {

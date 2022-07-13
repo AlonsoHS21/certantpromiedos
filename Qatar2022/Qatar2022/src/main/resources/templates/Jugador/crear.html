@@ -34,7 +34,6 @@
 		</div>
        
        
-       
     <br>
     <br>
     <br>
@@ -43,17 +42,22 @@
                 <div class="form-group">
                     <label for="first-name" class="text-white mb-2">Nombre</label>
                     <input type="text" class="form-control" placeholder="Nombre del jugador" id="first-name" th:field="*{nombre}">
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
-                        th:errors="*{nombre}" >
-                    </small> 
+                    
+                    <span th:if="${#fields.hasErrors('nombre')}"
+                        th:errors="*{nombre}" style="color: red;">
+                    </span> 
                     
                     <br>
                     
                     <label for="first-name" class="text-white mb-2">Apellido</label>
                     <input type="text" class="form-control" placeholder="Apellido del jugador"  th:field="*{apellido}">
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
+                    <span th:if="${#fields.hasErrors('apellido')}"
                         th:errors="*{apellido}" >
-                    </small>
+                    </span> 
+                    
+                    
+                    <label for="dorsal" class="text-white mb-2">Dorsal</label>
+                    <input type="number" class="form-control" placeholder="Dorsal del jugador"  th:field="*{dorsal}">
                     
                     
                     <p class="text-white mb-2"> Equipo:</p>
@@ -63,9 +67,7 @@
 						th:text="${equipo.nombre}"/>
 					</select>
 					
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('equipo')}"
-					th:errors="*{equipo}">
-				</small>
+					<p th:text="${mensaje}" style="color: white;"></p>
 	
                 </div>
                 <div class="clearfix"></div>
@@ -73,8 +75,6 @@
                 <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Crear jugador</button>
             </form>
         </div>
-
-
        
     <br>
     <br>
