@@ -17,4 +17,5 @@ export class BettingService {
   getBet<Apuesta>(apuesta:string):Observable<Apuesta>{
     return this.http.get<Apuesta>('https://jsonplaceholder.typicode.com/posts/' + apuesta)
   }
+
 }

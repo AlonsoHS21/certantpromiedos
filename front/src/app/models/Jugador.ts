@@ -5,5 +5,5 @@ export interface Jugador{
     nombre: string,
     apellido: string,
     goles: number,
-    equipo: Equipo
+    equipo?: Equipo
 }

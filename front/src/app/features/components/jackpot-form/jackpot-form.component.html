@@ -1,1 +1,54 @@
-<p>jackpot-form works!</p>
+<header>
+  <h4 class="header-title">Jackpot</h4>
+</header>
+<div class="goleador-form-container">
+  <div class="goleador-title">Goleador del Torneo</div>
+  <form [formGroup]="jackpotForm">
+    <div class="selector-container">
+      <mat-form-field appearance="fill">
+        <mat-label>Equipo</mat-label>
+        <mat-select
+          formControlName="equipo"
+          (selectionChange)="playerList($event.value)"
+        >
+          <mat-option *ngFor="let equipo of equipos" [value]="equipo">
+            {{ equipo.nombre }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Jugador</mat-label>
+        <mat-select formControlName="jugador">
+          <mat-option
+            *ngFor="let jugador of jugadores"
+            [value]="jugador.idJugador"
+          >
+            {{ jugador.nombre + " " + jugador.apellido }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button>Apostar</button>
+  </form>
+</div>
+
+<div class="goleador-form-container">
+    <div class="goleador-title">Equipo Campeon</div>
+    <form [formGroup]="jackpotForm">
+      <div class="selector-container">
+        <mat-form-field class="champion-team" appearance="fill">
+          <mat-label>Equipo</mat-label>
+          <mat-select
+            formControlName="equipo"
+          >
+            <mat-option *ngFor="let equipo of equipos" [value]="equipo.idEquipo">
+              {{ equipo.nombre }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+  
+      </div>
+      <button mat-raised-button>Apostar</button>
+    </form>
+  </div>
