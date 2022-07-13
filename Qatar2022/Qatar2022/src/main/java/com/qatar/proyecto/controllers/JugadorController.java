@@ -2,10 +2,13 @@ package com.qatar.proyecto.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,7 +45,9 @@ public class JugadorController {
  	/* ----------------- GUARDAR JUGADOR ----------------- */ 
  	
  	@GetMapping("/agregar")
- 	public String crear(Model model) {
+ 	public String crear(
+ 			Model model
+ 			) {
  		Jugador jugador = new Jugador();
  		List<Equipo> listaEquipos = equipoService.getAll();
 		model.addAttribute("jugador", jugador);
@@ -51,7 +56,16 @@ public class JugadorController {
  	}
  	
  	@PostMapping("/guardar")
-	public String guardar(Jugador jugador) {
+	public String guardar(
+			@Valid Jugador jugador,
+			BindingResult result,
+			Model model
+			) {
+ 		if(result.hasErrors()) {
+ 			model.addAttribute("equipos", equipoService.getAll());
+ 			model.addAttribute("mensaje", "Mensaje de error");
+ 			return "redirect:/jugador/agregar";
+ 		}
 		jugadorService.save(jugador);
 		return "redirect:/jugador/";
  	}
@@ -66,7 +80,6 @@ public class JugadorController {
  		List<Equipo> listaEquipos = equipoService.getAll();
 		model.addAttribute("jugador", jugadorService.buscar(idJugador));
 		model.addAttribute("equipos", listaEquipos);
-		System.out.println("Entro redireccion editar");
 		return "jugador/editar";
 	}
 	
@@ -78,7 +91,7 @@ public class JugadorController {
 			) {
 		Jugador jugadorEncontrado = jugadorService.buscar(idJugador);
 		if(jugadorEncontrado != null) {
-			jugadorService.actualizarJugador(jugador.getApellido(), jugador.getNombre(), jugador.getGoles(), jugador.getEquipo().getIdEquipo(), idJugador);
+			jugadorService.actualizarJugador(jugador.getApellido(), jugador.getNombre(), jugador.getGoles(), jugador.getDorsal(), jugador.getEquipo().getIdEquipo(), idJugador);
 			return "redirect:/jugador/";
 		}
 		return "equipo/editar/{idJugador}";

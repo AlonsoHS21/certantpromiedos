@@ -18,14 +18,14 @@ public interface IJugadorRepository extends JpaRepository<Jugador, Long>{
 	
 	@Query("Select j From Jugador j Where equipo_id_equipo=(:idEquipo)")
 	public abstract List<Jugador> buscarJugadoresPorIdEquipo(@Param("idEquipo") Long idEquipo);
-
+	
 	@Modifying
 	@Query("Delete from Jugador j Where j.id=(:idJugador)")
 	public abstract int eliminarJugador(@Param("idJugador") Long idJugador); 
 	
 	@Modifying
-	@Query("Update Jugador set apellido=(:apellido), nombre=(:nombre), goles=(:goles), equipo_id_equipo=(:idEquipo) Where id_jugador=(:idJugador)")
-	public abstract int actualizarJugador(@Param("apellido") String apellido, @Param("nombre") String nombre, @Param("goles") int goles, @Param("idEquipo") Long idEquipo, @Param("idJugador") Long idJugador); 
+	@Query("Update Jugador set apellido=(:apellido), nombre=(:nombre), goles=(:goles), dorsal=(:dorsal), equipo_id_equipo=(:idEquipo) Where id_jugador=(:idJugador)")
+	public abstract int actualizarJugador(@Param("apellido") String apellido, @Param("nombre") String nombre, @Param("goles") int goles,@Param("dorsal")int dorsal ,@Param("idEquipo")Long idEquipo, @Param("idJugador") Long idJugador); 
 
 	
 }
