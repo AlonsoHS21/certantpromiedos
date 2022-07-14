@@ -106,7 +106,6 @@ public class JugadorController {
  		jugadorService.eliminarJugador(idJugador);
  		return "redirect:/jugador/";
  	}
- 	
 }	
 
 	
