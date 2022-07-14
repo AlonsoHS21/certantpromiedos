@@ -1,0 +1,16 @@
+<nav th:fragment="nav_bar" class="navbar navbar-expand-lg bg-dark">
+		<div class="container-fluid">
+			<a class="navbar-brand text-white" href="#">Mundial Qatar 2022</a>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link text-white" th:href="@{/index}">INICIO</a></li>
+					<li class="nav-item"><a class="nav-link text-white" th:href="@{/equipo/}">EQUIPO</a></li>
+					<li class="nav-item"><a class="nav-link text-white" th:href="@{/jugador/}">JUGADOR</a></li>
+					<li class="nav-item"><a class="nav-link text-white" th:href="@{/partido/}">PARTIDO</a></li>
+					<li class="nav-item"><a class="nav-link text-white" th:href="@{/usuario/}">USUARIO</a></li>
+					<li class="nav-item"><a class="nav-link text-white" th:href="@{/apuesta/}">APUESTA</a></li>
+					<li class="nav-item"><a class="nav-link text-white btn btn-danger" th:href="@{/jackpot/}">JACKPOT</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
