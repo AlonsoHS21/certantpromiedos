@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-account',
@@ -28,11 +29,13 @@ export class MyAccountComponent implements OnInit {
           backdrop: false,
         }).then((result) => {
           if (result.isConfirmed) {
-            Swal.fire(
-              'Cambio Realizado',
-              'Tu contraseña ha sido cambiada',
-              'success'
-            );
+            Swal.fire({
+              text: 'Tu contraseña ha sido cambiada, debes volver a ingresar',
+              icon: 'success',
+              customClass: 'swal-wide',
+            });
+            localStorage.clear();
+            this.router.navigate(['login']);
           }
         })
       : //PASSWORDS DONT MATCH
@@ -44,7 +47,7 @@ export class MyAccountComponent implements OnInit {
         });
   }
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.passwordChange = new FormGroup({

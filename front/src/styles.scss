@@ -129,3 +129,7 @@ body {
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+.igx-carousel__label{
+  display: none !important;
+}
