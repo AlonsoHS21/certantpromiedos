@@ -79,11 +79,13 @@
 
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
+  align-items: center;
 
   span {
     color: #ffffff;
-    font-size: 24px;
+    font-size: 48px;
+    -webkit-text-stroke: 1px rgb(38, 0, 88);
     font-family: "Bebas Neue", cursive;
   }
 
@@ -91,18 +93,25 @@
     width: 125px;
     background: #fe0267;
     color: #ffffff;
+    margin: 20px;
   }
 }
 
 @media only screen and (max-width: 600px) {
+  .carousel-container{
+    height: 30%;
+  }
+
   .slide-container {
-    justify-content: center;
+    top: 500px;
+    justify-content: flex-start;
     align-items: center;
 
     span {
       max-width: 60%;
+      font-size: 24px;
       text-align: center;
-      margin: 10px;
+      margin: 20px;
     }
   }
 }
