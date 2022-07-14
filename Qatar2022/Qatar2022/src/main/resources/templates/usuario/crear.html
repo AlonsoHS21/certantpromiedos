@@ -7,35 +7,34 @@
 		<title>Ingresar</title>
 </head>
 <body>
-	 <nav class="navbar navbar-expand-lg bg-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Mundial Qatar 2022</a>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" th:href="@{/index}">Inicio</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/equipo/}">Equipo</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/jugador/}">Jugador</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/partido/}">Partido</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/usuario/}">Usuario</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
+
+	 <nav th:replace="components/navbar :: nav_bar"></nav>
 
 <div class="container" style="width: 100%; display: flex; justify-content: flex-center; align-items: center;">
-	<form th:action="@{buscar}" th:object="${usuario}" method="post" class="row g-3 mt-3">
+	<form th:action="@{/guardar}" th:object="${usuario}" method="post" class="row g-3 mt-3">
+		<div class="col-10">
+			<label for="nombre" class="form-label">Nombre</label>
+				<input type="text" id="nombre"
+					 th:field="*{nombre}" class="form-control">
+		</div>
+		
+		<div class="col-10">
+			<label for="apellido" class="form-label">Apellido</label>
+				<input type="text" id="apellido"
+					 th:field="*{apellido}"
+					 class="form-control">
+		</div>
+		
 		<div class="col-10">
 			<label for="email" class="form-label">Email</label>
 				<input type="text" id="email"
 					placeholder="rhuarcaya@certant.com" th:field="*{email}"
 					pattern="^[a-zA-Z]+@certant\.com$" class="form-control">
-				<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Error email</span>
 		</div>
-		<div class="col-10 py-3">
+		<div class="col-10">
 			<label for="contrasenia" class="form-label">Password</label>
-				<input type="password" class="form-control" id="contrasenia"	
+				<input type="text" class="form-control" id="contrasenia"	
 					th:field="*{contrasenia}">
-				<span th:if="${#fields.hasErrors('contrasenia')}" th:errors="*{contrasenia}">Error contrasenia</span>
 		</div>
 			<div class="col-12">
 				<button type="submit" class="btn btn-info btn-lg btn-responsive"
@@ -43,7 +42,7 @@
 					<span class="glyphicon glyphicon-search"></span>Ingresar
 				</button>
 			</div>
-	</form>
+		</form>
 	
 </div>
 </body>

@@ -1,8 +1,5 @@
 package com.qatar.proyecto.controllers;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,10 +34,22 @@ public class PartidoController {
 	@GetMapping("/")
 	public String lista(Model model) {
 		List<Partido> listaPartidos = partidoService.getAll();
+		List<Equipo> listaEquipos = equipoService.getAll();
 		model.addAttribute("partidos",listaPartidos);
-		model.addAttribute("local", equipoService.buscarPorId(listaPartidos.get(0).getIdEquipoLocal()));
-		model.addAttribute("visitante", equipoService.buscarPorId(listaPartidos.get(0).getIdEquipoVisitante()));
+		model.addAttribute("equipos", listaEquipos);
 		return "partido/lista";
+	}
+	
+	/* ----------------- LISTAR EQUIPOS X PARTIDO ----------------- */ 
+	
+	@GetMapping("/listarEquipos/{idPartido}")
+	public String listarEquipos(
+			@PathVariable Long idPartido,
+			Model model){
+		Partido partido = partidoService.findById(idPartido);
+		model.addAttribute("local", equipoService.buscarPorId(partido.getIdEquipoLocal()));
+		model.addAttribute("visitante", equipoService.buscarPorId(partido.getIdEquipoVisitante()));
+		return "partido/equipos";
 	}
 	
 	/* ----------------- INGRESAR PARTIDOS ----------------- */ 
@@ -59,13 +69,40 @@ public class PartidoController {
 	public String guardar(
 			Partido partido
 			) {
-	System.out.println(partido.getFechaPartido());
 		
 	partidoService.save(partido);
 	return "redirect:/partido/";
 	}
 	
 	/* ----------------- EDITAR PARTIDOS ----------------- */ 
+	
+	@GetMapping("/editar/{idPartido}")
+	public String redirigirEditar(
+			@PathVariable Long idPartido,
+			Model model
+			) {
+		Partido partido = partidoService.findById(idPartido);
+		List<Equipo> listaEquipos = equipoService.getAll();
+		model.addAttribute("listaEquipos", listaEquipos);
+		model.addAttribute("partido", partido);
+		return "partido/editar";
+	}
+	
+	
+	@PostMapping("/editar/{idPartido}")
+	public String editar(
+			@PathVariable Long idPartido,
+			@ModelAttribute("partido") Partido partido,
+			Model model
+			) {
+		System.out.println(partido.getFechaPartido());
+		Partido partidoEncontrado = partidoService.findById(idPartido);
+		if(partidoEncontrado != null) {
+			partidoService.actualizarPartido(partido.getEstadio(),partido.getEstadoApuesta(),partido.getFasePartido(),partido.getFechaPartido(),partido.getIdEquipoLocal(),partido.getIdEquipoVisitante(),idPartido);
+			return "redirect:/partido/";
+		}
+		return "partido/editar/{idPartido}";
+	}
 	
 	/* ----------------- ELIMINAR PARTIDOS ----------------- */ 
 	

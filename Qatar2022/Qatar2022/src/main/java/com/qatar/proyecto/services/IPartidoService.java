@@ -11,4 +11,9 @@ public interface IPartidoService {
 	public void save(Partido partido);
 	
 	public void eliminar(Long idPartido);
+	
+	public Partido findById(Long idPartido);
+	
+	public int actualizarPartido(String estadio, String estadoApuesta, String fasePartido,String fechaPartido, Long equipoLocal, Long equipoVisitante, Long idPartido);
+
 }

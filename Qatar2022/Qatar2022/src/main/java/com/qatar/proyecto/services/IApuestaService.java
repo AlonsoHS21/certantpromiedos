@@ -11,4 +11,6 @@ public interface IApuestaService {
 	
 	public List<Apuesta> buscarApuestasPorIdUsuario(Long id);
 	
+	public void save(Apuesta apuesta);
+	
 }

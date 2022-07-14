@@ -10,7 +10,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
 @Entity
@@ -28,17 +30,18 @@ public class Usuario {
 	@Column(name = "apellido")
 	private String apellido;
 	
-	@NotBlank(message = "Ingrese su contraseña")
 	@Column(name="contrasenia")
+	@NotBlank
 	private String contrasenia;
 	
 	
 	@Column(name="email")
-	@NotBlank(message = "Ingrese su email")
+	@NotBlank
+	@Email
 	private String email;
 	
 	@Column(name="puntos")
-	private Long puntos;
+	private int puntos;
 	
 	@OneToMany(
 			mappedBy = "usuario",
@@ -46,6 +49,9 @@ public class Usuario {
 			orphanRemoval = true
 			)
 	private List<Apuesta> apuestas = new ArrayList<>();
+	
+	//@OneToOne
+	//private Jackpot jackpot;
 
 	public Usuario() {
 		
@@ -87,11 +93,11 @@ public class Usuario {
 		this.apellido = apellido;
 	}
 
-	public Long getPuntos() {
+	public int getPuntos() {
 		return puntos;
 	}
 
-	public void setPuntos(Long puntos) {
+	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
 
@@ -102,4 +108,13 @@ public class Usuario {
 	public void setApuestas(List<Apuesta> apuestas) {
 		this.apuestas = apuestas;
 	}
+/*
+	public Jackpot getJackpot() {
+		return jackpot;
+	}
+
+	public void setJackpot(Jackpot jackpot) {
+		this.jackpot = jackpot;
+	}*/
+	
 }

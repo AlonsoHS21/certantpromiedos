@@ -7,57 +7,47 @@
         <meta name="author" content="" />
         <title>Crear Equipo</title>
         <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
-        <link th:href="@{/https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css}" rel="stylesheet" />
-        <link th:href="@{/css/styles.css}" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    	<link th:href="@{/css/estilos-crear.css}" rel="stylesheet"/>
     </head>
     
-    <body class="py-3 bg-dark">
-
-	<div class="alert alert-success alert-dismissable"
-		th:if="${success != null}">
-		<label th:text="${success}"></label>
-		<button type="button" class="close" data-dismiss="alert">&times;</button>
-	</div>
-
-	<nav class="navbar navbar-expand-lg bg-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Mundial Qatar 2022</a>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-					<li class="nav-item"><a class="nav-link" th:href="@{/index}">Inicio</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/equipo/}">Equipo</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/jugador/}">Jugador</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/partido/}">Partido</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/usuario/}">Usuario</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav>
-
-	<br>
-	<br>
-	<br>
+    <body style="background-image: url(https://futbolete.com/apuestas/wp-content/uploads/2021/06/messi.png)" class="img-equipos" />
 	
-	<div class="container" id="advanced-search-form">
-		<form th:action="@{guardar}" th:object="${equipo}" method="post">
-			<div class="form-group">
-				<label for="first-name" class="text-white mb-2">Nombre</label> <input
-					type="text" name="nombre" class="form-control"
-					placeholder="Nombre del equipo" id="first-name"
-					th:field="*{nombre}"> <br> <label for="image"
-					class="text-white mb-2">URL Imagen</label> <input type="text"
-					name="direccionImagen" class="form-control" id="image"
-					th:field="*{direccionImagen}">
-			</div>
-			<div class="clearfix"></div>
-			<br>
-			<button type="submit" class="btn btn-info btn-lg btn-responsive"
-				id="search">
-				<span class="glyphicon glyphicon-search"></span>Crear equipo
-			</button>
+	<nav th:replace="components/navbar :: nav_bar"></nav>
+
+	<br>
+	<br>
+	<br>
+		<div class="container" style="width: 100%; display: flex; justify-content: flex-end; align-items: center;">
+			<form th:action="@{guardar}" th:object="${equipo}" method="post" class="row g-3 mt-3" style="width: 40%">
+				
+				<div class="col-10">
+					<h2>Ingresar Equipo</h2>
+				</div>
+				
+				<div class="col-8">
+					<label for="nombre" class="form-label">Nombre</label>
+					<input type="text" name="nombre" class="form-control" placeholder="Nombre del equipo" id="nombre"
+						th:field="*{nombre}"> 
+				</div>
+				
+				<div class="col-8">
+					<label for="urlimage" class="form-label">URL Imagen</label> 
+					<input type="text" name="direccionImagen" class="form-control" id="urlimage" placeholder="http://urlImagen.png"
+						th:field="*{direccionImagen}">
+				</div>
+				<div class="col-12"> 
+					<button type="submit" class="btn btn-primary">Ingresar Equipo</button>
+				</div>
+				
+				<div class="col-12">
+					<p>Podes buscar banderas presionando <a href="https://www.google.com/search?q=banderas+de+paises+png" target="_blank">aqui</a></p>
+				</div>
 		</form>
-	</div>
+	 </div>
 	
+	<br>
+	<br>
 	<br>
 	<br>
 	<br>
@@ -77,13 +67,12 @@
 	
 	<footer class="py-5 bg-dark">
 		<div class="container px-5">
-			<p class="m-12 text-center text-white">Certant &copy; Wolf</p>
+			<p class="m-6 text-center text-white">Certant &copy; Wolf</p>
 		</div>
 	</footer>
 	
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	<script src="js/scripts.js"></script>
-	<script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"></script>
 	
 </body>
 </html>

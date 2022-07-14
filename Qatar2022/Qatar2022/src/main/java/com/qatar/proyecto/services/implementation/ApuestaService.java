@@ -28,4 +28,9 @@ public class ApuestaService implements IApuestaService {
 		return apuestaRepository.buscarApuestasPorIdUsuario(id);
 	}
 
+	@Override
+	public void save(Apuesta apuesta) {
+		apuestaRepository.save(apuesta);
+	}
+
 }

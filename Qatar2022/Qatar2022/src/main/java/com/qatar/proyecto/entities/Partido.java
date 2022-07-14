@@ -1,7 +1,5 @@
 package com.qatar.proyecto.entities;
 
-import java.sql.Timestamp;
-import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +24,7 @@ public class Partido {
 	private String estadio;
 	
 	@Column(name = "fecha")
-	private Date fechaPartido;
+	private String fechaPartido;
 	
 	@Column(name = "estado_apuesta")
 	private String estadoApuesta;
@@ -63,11 +61,11 @@ public class Partido {
 		this.estadio = estadio;
 	}
 
-	public Date getFechaPartido() {
+	public String getFechaPartido() {
 		return fechaPartido;
 	}
 
-	public void setFechaPartido(Timestamp fechaPartido) {
+	public void setFechaPartido(String fechaPartido) {
 		this.fechaPartido = fechaPartido;
 	}
 
@@ -94,5 +92,6 @@ public class Partido {
 	public void setIdEquipoVisitante(Long idEquipoVisitante) {
 		this.idEquipoVisitante = idEquipoVisitante;
 	}
+	
 	
 }

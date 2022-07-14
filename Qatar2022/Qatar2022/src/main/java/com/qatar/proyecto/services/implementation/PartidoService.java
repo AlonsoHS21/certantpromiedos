@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.entities.Partido;
 import com.qatar.proyecto.repositories.IPartidoRepository;
 import com.qatar.proyecto.services.IPartidoService;
@@ -31,4 +33,17 @@ public class PartidoService implements IPartidoService {
 	public void eliminar(Long idPartido) {
 		partidoRepository.deleteById(idPartido);
 	}
+
+	@Override
+	public Partido findById(Long idPartido) {
+		return partidoRepository.buscarPartidoPorId(idPartido);
+	}
+
+	@Override
+	@Transactional
+	public int actualizarPartido(String estadio, String estadoApuesta, String fasePartido,String fechaPartido, Long equipoLocal,
+			Long equipoVisitante, Long idPartido) {
+		return partidoRepository.actualizarPartido(estadio, estadoApuesta, fasePartido,fechaPartido, equipoLocal, equipoVisitante, idPartido);
+	}
+
 }
