@@ -4,27 +4,31 @@ import { Jackpot } from 'src/app/models/Jackpot';
 @Component({
   selector: 'app-jackpot-bet',
   templateUrl: './jackpot-bet.component.html',
-  styleUrls: ['./jackpot-bet.component.scss']
+  styleUrls: ['./jackpot-bet.component.scss'],
 })
 export class JackpotBetComponent implements OnInit {
-  jackpot:Jackpot = {
+  jackpot: Jackpot = {
     idJackpot: 123,
     idGoleador: 3,
-    idCampeon: 5
-  }
-  team:any;
-  player:any;
+    idCampeon: 5,
+  };
+  team: any;
+  player: any;
 
   equipos = [
-    {idEquipo:5,
+    {
+      idEquipo: 5,
       nombre: 'Croacia',
-      direccionImagen: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/1280px-Flag_of_Croatia.svg.png'
+      direccionImagen:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Flag_of_Croatia.svg/1280px-Flag_of_Croatia.svg.png',
     },
-    {idEquipo:6,
+    {
+      idEquipo: 6,
       nombre: 'Argentina',
-      direccionImagen: 'https://static.vecteezy.com/system/resources/thumbnails/002/036/771/small/argentina-national-flag-in-exact-proportions-illustration-vector.jpg'
+      direccionImagen:
+        'https://static.vecteezy.com/system/resources/thumbnails/002/036/771/small/argentina-national-flag-in-exact-proportions-illustration-vector.jpg',
     },
-  ]
+  ];
 
   jugadores = [
     {
@@ -44,24 +48,21 @@ export class JackpotBetComponent implements OnInit {
       nombre: 'Harry',
       apellido: 'Kane',
       goles: 3,
-    }
-  ]
+    },
+  ];
 
-  constructor() { }
+  constructor() {}
 
-  checkBet(){
-    this.equipos.map((item) =>{
-      item.idEquipo === this.jackpot.idCampeon ? this.team = item : null
-    })
-    this.jugadores.map((item) =>{
-      item.idJugador === this.jackpot.idGoleador ? this.player = item : null
-    })
-    console.log(this.player)
-    console.log(this.team)
+  checkBet() {
+    this.equipos.map((item) => {
+      item.idEquipo === this.jackpot.idCampeon ? (this.team = item) : null;
+    });
+    this.jugadores.map((item) => {
+      item.idJugador === this.jackpot.idGoleador ? (this.player = item) : null;
+    });
   }
 
   ngOnInit(): void {
-    this.checkBet()
+    this.checkBet();
   }
-
 }
