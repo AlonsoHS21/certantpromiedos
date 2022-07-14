@@ -25,7 +25,7 @@ import com.qatar.proyecto.services.implementation.UsuarioService;
 
 
 @Controller
-@RequestMapping("/usuario")
+@RequestMapping
 public class UsuarioController {
 	
 	@Autowired
@@ -38,7 +38,7 @@ public class UsuarioController {
 	
 	/* ----------------- LISTAR USUARIOS ----------------- */
 	
-	@GetMapping("/")
+	@GetMapping("/usuario")
 	public String lista(Model model) {
 		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
 		model.addAttribute("usuarios",listaUsuarios);
@@ -47,7 +47,7 @@ public class UsuarioController {
 	
 	/* ----------------- LISTAR USUARIOS x APUESTA ----------------- */
 	
-	@GetMapping("/listarApuestas/{id}")
+	@GetMapping("usuario/listarApuestas/{id}")
 	public String listaApuestasPorUsuario(
 			@PathVariable Long id,
 			Model model
@@ -58,10 +58,30 @@ public class UsuarioController {
 		return "apuesta/lista";
 	}
 	
+	/* ----------------- CREAR USUARIO ----------------- */
+	
+	@GetMapping("usuario/agregar")
+	public String redirigirCrear(
+			Usuario usuario,
+			Model model
+			) {
+		model.addAttribute("usuario", usuario);
+		return "usuario/crear";
+	}
+	
+	@PostMapping("/guardar")
+	public String guardar(
+			Usuario usuario,
+			Model model
+			) {
+		usuario.setPuntos(0);
+		usuarioService.save(usuario);
+		return "redirect:/usuario/";
+	}
 	
 	/* ----------------- INGRESAR USUARIOS ----------------- */
 	
-	@GetMapping("/ingresar")
+	@GetMapping("/")
 	public String ingresar(Usuario usuario, Model model) {
 		model.addAttribute("usuario", usuario);
 		return "usuario/ingresar";
@@ -80,14 +100,14 @@ public class UsuarioController {
 		}
 		usuario = usuarioService.buscarEmailContrasenia(usuario.getEmail(), usuario.getContrasenia());
 		if(usuario != null) { //Si encontro el usuario no viene nulo
-			return new ModelAndView("redirect:/"); //Me envia a home
+			return new ModelAndView("redirect:/home"); //Me envia a home
 		}  
 		model.addAttribute("mensaje", "Usuario no encontrado");
-		return new ModelAndView("redirect:/usuario/ingresar"); //Se queda en la misma pagina
+		return new ModelAndView("redirect:/"); //Se queda en la misma pagina
 	}
 	
 	/* ----------------- EDITAR USUARIOS ----------------- */
-	@GetMapping("/editar/{id}")
+	@GetMapping("/usuario/editar/{id}")
 	public String redirigirEditar(
 			@PathVariable Long id,
 			Model model
@@ -96,7 +116,7 @@ public class UsuarioController {
 		return "usuario/editar";
 	}
 	
-	@PostMapping("/editar/{id}")
+	@PostMapping("/usuario/editar/{id}")
 	public String editar(
 			@PathVariable Long id,
 			@ModelAttribute("usuario") Usuario usuario,
@@ -111,14 +131,13 @@ public class UsuarioController {
 	}
 	
 	/* ----------------- ELIMINAR USUARIOS ----------------- */
-	@GetMapping("/eliminar/{id}")
+	@GetMapping("/usuario/eliminar/{id}")
 	public String eliminar(
 			@PathVariable Long id
 			) {
 		usuarioService.eliminarUsuario(id);
 		return "redirect:/usuario/";
 	}
-	
 }
 		/*
 		@PostMapping("/")
