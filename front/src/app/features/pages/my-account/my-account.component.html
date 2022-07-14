@@ -4,13 +4,20 @@
 <div class="form-container">
   <form [formGroup]="passwordChange">
     <span>Cambiar Contraseña</span>
+    
     <mat-form-field class="login-form-input" appearance="fill">
       <mat-label>Contraseña</mat-label>
       <input matInput type="password" formControlName="password" />
       <mat-error>Mínimo 6 caracteres</mat-error>
     </mat-form-field>
-    <button mat-raised-button (click)="changePassword()">Cambiar Contraseña</button>
+
+    <mat-form-field class="login-form-input" appearance="fill">
+      <mat-label>Confirmar Contraseña</mat-label>
+      <input matInput type="password" formControlName="password1" />
+      <mat-error>Mínimo 6 caracteres</mat-error>
+    </mat-form-field>
+    <button mat-raised-button [disabled]="passwordChange.invalid" (click)="changePassword()">Cambiar Contraseña</button>
   </form>
 </div>
 
-<app-jackpot-form></app-jackpot-form>
+<app-jackpot-bet></app-jackpot-bet>

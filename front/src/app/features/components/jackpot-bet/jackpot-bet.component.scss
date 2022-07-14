@@ -1,0 +1,48 @@
+.jackpot-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.jackpot-item {
+  width: 30%;
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  background: #ffffff;
+  border-radius: 10px;
+  margin: 10px auto 20px auto;
+
+  img {
+    width: 80%;
+    height: 70%;
+    object-fit: contain;
+  }
+}
+
+span {
+  font-weight: bold;
+  text-align: center;
+}
+
+.title{
+    margin: 10px;
+}
+
+.player-updated-info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 80%;
+}
+
+@media only screen and (max-width: 600px) {
+  .jackpot-item{
+    width: 45%;
+    height: 250px;
+  }
+}

@@ -10,7 +10,10 @@
     <a class="nav-link" [routerLink]="'goleadores'">Goleadores</a>
     <a class="nav-link" [routerLink]="'apuestas'">Apuestas</a>
     <a class="nav-link nav-icon" [routerLink]="'micuenta'">
-      <mat-icon>contacts</mat-icon>
+      <mat-icon>account_box</mat-icon>
+    </a>
+    <a class="nav-link nav-icon" (click)="logout()">
+      <mat-icon>exit_to_app</mat-icon>
     </a>
   </nav>
   <div class="nav-menu-button">
@@ -23,6 +26,7 @@
       <button [routerLink]="'goleadores'" mat-menu-item>Goleadores</button>
       <button [routerLink]="'apuestas'" mat-menu-item>Apuestas</button>
       <button [routerLink]="'micuenta'" mat-menu-item>Mi Cuenta</button>
+      <button (click)="logout()" mat-menu-item>Salir</button>
     </mat-menu>
 
   </div>

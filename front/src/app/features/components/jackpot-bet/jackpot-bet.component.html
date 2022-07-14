@@ -1,0 +1,19 @@
+<div class="jackpot-container">
+  <div class="jackpot-item team">
+    <span class="title">Jackpot Equipo Campeón</span>
+    <img src="{{ team.direccionImagen }}" alt="" />
+    <span>{{ team.nombre }}</span>
+  </div>
+
+  <div class="jackpot-item player">
+    <span class="title">Jackpot Goleador</span>
+    <img
+      src="../../../../assets/top-scorer.png"
+      alt="Imagen de Goleador Generico"
+    />
+    <span>{{ player.nombre }} {{ player.apellido }}</span>
+    <span class="player-updated-info"
+      >(Goles a la fecha: {{ player.goles }})</span
+    >
+  </div>
+</div>
