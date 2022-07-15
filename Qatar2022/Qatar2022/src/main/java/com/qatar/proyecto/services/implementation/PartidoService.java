@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.entities.Partido;
 import com.qatar.proyecto.repositories.IPartidoRepository;
 import com.qatar.proyecto.services.IPartidoService;
@@ -42,8 +41,14 @@ public class PartidoService implements IPartidoService {
 	@Override
 	@Transactional
 	public int actualizarPartido(String estadio, String estadoApuesta, String fasePartido,String fechaPartido, Long equipoLocal,
-			Long equipoVisitante, Long idPartido) {
-		return partidoRepository.actualizarPartido(estadio, estadoApuesta, fasePartido,fechaPartido, equipoLocal, equipoVisitante, idPartido);
+			Long equipoVisitante, int resultadoEquipoLocal, int resultadoEquipoVisitante, Long idPartido) {
+		return partidoRepository.actualizarPartido(estadio, estadoApuesta, fasePartido,fechaPartido, equipoLocal, equipoVisitante,resultadoEquipoLocal, resultadoEquipoVisitante, idPartido);
+	}
+
+	@Override
+	@Transactional
+	public int cargarResultadoPartido(int resultadoEquipoLocal, int resultadoEquipoVisitante, Long idPartido) {
+		return partidoRepository.cargarResultadoPartido(resultadoEquipoLocal, resultadoEquipoVisitante, idPartido);
 	}
 
 }

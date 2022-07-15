@@ -2,10 +2,13 @@ package com.qatar.proyecto.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -67,9 +70,16 @@ public class PartidoController {
 	
 	@PostMapping("/guardar")
 	public String guardar(
-			Partido partido
+			@Valid Partido partido,
+			BindingResult result,
+			Model model
 			) {
-		
+	boolean errores = result.hasErrors();
+	if(errores) {
+			model.addAttribute("partido", partido);
+			model.addAttribute("listaEquipos", equipoService.getAll());
+			return "partido/crear";
+		}
 	partidoService.save(partido);
 	return "redirect:/partido/";
 	}
@@ -95,10 +105,9 @@ public class PartidoController {
 			@ModelAttribute("partido") Partido partido,
 			Model model
 			) {
-		System.out.println(partido.getFechaPartido());
 		Partido partidoEncontrado = partidoService.findById(idPartido);
 		if(partidoEncontrado != null) {
-			partidoService.actualizarPartido(partido.getEstadio(),partido.getEstadoApuesta(),partido.getFasePartido(),partido.getFechaPartido(),partido.getIdEquipoLocal(),partido.getIdEquipoVisitante(),idPartido);
+			partidoService.actualizarPartido(partido.getEstadio(),partido.getEstadoApuesta(),partido.getFasePartido(),partido.getFechaPartido(),partido.getIdEquipoLocal(),partido.getIdEquipoVisitante(),partido.getResultaEquipoLocal(),partido.getResultadoEquipoVisitante(),idPartido);
 			return "redirect:/partido/";
 		}
 		return "partido/editar/{idPartido}";
@@ -112,6 +121,39 @@ public class PartidoController {
 			) {
 		partidoService.eliminar(idPartido);
 		return "redirect:/partido/";
+	}
+	
+	/* ----------------- CARGAR RESULTADO PARTIDO ----------------- */ 
+	
+	@GetMapping("/cargarResultados/{idPartido}")
+	public String redirigirCargarResultado(
+			@PathVariable Long idPartido,
+			Model model
+			) {
+		Partido partido = partidoService.findById(idPartido);
+		List<Equipo> listaEquipos = equipoService.getAll();
+		model.addAttribute("equipos", listaEquipos);
+		model.addAttribute("partido", partido);
+		System.out.println("Entro a redirigir cargar resultado");
+		return "partido/cargarResultado";
+	}
+	
+	@PostMapping("/cargarResultados/{idPartido}")
+	public String cargar(
+			@PathVariable Long idPartido,
+			@ModelAttribute("partido") Partido partido,
+			Model model
+			) {
+		Partido partidoEncontrado = partidoService.findById(idPartido);
+		if(partidoEncontrado != null) {
+			partidoService.cargarResultadoPartido(partido.getResultaEquipoLocal(),partido.getResultadoEquipoVisitante(), idPartido);
+			return "redirect:/partido/";
+		}
+		Partido partidoNuevo = partidoService.findById(idPartido);
+		List<Equipo> listaEquipos = equipoService.getAll();
+		model.addAttribute("equipos", listaEquipos);
+		model.addAttribute("partido", partidoNuevo);
+		return "partido/editar/{idPartido}";
 	}
 
 }
