@@ -1,9 +1,21 @@
 <div class="carousel-container">
-    <igx-carousel #carousel [loop]="true" animationType="fade">
-        <igx-slide *ngFor="let slide of slides;">
-            <div class="image-container">
-                <img class="slide" [src]="slide.src">
-            </div>
-        </igx-slide>
-    </igx-carousel>
+  <igx-carousel #carousel [loop]="true" animationType="fade">
+    <igx-slide>
+      <div class="slide-container player">
+        <span>Elige al goleador del mundial</span>
+        <button mat-raised-button [routerLink]="'/jackpot'">Elegir Ahora</button>
+      </div>
+    </igx-slide>
+    <igx-slide>
+        <div class="slide-container team">
+          <span>Elige al próximo campeón del Mundo</span>
+          <button mat-raised-button [routerLink]="'/jackpot'">Elegir Ahora</button>
+        </div>
+      </igx-slide>
+    <igx-slide *ngFor="let slide of slides">
+      <div class="image-container">
+        <img class="slide" [src]="slide.src" />
+      </div>
+    </igx-slide>
+  </igx-carousel>
 </div>

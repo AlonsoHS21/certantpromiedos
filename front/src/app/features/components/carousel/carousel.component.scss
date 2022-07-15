@@ -1,14 +1,14 @@
-.carousel-container{
+.carousel-container {
   height: 90%;
 }
 
 @media only screen and (max-width: 600px) {
   .igx-slide img {
     object-fit: contain;
-    width: 90%;
+    width: 100%;
   }
 
-  .carousel-container{
+  .carousel-container {
     height: 45%;
   }
 
@@ -43,7 +43,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
   }
 
   .igx-carousel {
@@ -72,4 +71,59 @@
     object-position: center;
     width: 100%;
   }
+}
+
+.slide-container {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  span {
+    color: #ffffff;
+    font-size: 48px;
+    -webkit-text-stroke: 1px rgb(38, 0, 88);
+    font-family: "Bebas Neue", cursive;
+  }
+
+  button {
+    width: 125px;
+    background: #fe0267;
+    color: #ffffff;
+    margin: 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .carousel-container{
+    height: 30%;
+  }
+
+  .slide-container {
+    top: 500px;
+    justify-content: flex-start;
+    align-items: center;
+
+    span {
+      max-width: 60%;
+      font-size: 24px;
+      text-align: center;
+      margin: 20px;
+    }
+  }
+}
+
+.player{
+  background-image: url("../../../../assets/select-top-player.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.team{
+  background-image: url("../../../../assets/select-top-team.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
