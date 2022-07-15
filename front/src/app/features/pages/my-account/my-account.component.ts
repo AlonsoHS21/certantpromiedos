@@ -30,7 +30,7 @@ export class MyAccountComponent implements OnInit {
         }).then((result) => {
           if (result.isConfirmed) {
             Swal.fire({
-              text: 'Tu contraseña ha sido cambiada, debes volver a ingresar',
+              text: 'Tu contraseña ha sido modificada, debes volver a ingresar',
               icon: 'success',
               customClass: 'swal-wide',
             });
