@@ -2,13 +2,14 @@
   width: 300px;
   height: 270px;
 
-  background: #ffffff;
+  background: rgb(205,255,254);
+  background: linear-gradient(0deg, rgba(205,255,254,1) 0%, rgba(255,255,255,1) 10%, rgba(205,255,254,1) 90%);
 
   margin: 20px;
   padding: 10px;
   border-radius: 20px;
 
-  box-shadow: -3px 3px 4px 2px #151515;
+  box-shadow: -1px 2px 3px 1px #585858;
 
   display: flex;
   flex-direction: column;
@@ -26,7 +27,7 @@
   justify-content: center;
   align-items: center;
 
-  color: #ffffff;
+  color: #151515;
   font-weight: bold;
 }
 
@@ -36,13 +37,13 @@
 }
 
 .match-title-container {
-  color: #ffffff;
+  color: #151515;
   text-align: center;
   font-weight: bold;
 }
 
 .vs-container {
-  color: #ffffff;
+  color: #151515;
   font-weight: bold;
 }
 
@@ -54,11 +55,11 @@
   height: 100%;
 
   text-align: center;
-  color: #ffffff;
+  color: #151515;
 }
 
 span {
-  color: #fffd71;
+  color: #fe0267;
   font-weight: bold;
 }
 
