@@ -2,15 +2,19 @@ package com.qatar.proyecto.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.entities.Jugador;
@@ -68,10 +72,21 @@ public class EquipoController {
 	
 	@PostMapping("/guardar")
 	public String guardar(
-			Equipo equipo
+			@Valid Equipo equipo,
+			BindingResult result,
+			Model model,
+			RedirectAttributes redirect
 			) {
+		boolean errores = result.hasErrors();
+		if(errores) {
+			model.addAttribute("equipo", equipo);
+			System.out.println("Hubo errores en el formulario de guardar equipo");
+			return "equipo/crear";
+		}
 		equipoService.guardarEquipo(equipo.getNombre(), equipo.getDireccionImagen());
-		return "redirect:/equipo/"; 
+		System.out.println("Equipo guardado con exito!");
+		redirect.addFlashAttribute("save", "Equipo guardado con exito!");
+		return "redirect:/equipo/agregar";
 	}
 	
 	/* ----------------- EDITAR EQUIPO ----------------- */ 
@@ -88,6 +103,7 @@ public class EquipoController {
 	@PostMapping("/editar/{idEquipo}")
 	public String editar(
 			@PathVariable Long idEquipo,
+			RedirectAttributes redirect,
 			@ModelAttribute("equipo") Equipo equipo,
 			Model model
 			) {
@@ -95,7 +111,9 @@ public class EquipoController {
 		System.out.println("Entro al post de editar");
 		if(equipoEncontrado != null) {
 			equipoService.actualizarEquipo(idEquipo, equipo.getDireccionImagen(), equipo.getNombre());
-			return "redirect:/equipo/";
+			System.out.println("Equipo editado con exito!");
+			redirect.addFlashAttribute("edit", "Equipo editado con exito!");
+			return "redirect:/equipo/editar/{idEquipo}";
 		}
 		return "equipo/editar/{idEquipo}";
 	}
@@ -104,9 +122,12 @@ public class EquipoController {
 	
 	@GetMapping("/eliminar/{idEquipo}")
 	public String eliminar(
-			@PathVariable Long idEquipo
+			@PathVariable Long idEquipo,
+			RedirectAttributes redirect
 			) {
 		equipoService.eliminar(idEquipo);
+		System.out.println("Equipo eliminado con exito!");
+		redirect.addFlashAttribute("delete", "Equipo eliminado con exito!");
 		return "redirect:/equipo/";
 	}
 	
