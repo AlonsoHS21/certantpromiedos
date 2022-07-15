@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="utf-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />   
+        <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />      
+		<title>CARGAR RESULTADO PARTIDO</title>
+
+</head>
+<body>
+		 <form th:action="${partido.idPartido}" th:object="${partido}" method="post">
+		 	<div th:each="equipo : ${equipos}" th:if="${equipo.idEquipo == partido.idEquipoLocal}">
+		 		<img th:src="${equipo.direccionImagen}" style="height: 55px; width: 90px; object-fit: cover"/>
+		 		<label for="golesLocal" class="text-white mb-2">Goles Local: </label>
+                <input type="number" class="form-control" id="golesLocal" th:field="*{resultaEquipoLocal}">
+            
+            </div>  
+            <div th:each="equipo : ${equipos}" th:if="${equipo.idEquipo == partido.idEquipoVisitante}">
+           		 <img th:src="${equipo.direccionImagen}" style="height: 55px; width: 90px; object-fit: cover"/>
+				<label for="golesVisitante" class="text-white mb-2">Goles Visitante: </label>
+             	<input type="number" class="form-control" id="golesVisitante" th:field="*{resultadoEquipoVisitante}">
+			</div>
+			 <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Cargar</button>
+		</form>
+</body>
+</html>

@@ -9,15 +9,21 @@
         <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
         <link th:href="@{/https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css}" rel="stylesheet" />
         <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    	
+    	<style>
+    		p {
+    			color:white;
+    		}
+    	</style>
+    
     </head>
+    
+    
+    
     <body class="py-3 bg-dark">
     
-       <div class="alert alert-success alert-dismissable" th:if="${success != null}">
-			<label th:text="${success}"></label>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		
        <nav th:replace="components/navbar :: nav_bar"></nav>
+       <div th:replace="components/alerts :: alert_save"></div>
        
     <br>
     <br>
@@ -27,7 +33,7 @@
                 <div class="form-group">
                 
                 	<p class="text-white mb-2"> Fase de equipo</p>
-					<select th:field="*{fasePartido}" id="fasePartido">
+					<select th:field="*{fasePartido}" id="fasePartido" required>
 						<option value="Fase de Grupos">Fase de Grupos</option>
 						<option value="Grupo A">Grupo A</option>
 						<option value="Grupo B">Grupo B</option>
@@ -42,26 +48,29 @@
                 
                     <label for="estadium" class="text-white mb-2">Estadio</label>
                     <input type="text" class="form-control" placeholder="Nombre del estadio" id="estadium" th:field="*{estadio}">
-            	
+            		
+            		<p th:if="${#fields.hasErrors('estadio')}" th:errorClass="error"
+					th:errors="*{estadio}"/>
+					
                     <label for="first-name" class="text-white mb-2">Fecha Partido</label>
                     <input type="datetime-local" class="form-control" th:field="*{fechaPartido}">
                  
                     <p class="text-white mb-2">Estado Apuesta</p>
-					<select th:field="*{estadoApuesta}" id="estadoApuesta">
+					<select th:field="*{estadoApuesta}" id="estadoApuesta" required>
 						<option value="Apuestas Abiertas">Abiertas</option>
 						<option value="Apuestas Cerradas">Cerradas</option>
 						<option value="Apuestas Finalizadas">Finalizadas</option>
 					</select>
 		
 					  <p class="text-white mb-2"> Equipo Local:</p>
-					<select th:field="*{idEquipoLocal}" id="EquipoLocal">
+					<select th:field="*{idEquipoLocal}" id="EquipoLocal" required>
 						<option th:each="equipo:${listaEquipos}"
 						th:value="${equipo.idEquipo}"
 						th:text="${equipo.nombre}"/>
 					</select>
 				
 					  <p class="text-white mb-2"> Equipo Visitante:</p>
-					<select th:field="*{idEquipoVisitante}" id="EquipoVisitante">
+					<select th:field="*{idEquipoVisitante}" id="EquipoVisitante" required>
 						<option th:each="equipo:${listaEquipos}"
 						th:value="${equipo.idEquipo}"
 						th:text="${equipo.nombre}"/>
@@ -72,7 +81,7 @@
                 </div>
                 <div class="clearfix"></div>
                  <br>
-                <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Crear jugador</button>
+                <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Crear Partido</button>
             </form>
         </div>
 

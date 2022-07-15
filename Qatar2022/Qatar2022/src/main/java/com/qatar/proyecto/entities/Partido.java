@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
 
 @Entity
@@ -21,6 +22,7 @@ public class Partido {
 	private String fasePartido;
 	
 	@Column(name = "estadio")
+	@NotEmpty(message = "El campo estadio no puede estar vacio")
 	private String estadio;
 	
 	@Column(name = "fecha")
@@ -32,8 +34,14 @@ public class Partido {
 	@Column(name = "idequipo_local")
 	private Long idEquipoLocal;
 	
+	@Column(name="resultadoEquipoLocal")
+	private int resultaEquipoLocal;
+	
 	@Column(name = "idequipo_visitante")
 	private Long idEquipoVisitante;
+	
+	@Column(name="resultadoEquipoVisitante")
+	private int resultadoEquipoVisitante;
 	
 	public Partido() {}
 
@@ -92,6 +100,21 @@ public class Partido {
 	public void setIdEquipoVisitante(Long idEquipoVisitante) {
 		this.idEquipoVisitante = idEquipoVisitante;
 	}
-	
+
+	public int getResultaEquipoLocal() {
+		return resultaEquipoLocal;
+	}
+
+	public void setResultaEquipoLocal(int resultaEquipoLocal) {
+		this.resultaEquipoLocal = resultaEquipoLocal;
+	}
+
+	public int getResultadoEquipoVisitante() {
+		return resultadoEquipoVisitante;
+	}
+
+	public void setResultadoEquipoVisitante(int resultadoEquipoVisitante) {
+		this.resultadoEquipoVisitante = resultadoEquipoVisitante;
+	}
 	
 }

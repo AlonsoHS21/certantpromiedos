@@ -8,8 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.qatar.proyecto.entities.Apuesta;
 import com.qatar.proyecto.entities.Equipo;
@@ -52,20 +52,19 @@ public class ApuestaController {
 		return "apuesta/lista";
 	}
 	
-	@PostMapping("/lista/{id}")
-	public String listarApuestasPorUsuario(
-			@PathVariable Long id,
-			Model model
+	@GetMapping("/busqueda")
+	public String busquedaApuestaPorUsuario(
+			Model model,
+			@RequestParam(value = "query", required = false) String email
 			) {
-		System.out.println("idUsuario " + id);
-		List<Apuesta> listaDeApuestas = apuestaService.buscarApuestasPorIdUsuario(id);
+		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
+		List<Apuesta> listaApuestas = apuestaService.buscarApuestasPorIdUsuario(usuario.getId());
+		model.addAttribute("apuestas",listaApuestas);
 		List<Equipo> listaEquipos = equipoService.getAll();
 		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
-		model.addAttribute("apuestas", listaDeApuestas);
 		model.addAttribute("equipos", listaEquipos);
 		model.addAttribute("usuarios", listaUsuarios);
-		
-		return "redirect:/apuesta/lista";
+		return "apuesta/lista";
 	}
-	
+
 }

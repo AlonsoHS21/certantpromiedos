@@ -7,19 +7,27 @@
         <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />      
 		<link th:href="@{/css/estilos.css}" rel="stylesheet" />
 		<title>Lista de Equipos</title>
+		
+		<style>
+			table td,th{
+				text-align: center;
+			}
+		</style>
 </head>
 <body>
 	
 	<nav th:replace="components/navbar :: nav_bar"></nav>
+	<div th:replace="components/alerts :: alert_delete"></div>
+	
+		<div th:if="${equipos != null and !equipos.empty}">
+			<div style="display: flex; justify-content: center; flex-direction: column; align-items: center; margin: 15px;">
+				<h2>LISTA DE EQUIPOS</h2>
+			<a th:href="@{agregar}" class="btn btn-success">Ingresar Equipo</a>
+		</div>
 
-	<div class="title">
-		<h2>Lista de Equipos</h2>
-		<a th:href="@{agregar}" class="btn btn-success">Ingresar Equipo</a>
-	</div>
-
-	<div th:if="${equipos != null and !equipos.empty}" id="table-list" style="display:flex; justify-content:center;">
-		<table id="equipment-list" class="table table-striped"
-			style="width: 60%">
+		<div class="container"> 
+		<table class="table table-dark table-striped"
+			style="width: 100%">
 			<thead>
 				<tr>
 					<th>Imagen</th>
@@ -44,18 +52,13 @@
 				</tr>
 			</tbody>
 		</table>
+		</div>
 	</div>
-
-	<script>
-		$(document).ready(function() {
-			$('#equipment-list').DataTable();
-		});
-	</script>
 	
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
-
+	
 </body>
 </html>
