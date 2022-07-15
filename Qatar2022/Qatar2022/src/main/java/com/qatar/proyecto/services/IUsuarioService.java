@@ -1,7 +1,6 @@
 package com.qatar.proyecto.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.qatar.proyecto.entities.Usuario;
 
@@ -19,4 +18,8 @@ public interface IUsuarioService {
 	public Usuario buscarEmailContrasenia(String email,String contrasenia);
 
 	public Usuario buscarUsuarioPorId(Long id);
+	
+	public void save(Usuario usuario);
+	
+	public Usuario buscarUsuarioPorEmail(String email);
 }
