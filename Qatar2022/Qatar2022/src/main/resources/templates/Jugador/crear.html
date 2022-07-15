@@ -1,65 +1,58 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8" />
+       <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Crear Jugador</title>
+        <title>Crear Equipo</title>
         <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
-        <link th:href="@{/https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css}" rel="stylesheet" />
-        <link th:href="@{/css/styles.css}" rel="stylesheet" />
-    </head>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+	</head>
     
-    <body class="py-3 bg-dark">
-    
+    <body/>
+	
        <nav th:replace="components/navbar :: nav_bar"></nav>
-    
-       <div class="alert alert-success alert-dismissable" th:if="${success != null}">
-			<label th:text="${success}"></label>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-       
-       
-    <br>
-    <br>
-    <br>
-        <div class="container" id="advanced-search-form">
-            <form action="#" th:action="@{guardar}" th:object="${jugador}" method="post">
-                <div class="form-group">
-                    <label for="first-name" class="text-white mb-2">Nombre</label>
-                    <input type="text" class="form-control" placeholder="Nombre del jugador" id="first-name" th:field="*{nombre}">
+       <div th:replace="components/alerts :: alert_save"></div>
+    	 	
+        <div class="container" style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
+            <form action="#" th:action="@{guardar}" th:object="${jugador}" method="post" class="row g-3 mt-3" style="width: 70%">
+               
+                <div class="col-10">
+					<h2>INSCRIBIR JUGADOR</h2>
+				</div>
+				
+                <div class="col-10">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" placeholder="Nombre del jugador" id="nombre" th:field="*{nombre}">
+                    <p th:if="${#fields.hasErrors('nombre')}" th:errorClass="error"
+					th:errors="*{nombre}"/>
+				</div>
+				
+                    <div class="col-10"> 
+                    	<label for="apellido" class="form-label">Apellido</label>
+                    	<input type="text" class="form-control" placeholder="Apellido del jugador" th:field="*{apellido}" id="apellido">
+                    	<p th:if="${#fields.hasErrors('apellido')}" th:errorClass="error"
+							th:errors="*{apellido}"/>
+                    </div>
                     
-                    <span th:if="${#fields.hasErrors('nombre')}"
-                        th:errors="*{nombre}" style="color: red;">
-                    </span> 
+                    <div class="col-4"> 
+                    	<label for="dorsal" class="form-label">Dorsal</label>
+                    	<input type="number" class="form-control" placeholder="Dorsal del jugador"  th:field="*{dorsal}">
+                    </div>
                     
-                    <br>
-                    
-                    <label for="first-name" class="text-white mb-2">Apellido</label>
-                    <input type="text" class="form-control" placeholder="Apellido del jugador"  th:field="*{apellido}">
-                    <span th:if="${#fields.hasErrors('apellido')}"
-                        th:errors="*{apellido}" >
-                    </span> 
-                    
-                    
-                    <label for="dorsal" class="text-white mb-2">Dorsal</label>
-                    <input type="number" class="form-control" placeholder="Dorsal del jugador"  th:field="*{dorsal}">
-                    
-                    
-                    <p class="text-white mb-2"> Equipo:</p>
-					<select th:field="*{equipo}" id="equipo">
+                    <div class="col-6"> 
+                    <label for="equipo" class="form-label">Equipo: </label>
+					<select th:field="*{equipo}" id="equipo" class="form-select" required>
 						<option th:each="equipo:${equipos}"
 						th:value="${equipo.idEquipo}"
 						th:text="${equipo.nombre}"/>
 					</select>
+					</div>
 					
-					<p th:text="${mensaje}" style="color: white;"></p>
-	
-                </div>
-                <div class="clearfix"></div>
-                 <br>
-                <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Crear jugador</button>
+					<div class="col-12">
+                		<button type="submit" class="btn btn-success" id="search"> <span class="glyphicon glyphicon-search"></span>INSCRIBIR</button>
+            		</div>
             </form>
         </div>
        
@@ -69,9 +62,14 @@
     <br>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    
         <footer class="py-5 bg-dark">
             <div class="container px-5"><p class="m-12 text-center text-white">Certant &copy; </p></div>
         </footer>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>

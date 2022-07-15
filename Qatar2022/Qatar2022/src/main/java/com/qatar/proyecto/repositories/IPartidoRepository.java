@@ -16,6 +16,10 @@ public interface IPartidoRepository extends JpaRepository<Partido, Long>{
 	public abstract Partido buscarPartidoPorId(@Param("idPartido") Long idPartido);
 	
 	@Modifying
-	@Query("Update Partido set estadio=(:estadio), estado_apuesta=(:estadoApuesta),fase=(:fasePartido),fecha=(:fechaPartido), idequipo_local=(:idEquipoLocal), idequipo_visitante=(:idEquipoVisitante) Where id_partido=(:idPartido) ")
-	public abstract int actualizarPartido(@Param("estadio")String estadio,@Param("estadoApuesta") String estadoApuesta,@Param("fasePartido") String fasePartido,@Param("fechaPartido") String fechaPartido,@Param("idEquipoLocal") Long equipoLocal,@Param("idEquipoVisitante") Long equipoVisitante,@Param("idPartido") Long idPartido); 
+	@Query("Update Partido set estadio=(:estadio), estado_apuesta=(:estadoApuesta),fase=(:fasePartido),fecha=(:fechaPartido), idequipo_local=(:idEquipoLocal), idequipo_visitante=(:idEquipoVisitante), resultado_equipo_local=(:resultadoEquipoLocal), resultado_equipo_visitante=(:resultadoEquipoVisitante) Where id_partido=(:idPartido) ")
+	public abstract int actualizarPartido(@Param("estadio")String estadio,@Param("estadoApuesta") String estadoApuesta,@Param("fasePartido") String fasePartido,@Param("fechaPartido") String fechaPartido,@Param("idEquipoLocal") Long equipoLocal,@Param("idEquipoVisitante") Long equipoVisitante,@Param("resultadoEquipoLocal") int resultadoEquipoLocal, @Param("resultadoEquipoVisitante") int resultadoEquipoVisitante,@Param("idPartido") Long idPartido); 
+
+	@Modifying
+	@Query("Update Partido set resultado_equipo_local=(:resultadoEquipoLocal), resultado_equipo_visitante=(:resultadoEquipoVisitante) Where id_partido=(:idPartido)")
+	public abstract int cargarResultadoPartido(@Param("resultadoEquipoLocal") int resultadoEquipoLocal, @Param("resultadoEquipoVisitante") int resultadoEquipoVisitante,@Param("idPartido") Long idPartido);
 }

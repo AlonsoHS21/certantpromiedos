@@ -51,4 +51,14 @@ public class UsuarioService implements IUsuarioService{
 	public Usuario buscarUsuarioPorId(Long id) {
 		return usuarioRepository.buscarPorId(id);
 	}
+
+	@Override
+	public void save(Usuario usuario) {
+		usuarioRepository.save(usuario);
+	}
+
+	@Override
+	public Usuario buscarUsuarioPorEmail(String email) {
+		return usuarioRepository.buscarUsuarioPorEmail(email);
+	}
 }

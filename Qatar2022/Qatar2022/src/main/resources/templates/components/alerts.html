@@ -1,0 +1,22 @@
+
+<div th:fragment="alert_save" class="alert alert-success alert-dismissible fade show" role="alert" th:if="${save != null}">
+  	 <label th:text="${save}"></label>	
+ 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div th:fragment="alert_edit" class="alert alert-warning alert-dismissible fade show" role="alert" th:if="${edit != null}">
+  	 <label th:text="${edit}"></label>	
+ 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div th:fragment="alert_delete" class="alert alert-danger alert-dismissible fade show" role="alert" th:if="${delete != null}">
+  	 <label th:text="${delete}"></label>	
+ 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<div th:fragment="alert_info" class="container">
+<div class="alert alert-info alert-dismissible fade show" role="alert" th:if="${info != null}">
+  	 <label th:text="${info}"></label>	
+ 	 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+</div>

@@ -22,7 +22,10 @@ public interface IUsuarioRepository extends JpaRepository<Usuario, Long>{
 	
 	@Modifying
 	@Query("Delete from Usuario u Where u.id=(:id)")
-	public abstract int eliminarUsuario(@Param("id") Long id); //devuelve rows?
+	public abstract int eliminarUsuario(@Param("id") Long id); 
+	
+	@Query("Select u FROM Usuario u Where u.email=(:email)")
+	public abstract Usuario buscarUsuarioPorEmail(@Param("email") String email);
 	
 	///^[a-zA-Z]+@certant\.com$/
 }

@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Apuesta;
 import com.qatar.proyecto.entities.Usuario;
@@ -88,22 +90,24 @@ public class UsuarioController {
 	}
 	
 	@PostMapping("/buscar")
-	public ModelAndView buscar(
-			@Validated Usuario usuario,
+	public String buscar(
+			@Valid Usuario usuario,
 			BindingResult result,
+			RedirectAttributes redirect,
 			Model model
 			) {
 		
-		if(result.hasErrors()) {
-			System.out.println("Entro a result has errors");
-			return new ModelAndView("nuevo").addObject("usuario",usuario);
+		boolean errores = result.hasErrors();
+		if(errores) {
+			model.addAttribute("usuario", usuario);
+			return "usuario/ingresar";
 		}
 		usuario = usuarioService.buscarEmailContrasenia(usuario.getEmail(), usuario.getContrasenia());
 		if(usuario != null) { //Si encontro el usuario no viene nulo
-			return new ModelAndView("redirect:/home"); //Me envia a home
+			return "redirect:/home"; //Me envia a home
 		}  
-		model.addAttribute("mensaje", "Usuario no encontrado");
-		return new ModelAndView("redirect:/"); //Se queda en la misma pagina
+		redirect.addFlashAttribute("info","Email o contraseña incorrecta");
+		return "redirect:/"; //Se queda en la misma pagina
 	}
 	
 	/* ----------------- EDITAR USUARIOS ----------------- */

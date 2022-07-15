@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -25,7 +26,7 @@ public class Equipo {
 	private Long idEquipo;
 	
 	@Column(name = "nombre")
-	@NotBlank
+	@NotEmpty(message = "El campo nombre de equipo no debe estar vacio")
 	private String nombre;
 	
 	@Column(name = "direccionImagen")
