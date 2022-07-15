@@ -1,82 +1,82 @@
 header {
-  background-image: url(../../../../assets/jackpot.png);
+  background-image: url(../../../../assets/bet-header.png);
   background-position: center;
-  height: 70%;
+  height: 6rem;
   width: 100%;
 
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   h4 {
     margin: 0px !important;
   }
 }
 
-.goleador-form-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+.form-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 
-    margin: 20px;
+  margin: 20px;
 }
 
-form{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+form {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 
-    width: 60%;
-    background: #ffffff;
-    border-radius: 10px;
-    margin: 15px;
+  width: 60%;
+  background: #ffffff;
+  border-radius: 10px;
+  margin: 15px;
 }
 
-mat-form-field{
-    width: 40%;
+mat-form-field {
+  width: 40%;
 }
 
-.champion-team{
-    width: 300px;
+.champion-team {
+  width: 300px;
 }
 
-.goleador-title{
-    font-size: 36px;
-    color: #ffffff;
-    margin-bottom: 10px;
+.title {
+  font-size: 36px;
+  color: #ffffff;
+  margin-bottom: 10px;
 }
 
-button{
-    background: #FE0267;
-    color: #ffffff;
+button {
+  background: #fe0267;
+  color: #ffffff;
 }
 
-.selector-container{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    max-width: 100%;
+.selector-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 100%;
 }
 
 @media only screen and (max-width: 900px) {
-    form{
-        flex-direction: column;
-    }
+  form {
+    flex-direction: column;
+  }
 
-    .selector-container{
-        justify-content: center;
-    }
+  .selector-container {
+    justify-content: center;
+  }
 
-    mat-form-field{
-        width: 35%;
-        margin: 15px;
-    }
+  mat-form-field {
+    width: 35%;
+    margin: 15px;
+  }
 
-    form{
-        width: 80%;
-    }
+  form {
+    width: 80%;
+  }
 
-    button{
-        margin-bottom: 10px;
-    }
+  button {
+    margin-bottom: 10px;
+  }
 }
