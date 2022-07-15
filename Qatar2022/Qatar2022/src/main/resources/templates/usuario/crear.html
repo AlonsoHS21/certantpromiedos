@@ -9,6 +9,7 @@
 <body>
 
 	 <nav th:replace="components/navbar :: nav_bar"></nav>
+	 <div th:replace="components/alerts :: alert_save"></div>
 
 <div class="container" style="width: 100%; display: flex; justify-content: flex-center; align-items: center;">
 	<form th:action="@{/guardar}" th:object="${usuario}" method="post" class="row g-3 mt-3">
