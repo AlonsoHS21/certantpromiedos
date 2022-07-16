@@ -3,19 +3,29 @@
     <igx-slide>
       <div class="slide-container player">
         <span>Elige al goleador del mundial</span>
-        <button mat-raised-button [routerLink]="'/jackpot'">Elegir Ahora</button>
+        <button mat-raised-button [routerLink]="'/jackpot'">
+          Elegir Ahora
+        </button>
       </div>
     </igx-slide>
     <igx-slide>
-        <div class="slide-container team">
-          <span>Elige al próximo campeón del Mundo</span>
-          <button mat-raised-button [routerLink]="'/jackpot'">Elegir Ahora</button>
-        </div>
-      </igx-slide>
-    <igx-slide *ngFor="let slide of slides">
-      <div class="image-container">
-        <img class="slide" [src]="slide.src" />
+      <div class="slide-container team">
+        <span>Elige al próximo campeón del Mundo</span>
+        <button mat-raised-button [routerLink]="'/jackpot'">
+          Elegir Ahora
+        </button>
       </div>
+    </igx-slide>
+    <igx-slide slide-container *ngFor="let slide of slides">
+      <div
+        style="
+          background-image: url('{{slide.src}}');
+          background-size: contain;
+          background-repeat: no-repeat;
+          width: 100%;
+          height: 100%;
+        "
+      ></div>
     </igx-slide>
   </igx-carousel>
 </div>

@@ -8,28 +8,28 @@ import { Component, OnInit } from '@angular/core';
 export class CarouselComponent implements OnInit {
   public slides = [
     {
-      src: '../../../assets/grupo_a.png'
+      src: '../../../assets/grupo_1.png'
     },
     {
-      src: '../../../assets/grupo_b.png'
+      src: '../../../assets/grupo_2.png'
     },
     {
-      src: '../../../assets/grupo_c.png'
+      src: '../../../assets/grupo_3.png'
     },
     {
-      src: '../../../assets/grupo_d.png'
+      src: '../../../assets/grupo_4.png'
     },
     {
-      src: '../../../assets/grupo_e.png'
+      src: '../../../assets/grupo_5.png'
     },
     {
-      src: '../../../assets/grupo_f.png'
+      src: '../../../assets/grupo_6.png'
     },
     {
-      src: '../../../assets/grupo_g.png'
+      src: '../../../assets/grupo_7.png'
     },
     {
-      src: '../../../assets/grupo_h.png'
+      src: '../../../assets/grupo_8.png'
     }
 ];
 

@@ -23,8 +23,8 @@ export class TopScorersComponent implements OnInit {
     },
     {
       idJugador: 12,
-      nombre: 'Lionel',
-      apellido: 'Messi',
+      nombre: 'Neymar Da piero CELDA LARGA',
+      apellido: 'Da Silva',
       goles: 11,
       equipo: {
         idEquipo: 1,
@@ -35,8 +35,8 @@ export class TopScorersComponent implements OnInit {
     },
     {
       idJugador: 12,
-      nombre: 'Lionel',
-      apellido: 'Messi',
+      nombre: 'Vinicius',
+      apellido: 'Junior',
       goles: 13,
       equipo: {
         idEquipo: 1,
