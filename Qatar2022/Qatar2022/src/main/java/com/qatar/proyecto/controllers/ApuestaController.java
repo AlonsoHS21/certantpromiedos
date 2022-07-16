@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Apuesta;
 import com.qatar.proyecto.entities.Equipo;
@@ -40,30 +41,38 @@ public class ApuestaController {
 	public String lista(
 			Model model
 			) {
-		Usuario usuario = new Usuario();
 		List<Apuesta> listaDeApuestas = apuestaService.getAll();
 		List<Equipo> listaEquipos = equipoService.getAll();
 		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
 		model.addAttribute("apuestas", listaDeApuestas);
 		model.addAttribute("equipos", listaEquipos);
 		model.addAttribute("usuarios", listaUsuarios);
-		model.addAttribute("usuario", usuario);
 		return "apuesta/lista";
 	}
 	
 	@GetMapping("/busqueda")
 	public String busquedaApuestaPorUsuario(
 			Model model,
-			@RequestParam(value = "query", required = false) String email
+			@RequestParam(value = "query", required = false) String email,
+			RedirectAttributes redirect
 			) {
 		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
-		List<Apuesta> listaApuestas = apuestaService.buscarApuestasPorIdUsuario(usuario.getId());
-		model.addAttribute("apuestas",listaApuestas);
-		List<Equipo> listaEquipos = equipoService.getAll();
-		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
-		model.addAttribute("equipos", listaEquipos);
-		model.addAttribute("usuarios", listaUsuarios);
-		return "apuesta/lista";
+		if(usuario != null) {
+			List<Apuesta> listaApuestas = apuestaService.buscarApuestasPorIdUsuario(usuario.getId());
+			if(!listaApuestas.isEmpty()) {
+				model.addAttribute("apuestas",listaApuestas);
+				List<Equipo> listaEquipos = equipoService.getAll();
+				List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
+				model.addAttribute("equipos", listaEquipos);
+				model.addAttribute("usuarios", listaUsuarios);
+				return "apuesta/lista";
+			}
+			redirect.addFlashAttribute("info", "INFO: El usuario no tiene apuestas");
+			return "redirect:/apuesta/";
+		}
+		redirect.addFlashAttribute("info", "INFO: El usuario no fue encontrado");
+		return "redirect:/apuesta/";
+		
 	}
 
 }

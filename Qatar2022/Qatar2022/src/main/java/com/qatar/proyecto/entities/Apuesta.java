@@ -35,6 +35,9 @@ public class Apuesta {
 	@JoinColumn(name="id_partido")
 	private Partido partido;
 	
+	@Column
+	private Long idEquipoGanador;
+	
 	public Apuesta() {}
 	
 	public Long getIdApuesta() {
