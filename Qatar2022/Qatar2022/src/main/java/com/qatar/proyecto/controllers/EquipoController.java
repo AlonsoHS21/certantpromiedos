@@ -79,15 +79,14 @@ public class EquipoController {
 			Model model,
 			RedirectAttributes redirect
 			) {
-		boolean errores = result.hasErrors();
-		if(errores) {
+		if(result.hasErrors()) {
 			model.addAttribute("equipo", equipo);
-			System.out.println("Hubo errores en el formulario de guardar equipo");
+			System.out.println("ERROR: Hubo errores en el formulario de guardar equipo!");
 			return "equipo/crear";
 		}
 		equipoService.guardarEquipo(equipo.getNombre(), equipo.getDireccionImagen());
-		System.out.println("Equipo guardado con exito!");
-		redirect.addFlashAttribute("save", "Equipo guardado con exito!");
+		System.out.println("SAVE: Equipo guardado con exito!");
+		redirect.addFlashAttribute("save", "SAVE: Equipo guardado con exito!");
 		return "redirect:/equipo/agregar";
 	}
 	

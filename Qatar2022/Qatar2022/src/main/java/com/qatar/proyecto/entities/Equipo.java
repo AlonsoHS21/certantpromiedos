@@ -26,7 +26,7 @@ public class Equipo {
 	private String nombre;
 	
 	@Column(name = "direccionImagen")
-	private String direccionImagen; //Por ahora recibe una url de la imagen
+	private String direccionImagen; 
 	
 	@OneToMany(
 			mappedBy = "equipo",
