@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="utf-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/estilos.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />   
+        <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />      
+		<title>Jackpot</title>
+		
+		<style>
+			table td,th{
+				text-align: center;
+			}
+		</style>
+</head>
+<body>
+	
+	<nav th:replace="components/navbar :: nav_bar"></nav>
+
+	<div th:if="${jackpots != null and !jackpots.empty}">
+
+		<div style="display: flex; justify-content: center; flex-direction: column; align-items: center; margin: 15px;">
+			<h2>LISTA JACKPOT</h2>
+		</div>
+		
+		<div class="container"> 
+		<table class="table table-dark table-striped" style="width: 100%">
+			<thead>
+				<tr>
+					<th>ID Jackpot</th>
+					<th>ID Usuario</th>
+					<th>Nombre Usuario</th>
+					<th>Campeon</th>
+					<th>Goleador</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="jackpot : ${jackpots}">
+					<td th:text="${jackpot.idJackpot}">Sin datos</td>
+					<td th:each="usuario : ${usuarios}" 
+						th:if="${usuario.getJackpot().getIdJackpot() == jackpot.idJackpot}">
+						<p th:text="${usuario.id}"></p>
+					</td>
+					<td th:each="usuario : ${usuarios}" 
+						th:if="${usuario.jackpot.idJackpot == jackpot.idJackpot}">
+						<p th:text="${usuario.nombre}"></p>
+					</td>
+					<td th:each="equipo : ${equipos}" th:if="${equipo.idEquipo == jackpot.idCampeon}">
+						<img th:src="${equipo.direccionImagen}" style="height: 40px !important; width: 55px !important;"/>
+						<p th:text="${equipo.nombre}"></p>
+					</td>
+					<td th:each="jugador : ${jugadores}" th:if="${jugador.idJugador == jackpot.idGoleador}">
+						<p th:text="${jugador.nombre}"></p>
+						<p th:text="${jugador.apellido}"></p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+	
+</body>
+</html>
