@@ -54,7 +54,9 @@ public class EquipoController {
 			@PathVariable Long idEquipo,
 			Model model
 			) {
-		List<Jugador> listaJugadores = jugadorService.buscarJugadoresPorIdEquipo(idEquipo);
+		
+		/* ************** ENVIO DE LISTA DE JUGADORES ORDENADOS POR APELLIDO ********** */
+		List<Jugador> listaJugadores = jugadorService.buscarJugadoresPorIdEquipoOrdenado(idEquipo);
 		model.addAttribute("listaJugadoresPorEquipo", listaJugadores);
 		return "jugador/lista";
 	}
@@ -108,7 +110,7 @@ public class EquipoController {
 			Model model
 			) {
 		Equipo equipoEncontrado = equipoService.buscarPorId(idEquipo);
-		System.out.println("Entro al post de editar");
+		System.out.println("No se encontro el equipo para editar!");
 		if(equipoEncontrado != null) {
 			equipoService.actualizarEquipo(idEquipo, equipo.getDireccionImagen(), equipo.getNombre());
 			System.out.println("Equipo editado con exito!");
@@ -130,25 +132,6 @@ public class EquipoController {
 		redirect.addFlashAttribute("delete", "Equipo eliminado con exito!");
 		return "redirect:/equipo/";
 	}
-	
-	/*
-	@PostMapping("/")
-	public String guardar(@Valid @ModelAttribute Equipo equipo, BindingResult result, Model model, RedirectAttributes attribute) {
-		if(equipoService.findByNombre(equipo.getNombre())!= null) {
-			FieldError error = new FieldError("equipo", "nombre", "Ya existe un equipo con este nombre");
-			result.addError(error);
-		}
-		
-		if(result.hasErrors()) {
-			System.out.println("Hubo error en el formulario!");
-			return "equipo/crear";
-		}
-		equipoService.save(equipo);
-		System.out.println("Equipo guardado con exito!");
-		attribute.addFlashAttribute("success","Equipo creado con exito");
-		return "redirect:/equipo/";
-	}
-	*/
 }
 	/* ------------------------------------ SWAGGR ------------------------------------ */
 	/* 

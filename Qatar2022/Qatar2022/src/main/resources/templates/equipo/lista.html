@@ -44,7 +44,7 @@
 					</td>
 					<td th:text="${equipo.nombre}"></td>
 					<td><a th:href="@{listarJugadores/} + ${equipo.idEquipo}"
-						th:text="ir" class="btn btn-info"></a></td>
+						th:text="[ver]" class="btn btn-info"></a></td>
 					<td><a th:href="@{editar/} + ${equipo.idEquipo}"
 						th:text="Editar" class="btn btn-warning"></a></td>
 					<td><a th:href="@{eliminar/} + ${equipo.idEquipo}"
