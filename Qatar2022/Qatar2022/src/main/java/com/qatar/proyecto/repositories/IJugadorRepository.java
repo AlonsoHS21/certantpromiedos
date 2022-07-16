@@ -16,8 +16,8 @@ public interface IJugadorRepository extends JpaRepository<Jugador, Long>{
 	@Query("Select j From Jugador j Where j.id=(:idJugador)")
 	public abstract Jugador buscarJugadorPorId(@Param("idJugador") Long idJugador);
 	
-	@Query("Select j From Jugador j Where equipo_id_equipo=(:idEquipo)")
-	public abstract List<Jugador> buscarJugadoresPorIdEquipo(@Param("idEquipo") Long idEquipo);
+	@Query("Select j From Jugador j Where equipo_id_equipo=(:idEquipo) Order by j.apellido asc")
+	public abstract List<Jugador> buscarJugadoresPorIdEquipoOrdenado(@Param("idEquipo") Long idEquipo);
 	
 	@Modifying
 	@Query("Delete from Jugador j Where j.id=(:idJugador)")

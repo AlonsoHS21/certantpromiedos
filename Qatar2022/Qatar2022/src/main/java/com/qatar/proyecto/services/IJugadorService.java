@@ -16,5 +16,5 @@ public interface IJugadorService {
 	
 	public int actualizarJugador(String apellido, String nombre, int goles, int dorsal, Long idEquipo, Long idJugador);
 
-	public List<Jugador> buscarJugadoresPorIdEquipo(Long id);	
+	public List<Jugador> buscarJugadoresPorIdEquipoOrdenado(Long id);	
 }

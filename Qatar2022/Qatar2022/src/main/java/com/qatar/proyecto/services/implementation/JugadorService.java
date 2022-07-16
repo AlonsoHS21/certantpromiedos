@@ -46,7 +46,7 @@ public class JugadorService implements IJugadorService{
 	}
 
 	@Override
-	public List<Jugador> buscarJugadoresPorIdEquipo(Long id) {
-		return jugadorRepository.buscarJugadoresPorIdEquipo(id);
+	public List<Jugador> buscarJugadoresPorIdEquipoOrdenado(Long id) {
+		return jugadorRepository.buscarJugadoresPorIdEquipoOrdenado(id);
 	}
 }
