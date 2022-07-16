@@ -6,7 +6,7 @@
         <link th:href="@{/css/estilos.css}" rel="stylesheet" />
 		<title>Login</title>
 </head>
-<body style="background-image:url(https://media.gq.com.mx/photos/6244685aa16e9ddaa899cb2d/master/w_3000,h_2000,c_limit/balo%CC%81n%20de%20qatar%202022%20adidas.jpg);background-size: cover;
+<body class="bg-dark" style="background-image:url(https://media.gq.com.mx/photos/6244685aa16e9ddaa899cb2d/master/w_3000,h_2000,c_limit/balo%CC%81n%20de%20qatar%202022%20adidas.jpg);background-size: cover;
     background-repeat: no-repeat;">
 	
 	<div class="container">
@@ -22,8 +22,7 @@
 					<div class="mb-4">
 						<label for="email" class="form-label">Email</label> <input
 							type="text" id="email" placeholder="rhuarcaya@certant.com"
-							th:field="*{email}" pattern="^[a-zA-Z]+@certant\.com$"
-							class="form-control">
+							th:field="*{email}" class="form-control">
 						<p th:if="${#fields.hasErrors('email')}" th:errorClass="error"
 							th:errors="*{email}" class="text-red" />
 					</div>

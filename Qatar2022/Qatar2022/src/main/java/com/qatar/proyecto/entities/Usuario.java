@@ -9,11 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name="usuario")
@@ -31,13 +32,12 @@ public class Usuario {
 	private String apellido;
 	
 	@Column(name="contrasenia")
-	@NotBlank
+	@NotEmpty(message = "El campo contraseña no debe estar vacio")
 	private String contrasenia;
 	
-	
 	@Column(name="email")
-	@NotBlank
-	@Email
+	@NotEmpty(message = "El campo email no debe estar vacio")
+	@Pattern(regexp = "^[a-zA-Z]+@certant\\.com$", message = "El campo email debe contener el dominio @certant.com")
 	private String email;
 	
 	@Column(name="puntos")
@@ -50,8 +50,9 @@ public class Usuario {
 			)
 	private List<Apuesta> apuestas = new ArrayList<>();
 	
-	//@OneToOne
-	//private Jackpot jackpot;
+	@ManyToOne()
+	@JoinColumn(name="jackpot_idJackpot")
+	private Jackpot jackpot;
 
 	public Usuario() {
 		
@@ -108,13 +109,12 @@ public class Usuario {
 	public void setApuestas(List<Apuesta> apuestas) {
 		this.apuestas = apuestas;
 	}
-/*
+	
 	public Jackpot getJackpot() {
 		return jackpot;
 	}
 
 	public void setJackpot(Jackpot jackpot) {
 		this.jackpot = jackpot;
-	}*/
-	
+	}
 }

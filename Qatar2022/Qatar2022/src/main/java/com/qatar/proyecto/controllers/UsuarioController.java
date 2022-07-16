@@ -105,18 +105,19 @@ public class UsuarioController {
 			RedirectAttributes redirect,
 			Model model
 			) {
-		
-		boolean errores = result.hasErrors();
-		if(errores) {
+		/* ****************** ERRORES ****************** */
+		if(result.hasErrors()) {
 			model.addAttribute("usuario", usuario);
+			System.out.println("ERROR: Hubo un error en el formulario de ingresar usuario");
 			return "usuario/ingresar";
 		}
+		/* ****************** GUARDA UN JUGADOR ****************** */
 		usuario = usuarioService.buscarEmailContrasenia(usuario.getEmail(), usuario.getContrasenia());
-		if(usuario != null) { //Si encontro el usuario no viene nulo
-			return "redirect:/home"; //Me envia a home
+		if(usuario != null) { 
+			return "redirect:/home"; 
 		}  
-		redirect.addFlashAttribute("info","Email o contraseña incorrecta");
-		return "redirect:/"; //Se queda en la misma pagina
+		redirect.addFlashAttribute("info","INFO: Email o contraseña incorrecta");
+		return "redirect:/";
 	}
 	
 	/* ----------------- EDITAR USUARIOS ----------------- */
