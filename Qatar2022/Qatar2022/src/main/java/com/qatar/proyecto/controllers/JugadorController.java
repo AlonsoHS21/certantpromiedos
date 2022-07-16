@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.entities.Jugador;
@@ -24,6 +25,8 @@ import com.qatar.proyecto.services.IJugadorService;
 @Controller
 @RequestMapping("/jugador")
 public class JugadorController {
+	
+	private static final int LIMITE_JUGADORES_X_EQUIPO = 26;
 	
 	@Autowired
 	@Qualifier("jugadorService")
@@ -59,15 +62,28 @@ public class JugadorController {
 	public String guardar(
 			@Valid Jugador jugador,
 			BindingResult result,
-			Model model
+			Model model,
+			RedirectAttributes redirect
 			) {
- 		if(result.hasErrors()) {
- 			model.addAttribute("equipos", equipoService.getAll());
- 			model.addAttribute("mensaje", "Mensaje de error");
- 			return "redirect:/jugador/agregar";
- 		}
+ 		
+ 		/* ****************** ERRORES ****************** */
+		if(result.hasErrors()) {
+			model.addAttribute("equipos", equipoService.getAll());
+			System.out.println("ERROR: Hubo errores en el formulario de guardar jugador");
+			return "jugador/crear";
+		}
+		/* ****************** VALIDACION NO MAS DE 26 JUGADORES ****************** */
+		List<Jugador> listaJugadores = jugadorService.getAll();
+		if(listaJugadores.size() == LIMITE_JUGADORES_X_EQUIPO) {
+			System.out.println("Se alcanzo el limite de jugadores permitido!");
+			redirect.addFlashAttribute("info", "INFO: El limite de inscripcion de jugadores por equipo es : " + LIMITE_JUGADORES_X_EQUIPO);
+			return "redirect:/jugador/agregar";
+		}
+		/* ****************** GUARDA UN JUGADOR ****************** */
 		jugadorService.save(jugador);
-		return "redirect:/jugador/";
+		System.out.println("Jugador guardado con exito!");
+		redirect.addFlashAttribute("save", "SAVE: Jugador guardado con exito!");
+		return "redirect:/jugador/agregar";
  	}
  	
  	/* ----------------- EDITAR JUGADOR ----------------- */ 
@@ -107,33 +123,6 @@ public class JugadorController {
  		return "redirect:/jugador/";
  	}
 }	
-
-	
-	/*
-	@RequestMapping("/crear")
-	public String crear(Model model) {
-		Jugador jugador = new Jugador();
-		List<Equipo> listaEquipos = equipoService.getAll();
-		model.addAttribute("jugador", jugador);
-		model.addAttribute("equipos", listaEquipos);
-		return "jugador/crear";
-	}
-	
-	@PostMapping("/guardar")
-	public String guardar(@Valid @ModelAttribute Jugador jugador, BindingResult result, Model model, RedirectAttributes attribute) {
-		
-		if(result.hasErrors()) {
-			List<Equipo> listaEquipos = equipoService.getAll();
-			model.addAttribute("equipos", listaEquipos);
-			System.out.println("Hubo error en el formulario!");
-			return "jugador/crear";
-		}
-		jugadorService.save(jugador);
-		System.out.println("Jugador creado con exito!");
-		
-		attribute.addFlashAttribute("success","Jugador creado con exito");
-		return "redirect:/jugador/";
- */
 
 /* -------------------------- SWAGGR ---------------------- */
 /*

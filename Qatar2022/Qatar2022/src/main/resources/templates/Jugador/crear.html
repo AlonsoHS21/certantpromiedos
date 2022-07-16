@@ -39,6 +39,8 @@
                     <div class="col-4"> 
                     	<label for="dorsal" class="form-label">Dorsal</label>
                     	<input type="number" class="form-control" placeholder="Dorsal del jugador"  th:field="*{dorsal}">
+                    	<p th:if="${#fields.hasErrors('dorsal')}" th:errorClass="error"
+							th:errors="*{dorsal}"/>
                     </div>
                     
                     <div class="col-6"> 

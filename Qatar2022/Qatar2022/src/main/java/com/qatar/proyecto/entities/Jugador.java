@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
@@ -20,23 +22,24 @@ public class Jugador {
 	private long idJugador;
 	
 	@Column(name = "nombre")
-	@NotEmpty(message="{NotEmpty.Jugador.nombre}")
+	@NotEmpty(message="El campo nombre no debe esta vacio")
 	private String nombre;
 	
 	@Column(name = "apellido")
-	@NotEmpty(message="{NotEmpty.Jugador.apellido}")
+	@NotEmpty(message="El campo apellido no debe estar vacio")
 	private String apellido;
 	
 	@Column(name = "goles") //Puede estar vacio empieza en 0
 	private int goles;
 	
 	@Column
-	@NotNull(message="{NotNull.jugador.dorsal}")
+	@NotNull(message="El campo dorsal no debe estar vacio")
+	@Min( value = 1, message = "El numero del dorsal no puede ser menor a 1")
+	@Max ( value = 30, message = "El numero del dorsal no puede ser mayor a 30")
 	private int dorsal;
 	
 	@ManyToOne()
-	@JoinColumn(name="equipo_idEquipo")	
-	@NotNull(message="{NotNull.Jugador.equipo}")
+	@JoinColumn(name="equipo_idEquipo")
 	private Equipo equipo;
 	
 	 public Jugador() {

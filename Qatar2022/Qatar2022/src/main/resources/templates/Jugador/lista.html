@@ -12,6 +12,10 @@
 			table td,th{
 				text-align: center;
 			}
+			.transformacion {
+				text-transform : uppercase;
+			}
+			
 		</style>
 </head>
 <body>
@@ -21,7 +25,7 @@
 	<!--  Tabla de jugadores por parte de JugadorController -->
 	<div th:if="${jugadores != null and !jugadores.empty}">
 
-		<div style="display: flex; justify-content: center; flex-direction: column; align-items: center; margin: 15px;">
+		<div style="display: flex; justify-content: center; flex-direction: column; align-items: center; margin: 25px;">
 			<h2>LISTA DE JUGADORES</h2>
 			<a th:href="@{agregar}" class="btn btn-success" style="margin: 15px;">Ingresar Jugador</a>
 		</div>
@@ -58,24 +62,24 @@
 	</div>
 
 	<!--  Tabla de jugadores por parte de EquipoController -->
-	<div th:if="${listaJugadoresPorEquipo != null and !listaJugadoresPorEquipo.empty}"
-		id="table-list"
-		style="display: flex; justify-content: center; flex-direction: column; align-items: center">
+	<div th:if="${listaJugadoresPorEquipo != null and !listaJugadoresPorEquipo.empty}">
 
 		<div
 			style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
-			<h2 style="margin-bottom: 10px;">Lista de Jugadores</h2>
+			<h2 style="margin-bottom: 10px;" class="transformacion">LISTA DE JUGADORES DE <span th:text="${listaJugadoresPorEquipo[0].getEquipo().getNombre}"></span></h2>
 			<img
 				th:src="${listaJugadoresPorEquipo[0].getEquipo().getDireccionImagen}"
 				style="height: 75px !important; width: 100px !important; margin-bottom: 15px" />
 		</div>
-
+		
+		<div class="container"> 
 		<table class="table table-dark table-striped" style="width: 100%">
 			<thead>
 				<tr>
 					<th>Nombre</th>
 					<th>Apellido</th>
 					<th>Goles</th>
+					<th>Dorsal</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -83,16 +87,12 @@
 					<td th:text="${jugador.nombre}">Sin datos</td>
 					<td th:text="${jugador.apellido}">Sin datos</td>
 					<td th:text="${jugador.goles}">Sin datos</td>
+					<td th:text="${jugador.dorsal}">Sin datos</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-
-	<script>
-		$(document).ready(function() {
-			$('#player-list').DataTable();
-		});
-	</script>
+	</div>
 	
 	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
