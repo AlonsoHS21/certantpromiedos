@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.qatar.proyecto.entities.Apuesta;
-import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.repositories.IApuestaRepository;
 import com.qatar.proyecto.services.IApuestaService;
 
@@ -31,6 +31,12 @@ public class ApuestaService implements IApuestaService {
 	@Override
 	public void save(Apuesta apuesta) {
 		apuestaRepository.save(apuesta);
+	}
+
+	@Override
+	@Transactional
+	public int eliminarApuestasPorUsuario(Long id) {
+		return apuestaRepository.eliminarApuestasPorUsuario(id);
 	}
 
 }

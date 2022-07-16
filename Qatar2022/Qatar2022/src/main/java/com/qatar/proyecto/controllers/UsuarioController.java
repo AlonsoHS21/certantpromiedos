@@ -9,20 +9,18 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Apuesta;
+import com.qatar.proyecto.entities.Jackpot;
 import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.services.IApuestaService;
+import com.qatar.proyecto.services.IJackpotService;
 import com.qatar.proyecto.services.implementation.UsuarioService;
 
 
@@ -37,6 +35,10 @@ public class UsuarioController {
 	@Autowired
 	@Qualifier("apuestaService")
 	private IApuestaService apuestaService;
+	
+	@Autowired
+	@Qualifier("jackpotService")
+	private IJackpotService jackpotService;
 	
 	/* ----------------- LISTAR USUARIOS ----------------- */
 	
@@ -55,7 +57,11 @@ public class UsuarioController {
 			Model model
 			) {
 		List<Apuesta> listaApuestas = apuestaService.buscarApuestasPorIdUsuario(id);
+		List<Jackpot> listaJackpots  = jackpotService.getAll();
+		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
 		model.addAttribute("listaApuestasPorUsuario", listaApuestas);
+		model.addAttribute("jackpots", listaJackpots);
+		model.addAttribute("usuarios", listaUsuarios);
 		model.addAttribute("usuario", usuarioService.buscarUsuarioPorId(id));
 		return "apuesta/lista";
 	}
@@ -74,11 +80,14 @@ public class UsuarioController {
 	@PostMapping("/guardar")
 	public String guardar(
 			Usuario usuario,
-			Model model
+			Model model,
+			RedirectAttributes redirect
 			) {
 		usuario.setPuntos(0);
 		usuarioService.save(usuario);
-		return "redirect:/usuario/";
+		System.out.println("Usuario guardado con exito!");
+		redirect.addFlashAttribute("save", "Usuario guardado con exito!");
+		return "redirect:/usuario/agregar";
 	}
 	
 	/* ----------------- INGRESAR USUARIOS ----------------- */
@@ -140,25 +149,11 @@ public class UsuarioController {
 			@PathVariable Long id
 			) {
 		usuarioService.eliminarUsuario(id);
+		apuestaService.eliminarApuestasPorUsuario(id);
 		return "redirect:/usuario/";
 	}
 }
-		/*
-		@PostMapping("/")
-		public String guardar(@Valid @ModelAttribute Usuario usuario,BindingResult result, Model model, RedirectAttributes attribute ) {
 
-			if(result.hasErrors()) {
-				System.out.println("Hubo error en el formulario!");
-				return "usuario/crear";
-			}
-			usuarioService.guardar(usuario);
-			System.out.println("Usuario guardado con exito!");
-			attribute.addFlashAttribute("success","Usuario creado con exito");
-			return "redirect:/usuario/";
-		
-		
-		 */
-	
 	
 /* Links Utiles para las anotaciones
  *  https://ricardogeek.com/spring-boot-y-la-anotacion-crossorigin/
