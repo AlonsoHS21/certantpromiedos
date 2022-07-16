@@ -48,7 +48,6 @@
                 
                     <label for="estadium" class="text-white mb-2">Estadio</label>
                     <input type="text" class="form-control" placeholder="Nombre del estadio" id="estadium" th:field="*{estadio}">
-            		
             		<p th:if="${#fields.hasErrors('estadio')}" th:errorClass="error"
 					th:errors="*{estadio}"/>
 					
@@ -75,8 +74,6 @@
 						th:value="${equipo.idEquipo}"
 						th:text="${equipo.nombre}"/>
 					</select>
-
-                    <br>
 	
                 </div>
                 <div class="clearfix"></div>

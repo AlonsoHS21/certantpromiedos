@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.entities.Partido;
@@ -72,16 +73,19 @@ public class PartidoController {
 	public String guardar(
 			@Valid Partido partido,
 			BindingResult result,
-			Model model
+			Model model,
+			RedirectAttributes redirect
 			) {
-	boolean errores = result.hasErrors();
-	if(errores) {
+	if(result.hasErrors()) {
 			model.addAttribute("partido", partido);
 			model.addAttribute("listaEquipos", equipoService.getAll());
+			System.out.println("ERROR: Hubo un error en el formulario de guardar partido!");
 			return "partido/crear";
 		}
 	partidoService.save(partido);
-	return "redirect:/partido/";
+	System.out.println("SAVE: Partido guardado con exito!");
+	redirect.addFlashAttribute("save", "SAVE: Partido guardado con exito!");
+	return "redirect:/partido/agregar";
 	}
 	
 	/* ----------------- EDITAR PARTIDOS ----------------- */ 

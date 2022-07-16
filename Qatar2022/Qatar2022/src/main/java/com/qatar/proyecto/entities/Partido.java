@@ -43,6 +43,9 @@ public class Partido {
 	@Column(name="resultadoEquipoVisitante")
 	private int resultadoEquipoVisitante;
 	
+	@Column(name = "id_equipoGanador")
+	private Long idEquipoGanador;
+	
 	public Partido() {}
 
 	public Long getIdPartido() {
