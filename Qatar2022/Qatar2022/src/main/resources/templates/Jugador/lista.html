@@ -1,22 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-		<meta charset="utf-8" />
+		<meta charset="UTF-8" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="css/estilos.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />   
-        <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />      
+        
 		<title>Lista de Jugadores</title>
 		
-		<style>
-			table td,th{
-				text-align: center;
-			}
-			.transformacion {
-				text-transform : uppercase;
-			}
-			
-		</style>
 </head>
 <body>
 	
@@ -25,13 +14,13 @@
 	<!--  Tabla de jugadores por parte de JugadorController -->
 	<div th:if="${jugadores != null and !jugadores.empty}">
 
-		<div style="display: flex; justify-content: center; flex-direction: column; align-items: center; margin: 25px;">
+		<div class="text-center py-4">
 			<h2>LISTA DE JUGADORES</h2>
 			<a th:href="@{agregar}" class="btn btn-success" style="margin: 15px;">Ingresar Jugador</a>
 		</div>
 		
 		<div class="container"> 
-		<table class="table table-dark table-striped" style="width: 100%">
+		<table class="table table-dark table-striped text-center" style="width: 100%">
 			<thead>
 				<tr>
 					<th>Nombre</th>
@@ -64,8 +53,7 @@
 	<!--  Tabla de jugadores por parte de EquipoController -->
 	<div th:if="${listaJugadoresPorEquipo != null and !listaJugadoresPorEquipo.empty}">
 
-		<div
-			style="display: flex; justify-content: center; flex-direction: column; align-items: center;">
+		<div class="text-center py-4">
 			<h2 style="margin-bottom: 10px;" class="transformacion">LISTA DE JUGADORES DE <span th:text="${listaJugadoresPorEquipo[0].getEquipo().getNombre}"></span></h2>
 			<img
 				th:src="${listaJugadoresPorEquipo[0].getEquipo().getDireccionImagen}"
@@ -73,7 +61,7 @@
 		</div>
 		
 		<div class="container"> 
-		<table class="table table-dark table-striped" style="width: 100%">
+		<table class="table table-dark table-striped text-center" style="width: 100%">
 			<thead>
 				<tr>
 					<th>Nombre</th>
@@ -94,9 +82,8 @@
 	</div>
 	</div>
 	
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"></script>
 	
 </body>
 </html>

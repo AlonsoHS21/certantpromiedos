@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="utf-8" />
+		<meta charset="UTF-8" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" />   
-        <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" />      
 		<link th:href="@{/css/estilos.css}" rel="stylesheet" />
+		
 		<title>Lista de Equipos</title>
 		
-		<style>
-			table td,th{
-				text-align: center;
-			}
-		</style>
 </head>
 <body>
 	
@@ -20,14 +14,13 @@
 	<div th:replace="components/alerts :: alert_delete"></div>
 	
 		<div th:if="${equipos != null and !equipos.empty}">
-			<div style="display: flex; justify-content: center; flex-direction: column; align-items: center; margin: 15px;">
+			<div class="text-center py-4">
 				<h2>LISTA DE EQUIPOS</h2>
 			<a th:href="@{agregar}" class="btn btn-success">Ingresar Equipo</a>
 		</div>
 
 		<div class="container"> 
-		<table class="table table-dark table-striped"
-			style="width: 100%">
+		<table class="table table-dark table-striped text-center" style="width: 100%">
 			<thead>
 				<tr>
 					<th>Imagen</th>
@@ -55,10 +48,8 @@
 		</div>
 	</div>
 	
-	
-	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"></script>
 	
 </body>
 </html>
