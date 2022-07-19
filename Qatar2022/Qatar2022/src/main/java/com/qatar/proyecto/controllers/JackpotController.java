@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.entities.Jackpot;
@@ -40,17 +41,22 @@ public class JackpotController {
 	
 	@GetMapping("/")
 	public String lista(
+			RedirectAttributes redirect,
 			Model model
 			) {
 		List<Jackpot> listaJackpots = jackpotService.getAll();
-		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
-		List<Equipo> listaEquipos = equipoService.getAll();
-		List<Jugador> listaJugadores = jugadorService.getAll();
-		model.addAttribute("usuarios", listaUsuarios);
-		model.addAttribute("jackpots", listaJackpots);
-		model.addAttribute("equipos", listaEquipos);
-		model.addAttribute("jugadores", listaJugadores);
-		return "jackpot/lista";
+		if(!listaJackpots.isEmpty()) {
+			List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
+			List<Equipo> listaEquipos = equipoService.getAll();
+			List<Jugador> listaJugadores = jugadorService.getAll();
+			model.addAttribute("usuarios", listaUsuarios);
+			model.addAttribute("jackpots", listaJackpots);
+			model.addAttribute("equipos", listaEquipos);
+			model.addAttribute("jugadores", listaJugadores);
+			return "jackpot/lista";
+		}
+		redirect.addFlashAttribute("info","INFO: No se encontraron jackpots para ningun usuario");
+		return "redirect:/jackpot/";
 	}
 
 }

@@ -1,7 +1,5 @@
 package com.qatar.proyecto.entities;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,7 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,12 +25,9 @@ public class Jackpot {
 	@Column(name = "idGoleador")
 	private int idGoleador;
 	
-	@OneToMany(
-			mappedBy = "jackpot",
-			cascade = CascadeType.ALL,
-			orphanRemoval = true
-			)
-	private List<Usuario> usuarios = new ArrayList<>();
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "user_id")
+	private Usuario usuario;
 	
 	public Jackpot() {}
 
@@ -43,11 +39,28 @@ public class Jackpot {
 		this.idJackpot = idJackpot;
 	}
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	public int getIdCampeon() {
+		return idCampeon;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setIdCampeon(int idCampeon) {
+		this.idCampeon = idCampeon;
 	}
+
+	public int getIdGoleador() {
+		return idGoleador;
+	}
+
+	public void setIdGoleador(int idGoleador) {
+		this.idGoleador = idGoleador;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
 }
