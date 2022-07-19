@@ -42,23 +42,25 @@ public class ApuestaController {
 			Model model
 			) {
 		List<Apuesta> listaDeApuestas = apuestaService.getAll();
-		List<Equipo> listaEquipos = equipoService.getAll();
-		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
-		model.addAttribute("apuestas", listaDeApuestas);
-		model.addAttribute("equipos", listaEquipos);
-		model.addAttribute("usuarios", listaUsuarios);
+		if(!listaDeApuestas.isEmpty()) {
+			List<Equipo> listaEquipos = equipoService.getAll();
+			List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
+			model.addAttribute("apuestas", listaDeApuestas);
+			model.addAttribute("equipos", listaEquipos);
+			model.addAttribute("usuarios", listaUsuarios);
+			return "apuesta/lista";
+		}
+		model.addAttribute("info", "No se encontraron apuestas para listar");
 		return "apuesta/lista";
 	}
 	
 	@GetMapping("/busqueda")
 	public String busquedaApuestaPorUsuario(
 			Model model,
-			@RequestParam(value = "query", required = false) String email,
+			@RequestParam(value = "query", required = false) String paClave,
 			RedirectAttributes redirect
 			) {
-		Usuario usuario = usuarioService.buscarUsuarioPorEmail(email);
-		if(usuario != null) {
-			List<Apuesta> listaApuestas = apuestaService.buscarApuestasPorIdUsuario(usuario.getId());
+			List<Apuesta> listaApuestas = apuestaService.buscarApuestasPorPalabra(paClave);
 			if(!listaApuestas.isEmpty()) {
 				model.addAttribute("apuestas",listaApuestas);
 				List<Equipo> listaEquipos = equipoService.getAll();
@@ -67,12 +69,8 @@ public class ApuestaController {
 				model.addAttribute("usuarios", listaUsuarios);
 				return "apuesta/lista";
 			}
-			redirect.addFlashAttribute("info", "INFO: El usuario no tiene apuestas");
+			redirect.addFlashAttribute("info", "INFO: El usuario no tiene apuestas o no existe");
 			return "redirect:/apuesta/";
-		}
-		redirect.addFlashAttribute("info", "INFO: El usuario no fue encontrado");
-		return "redirect:/apuesta/";
-		
 	}
 
 }

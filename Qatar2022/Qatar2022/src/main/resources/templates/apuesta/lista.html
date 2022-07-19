@@ -7,33 +7,71 @@
 		<title>Lista de Apuestas</title>
 		
 </head>
-<body>
-	
+<body style="background-image: url(https://3y3seo1md7o8303qa48ddzzb-wpengine.netdna-ssl.com/wp-content/uploads/2022/01/fondo_qatar2.png); background-size: cover; background-repeat: repeat">	
 	<nav th:replace="components/navbar :: nav_bar"></nav>
 	<div th:replace="components/alerts :: alert_info"></div>
 	
-	<div class="text-center py-4">
-			<h2>LISTA DE APUESTAS</h2>
-		</div>
-		
+	
 	<div th:if="${apuestas != null and !apuestas.empty}" id="table-list">
+	
+		<div class="text-center py-4">
+			<h2 class="text-white">LISTA DE APUESTAS</h2>
+		</div>
 
 		<div class="container">
 	
 		 <form class="d-flex align-items-center" th:action="@{busqueda}" >
 		 		<div style="margin: 20px">
-		 			<input list="usuarios" name="query" onchange="this.form.submit()"/>
-		 			<datalist id="usuarios">
-		 				<option value="rhuarcaya@certant.com">
-		 			</datalist>
-		 			<a type="button" class="btn btn-info" th:href="@{/apuesta/}">Restablecer</a>
+		 			<input type="text" name="query" />
+		 			<button type="submit" class="btn btn-primary">Buscar</button>
+		 			<a class="btn btn-warning" th:href="@{/apuesta/}">Limpiar</a>
 		 		</div>
-				 <!-- 
-        		<div style="margin: 20px">
-        			<input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="query">
-        			<button class="btn btn-outline-success" type="submit">Buscar</button>
-      			</div> -->
       	</form>
+      	
+		<table class="table table-dark table-striped py-2 text-center" style="width:100%;" >
+			<thead>
+				<tr>
+					<th>ID usuario</th>
+					<th>Nombre Completo Usuario</th>
+					<th>Equipo Local</th>
+					<th>Goles equipo local</th>
+					<th>Equipo Visitante</th>
+					<th>Goles equipo Visitante</th>
+					<th>Fase Apuesta</th>
+					<th>Estado de la apuesta</th>
+					<th>Puntaje</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="apuesta : ${apuestas}">
+					<td th:text="${apuesta.usuario.id}"></td>
+					<td th:text="${apuesta.usuario.nombre + ', ' + apuesta.usuario.apellido}"></td>
+					<td th:each="equipo : ${equipos}" th:if="${equipo.IdEquipo == apuesta.partido.idEquipoLocal}">
+						<img th:src="${equipo.direccionImagen}" style="height: 40px !important; width: 55px !important;"/>
+						<p th:text="${equipo.nombre}"></p>
+					</td>
+					<td th:text="${apuesta.golesEquipo1}"></td>
+					<td th:each="equipo : ${equipos}" th:if="${equipo.idEquipo == apuesta.partido.idEquipoVisitante}">
+						<img th:src="${equipo.direccionImagen}" style="height: 40px !important; width: 55px !important;"/>
+						<p th:text="${equipo.nombre}"></p>
+					</td>
+					<td th:text="${apuesta.golesEquipo2}"></td>
+					<td th:text="${apuesta.partido.fasePartido}"></td>
+					<td th:text="${apuesta.partido.estadoApuesta}"></td>
+					<td th:text="${apuesta.usuario.puntos}"></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	
+	<div th:if="${apuestasPorUsuario != null and !apuestasPorUsuario.empty}" id="table-list">
+
+		<div class="text-center py-4">
+			<h2 class="text-white">LISTA DE APUESTAS</h2>
+		</div>
+		
+		<div class="container">
       	
 		<table class="table table-dark table-striped py-2 text-center" style="width:100%;" >
 			<thead>
@@ -49,7 +87,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="apuesta : ${apuestas}">
+				<tr th:each="apuesta : ${apuestasPorUsuario}">
 					<td th:text="${apuesta.usuario.id}"></td>
 					<td th:text="${apuesta.usuario.nombre}"></td>
 					<td th:each="equipo : ${equipos}" th:if="${equipo.IdEquipo == apuesta.partido.idEquipoLocal}">
@@ -70,40 +108,35 @@
 		</div>
 	</div>
 	
+	<div th:if="${jackpot != null}">
 	
-<div th:if="${jackpot != null and !jackpot.empty}">
-		
-		<nav th:replace="components/navbar :: nav_bar"></nav>
-		
 		<div class="text-center py-4">
-			<h2>JACKPOT</h2>
+			<h2 class="text-white">JACKPOT</h2>
 		</div>
-		
+	
 	<div class="container"> 
-		<table class="table table-dark table-striped py-2 text-center" style="width:100%;" >
+		<table class="table table-dark table-striped text-center" style="width: 100%">
 			<thead>
 				<tr>
 					<th>ID Jackpot</th>
 					<th>ID Usuario</th>
 					<th>Nombre Usuario</th>
+					<th>Campeon</th>
+					<th>Goleador</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="jackpot : ${jackpots}">
-					<td th:text="${apuesta.usuario.id}"></td>
-					<td th:text="${apuesta.usuario.nombre}"></td>
-					<td th:each="equipo : ${equipos}" th:if="${equipo.IdEquipo == apuesta.partido.idEquipoVisitante}">
+				<tr>
+					<td th:text="${jackpot.idJackpot}"></td>
+					<td th:text="${usuario.id}"></td>
+					<td th:text="${usuario.nombre}"></td>
+					<td th:each="equipo : ${equipos}" th:if="${equipo.idEquipo == jackpot.idCampeon}">
 						<img th:src="${equipo.direccionImagen}" style="height: 40px !important; width: 55px !important;"/>
 						<p th:text="${equipo.nombre}"></p>
 					</td>
-					<td th:text="${apuesta.golesEquipo1}"></td>
-					<td th:each="equipo : ${equipos}" th:if="${equipo.idEquipo == apuesta.partido.idEquipoLocal}">
-						<img th:src="${equipo.direccionImagen}" style="height: 40px !important; width: 55px !important;"/>
-						<p th:text="${equipo.nombre}"></p>
+					<td th:each="jugador : ${jugadores}" th:if="${jugador.idJugador == jackpot.idGoleador}">
+						<p th:text="${jugador.nombre + ', ' + jugador.apellido}"></p>
 					</td>
-					<td th:text="${apuesta.golesEquipo2}"></td>
-					<td th:text="${apuesta.partido.estadoApuesta}"></td>
-					<td th:text="${apuesta.usuario.puntos}"></td>
 				</tr>
 			</tbody>
 		</table>

@@ -39,4 +39,12 @@ public class ApuestaService implements IApuestaService {
 		return apuestaRepository.eliminarApuestasPorUsuario(id);
 	}
 
+	@Override
+	public List<Apuesta> buscarApuestasPorPalabra(String paClave) {
+		if(paClave != null) {
+			return apuestaRepository.buscarApuestasPorPalabra(paClave);
+		}
+		return apuestaRepository.findAll();
+	}
+
 }
