@@ -1,27 +1,14 @@
 use qatar;
 
-# -------------------------- INSERT INTO JACKPOT --------------------------
-/*
-   CAMPEONES   		 GOLEADORES
- 1 - Argentina        1 - 10
- 2 - Brasil			  1 - 10
- 3 - Francia 		  1 - 10
- 4 - España			  1 - 10
-*/
-insert into jackpot(id_jackpot, id_campeon, id_goleador) values (1,4,1);
-insert into jackpot(id_jackpot,id_campeon,id_goleador) values (2,2,1);
-insert into jackpot(id_jackpot, id_campeon, id_goleador) values (3,3,1);
-insert into jackpot(id_jackpot,id_campeon,id_goleador) values (4,1,1);
-
 # -------------------------- INSERT INTO USUARIO --------------------------
 
-#USUARIO HUARCAYA APOSTO QUE GANA ESPAÑA
-insert into usuario (id, apellido,contrasenia, email, nombre, puntos, jackpot_id_Jackpot) values (1,"Huarcaya", "1", "rhuarcaya@certant.com", "Alonso", 0, 4);
-#USUARIO OSORES APOSTO QUE GANA BRASIL
-insert into usuario (id, apellido,contrasenia, email, nombre, puntos, jackpot_id_Jackpot) values (2,"Osores", "1", "fosores@certant.com", "Franco", 0, 2);
-#USUARIO WOLF APOSTO QUE GANA ARGENTINA
-insert into usuario (id, apellido,contrasenia, email, nombre, puntos, jackpot_id_Jackpot) values (3,"Wolf", "1", "mwolf@certant.com", "Marcelo", 0, 1);
-#USUARIO DIAZ NO APOSTO
+#USUARIO HUARCAYA 
+insert into usuario (id, apellido,contrasenia, email, nombre, puntos) values (1,"Huarcaya", "1", "rhuarcaya@certant.com", "Alonso", 0);
+#USUARIO OSORES 
+insert into usuario (id, apellido,contrasenia, email, nombre, puntos) values (2,"Osores", "1", "fosores@certant.com", "Franco", 0);
+#USUARIO WOLF 
+insert into usuario (id, apellido,contrasenia, email, nombre, puntos) values (3,"Wolf", "1", "mwolf@certant.com", "Marcelo", 0);
+#USUARIO DIAZ 
 insert into usuario (id, apellido,contrasenia, email, nombre, puntos) values (4,"Diaz", "1", "mdiaz@certant.com", "Marcelo", 0);
 
 # -------------------------- INSERT INTO EQUIPO --------------------------
@@ -88,7 +75,11 @@ insert into jugador (id_jugador, apellido, goles, nombre, equipo_id_equipo , dor
 
 #CREAMOS UN PARTIDO DESDE THYMELEAF
 # ID PARTIDO 1 - ARGENTINA - BRASIL
+insert into partido (id_partido, estadio, estado_apuesta, fase, fecha,idequipo_local, idequipo_visitante, resultado_equipo_local, resultado_equipo_visitante) 
+values (1,"Qatar", "Apuestas Abiertas", "Fase de Grupos", "2022-07-20T22:00", 1,2,0,0);
 # ID PARTIDO 1 - ESPAÑA - FRANCIA
+insert into partido (id_partido, estadio, estado_apuesta, fase, fecha,idequipo_local, idequipo_visitante, resultado_equipo_local, resultado_equipo_visitante) 
+values (2,"Qatar", "Apuestas Abiertas", "Fase de Grupos", "2022-07-20T22:00", 4,3,0,0);
 
 # -------------------------- INSERT INTO APUESTA --------------------------
 
@@ -103,7 +94,18 @@ insert into apuesta(id_apuesta, goles_equipo1, goles_equipo2,id_partido, usuario
 #USUARIO WOLF APOSTO ESPAÑA 2 - FRANCIA 1
 insert into apuesta(id_apuesta, goles_equipo1, goles_equipo2,id_partido, usuario_id_usuario) values (5,2,1,2,3);
 
-
+# -------------------------- INSERT INTO JACKPOT --------------------------
+/*
+   CAMPEONES   		 GOLEADORES
+ 1 - Argentina        1 - 10
+ 2 - Brasil			  1 - 10
+ 3 - Francia 		  1 - 10
+ 4 - España			  1 - 10
+*/
+insert into jackpot(id_jackpot, id_campeon, id_goleador, user_id) values (1,1,5,1);
+insert into jackpot(id_jackpot, id_campeon, id_goleador, user_id) values (2,1,5,2);
+insert into jackpot(id_jackpot, id_campeon, id_goleador, user_id) values (3,3,1,3);
+insert into jackpot(id_jackpot,id_campeon,id_goleador, user_id) values (4,1,1,4);
 
 
 
