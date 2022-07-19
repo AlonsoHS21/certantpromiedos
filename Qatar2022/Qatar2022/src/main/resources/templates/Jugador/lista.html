@@ -7,17 +7,19 @@
 		<title>Lista de Jugadores</title>
 		
 </head>
-<body>
-	
+<body style="background-image: url(https://3y3seo1md7o8303qa48ddzzb-wpengine.netdna-ssl.com/wp-content/uploads/2022/01/fondo_qatar2.png); background-size: cover; background-repeat: repeat">	
 	<nav th:replace="components/navbar :: nav_bar"></nav>
+	<div th:replace="components/alerts :: alert_info"></div>
 
 	<!--  Tabla de jugadores por parte de JugadorController -->
 	<div th:if="${jugadores != null and !jugadores.empty}">
 
 		<div class="text-center py-4">
-			<h2>LISTA DE JUGADORES</h2>
+			<h2 class="text-white">LISTA DE JUGADORES</h2>
 			<a th:href="@{agregar}" class="btn btn-success" style="margin: 15px;">Ingresar Jugador</a>
 		</div>
+		
+		<div th:replace="components/alerts :: alert_info"></div>
 		
 		<div class="container"> 
 		<table class="table table-dark table-striped text-center" style="width: 100%">
@@ -52,9 +54,9 @@
 
 	<!--  Tabla de jugadores por parte de EquipoController -->
 	<div th:if="${listaJugadoresPorEquipo != null and !listaJugadoresPorEquipo.empty}">
-
+	
 		<div class="text-center py-4">
-			<h2 style="margin-bottom: 10px;" class="transformacion">LISTA DE JUGADORES DE <span th:text="${listaJugadoresPorEquipo[0].getEquipo().getNombre}"></span></h2>
+			<h2 style="margin-bottom: 10px;" class="transformacion text-white">LISTA DE JUGADORES DE <span th:text="${listaJugadoresPorEquipo[0].getEquipo().getNombre}"></span></h2>
 			<img
 				th:src="${listaJugadoresPorEquipo[0].getEquipo().getDireccionImagen}"
 				style="height: 75px !important; width: 100px !important; margin-bottom: 15px" />

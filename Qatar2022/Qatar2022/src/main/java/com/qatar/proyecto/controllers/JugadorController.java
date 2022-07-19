@@ -39,9 +39,16 @@ public class JugadorController {
 	/* ----------------- LISTAR JUGADOR ----------------- */ 
 	
  	@GetMapping("/")
-	public String lista(Jugador jugador, Model model) {
+	public String lista(
+			Jugador jugador,
+			RedirectAttributes redirect,
+			Model model) {
 		List<Jugador> listaJugadores = jugadorService.getAll();
-		model.addAttribute("jugadores", listaJugadores);
+		if(!listaJugadores.isEmpty()) {
+			model.addAttribute("jugadores", listaJugadores);
+			return "jugador/lista";
+		}
+		model.addAttribute("info", "No se encontraron jugadores");
 		return "jugador/lista";
 	}
  	
