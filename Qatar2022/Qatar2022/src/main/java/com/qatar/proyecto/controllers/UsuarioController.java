@@ -17,10 +17,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.qatar.proyecto.entities.Apuesta;
+import com.qatar.proyecto.entities.Equipo;
 import com.qatar.proyecto.entities.Jackpot;
+import com.qatar.proyecto.entities.Jugador;
 import com.qatar.proyecto.entities.Usuario;
 import com.qatar.proyecto.services.IApuestaService;
+import com.qatar.proyecto.services.IEquipoService;
 import com.qatar.proyecto.services.IJackpotService;
+import com.qatar.proyecto.services.IJugadorService;
 import com.qatar.proyecto.services.implementation.UsuarioService;
 
 
@@ -40,12 +44,24 @@ public class UsuarioController {
 	@Qualifier("jackpotService")
 	private IJackpotService jackpotService;
 	
+	@Autowired
+	@Qualifier("equipoService")
+	private IEquipoService equipoService;
+	
+	@Autowired
+	@Qualifier("jugadorService")
+	private IJugadorService jugadorService;
+	
 	/* ----------------- LISTAR USUARIOS ----------------- */
 	
 	@GetMapping("/usuario")
 	public String lista(Model model) {
 		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
-		model.addAttribute("usuarios",listaUsuarios);
+		if(!listaUsuarios.isEmpty()) {
+			model.addAttribute("usuarios",listaUsuarios);
+			return "usuario/lista";
+		}
+		model.addAttribute("info", "No se encontraron usuario para listar");
 		return "usuario/lista";
 	}
 	
@@ -54,15 +70,32 @@ public class UsuarioController {
 	@GetMapping("usuario/listarApuestas/{id}")
 	public String listaApuestasPorUsuario(
 			@PathVariable Long id,
+			RedirectAttributes redirect,
 			Model model
 			) {
 		List<Apuesta> listaApuestas = apuestaService.buscarApuestasPorIdUsuario(id);
-		List<Jackpot> listaJackpots  = jackpotService.getAll();
-		List<Usuario> listaUsuarios = usuarioService.listarUsuarios();
-		model.addAttribute("listaApuestasPorUsuario", listaApuestas);
-		model.addAttribute("jackpots", listaJackpots);
-		model.addAttribute("usuarios", listaUsuarios);
-		model.addAttribute("usuario", usuarioService.buscarUsuarioPorId(id));
+		if(!listaApuestas.isEmpty()) {
+			Jackpot jackpot = jackpotService.buscarJackpotPorIdUsuario(id);
+			if(jackpot != null) {
+				List<Equipo> listaEquipos = equipoService.getAll();
+				List<Jugador> listaJugadores = jugadorService.getAll();
+				model.addAttribute("apuestasPorUsuario", listaApuestas);
+				model.addAttribute("jackpot", jackpot);
+				model.addAttribute("jugadores", listaJugadores);
+				model.addAttribute("equipos", listaEquipos);
+				model.addAttribute("usuario", usuarioService.buscarUsuarioPorId(id));
+				return "apuesta/lista";
+			}
+			List<Equipo> listaEquipos = equipoService.getAll();
+			List<Jugador> listaJugadores = jugadorService.getAll();
+			model.addAttribute("apuestasPorUsuario", listaApuestas);
+			model.addAttribute("jugadores", listaJugadores);
+			model.addAttribute("equipos", listaEquipos);
+			model.addAttribute("usuario", usuarioService.buscarUsuarioPorId(id));
+			model.addAttribute("info", "No se encontraron jackpots para el usuario");
+			return "apuesta/lista";
+		}
+		model.addAttribute("info", "No se encontraron apuestas para el usuario");
 		return "apuesta/lista";
 	}
 	

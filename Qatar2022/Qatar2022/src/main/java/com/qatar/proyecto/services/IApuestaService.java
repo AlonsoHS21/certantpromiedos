@@ -14,4 +14,6 @@ public interface IApuestaService {
 	
 	public int eliminarApuestasPorUsuario(Long id);
 	
+	public List<Apuesta> buscarApuestasPorPalabra(String paClave);
+	
 }

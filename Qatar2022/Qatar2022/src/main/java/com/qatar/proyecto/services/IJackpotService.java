@@ -8,7 +8,7 @@ public interface IJackpotService {
 	
 	public List<Jackpot> getAll();
 	
-	public List<Jackpot> buscarJackpotsPorIdUsuario(Long id);
+	public Jackpot buscarJackpotPorIdUsuario(Long id);
 	
 	public int eliminarJackpotPorUsuario(Long id);
 

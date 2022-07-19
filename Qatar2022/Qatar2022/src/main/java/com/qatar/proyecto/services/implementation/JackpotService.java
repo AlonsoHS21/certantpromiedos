@@ -25,8 +25,8 @@ public class JackpotService implements IJackpotService{
 	}
 
 	@Override
-	public List<Jackpot> buscarJackpotsPorIdUsuario(Long id) {
-		return jackpotRepository.buscarJackpotsPorIdUsuario(id);
+	public Jackpot buscarJackpotPorIdUsuario(Long id) {
+		return jackpotRepository.buscarJackpotPorIdUsuario(id);
 	}
 
 	@Override
