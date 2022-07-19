@@ -41,9 +41,13 @@ public class EquipoController {
 			Model model
 			) {
 		List<Equipo> listaEquipo = equipoService.getAll();
-		List<Jugador> listaJugadores = jugadorService.getAll();
-		model.addAttribute("equipos",listaEquipo);
-		model.addAttribute("jugadores", listaJugadores);
+		if(!listaEquipo.isEmpty()) {
+			List<Jugador> listaJugadores = jugadorService.getAll();
+			model.addAttribute("equipos",listaEquipo);
+			model.addAttribute("jugadores", listaJugadores);
+			return "equipo/lista";
+		}
+		model.addAttribute("info", "No se encontraron equipos para listar");
 		return "equipo/lista";
 	}
 	
@@ -54,10 +58,13 @@ public class EquipoController {
 			@PathVariable Long idEquipo,
 			Model model
 			) {
-		
 		/* ************** ENVIO DE LISTA DE JUGADORES ORDENADOS POR APELLIDO ********** */
 		List<Jugador> listaJugadores = jugadorService.buscarJugadoresPorIdEquipoOrdenado(idEquipo);
-		model.addAttribute("listaJugadoresPorEquipo", listaJugadores);
+		if(!listaJugadores.isEmpty()) {
+			model.addAttribute("listaJugadoresPorEquipo", listaJugadores);
+			return "jugador/lista";
+		}
+		model.addAttribute("info", "No se encontraron jugadores para listar");
 		return "jugador/lista";
 	}
 	
@@ -83,6 +90,10 @@ public class EquipoController {
 			model.addAttribute("equipo", equipo);
 			System.out.println("ERROR: Hubo errores en el formulario de guardar equipo!");
 			return "equipo/crear";
+		}
+		System.out.println("Equipo: " + equipo.getDireccionImagen());
+		if(equipo.getDireccionImagen().isEmpty()) {
+			equipo.setDireccionImagen("https://markappleinfo.files.wordpress.com/2014/08/fondo-blanco.png");
 		}
 		equipoService.guardarEquipo(equipo.getNombre(), equipo.getDireccionImagen());
 		System.out.println("SAVE: Equipo guardado con exito!");
