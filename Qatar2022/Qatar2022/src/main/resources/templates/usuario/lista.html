@@ -7,15 +7,14 @@
 		<title>Lista de Usuarios</title>
 	
 </head>
-<body>
-
+<body style="background-image: url(https://3y3seo1md7o8303qa48ddzzb-wpengine.netdna-ssl.com/wp-content/uploads/2022/01/fondo_qatar2.png); background-size: cover; background-repeat: repeat">
 	<nav th:replace="components/navbar :: nav_bar"></nav>
-
+	<div th:replace="components/alerts :: alert_info"></div>
 	
 	<div th:if="${usuarios != null and !usuarios.empty}" id="table-list">
 
 		<div class="text-center py-4">
-			<h2>LISTA DE USUARIOS</h2>
+			<h2 class="text-white">LISTA DE USUARIOS</h2>
 			<a th:href="@{agregar}" class="btn btn-success">Crear Usuario</a>
 		</div>
 	

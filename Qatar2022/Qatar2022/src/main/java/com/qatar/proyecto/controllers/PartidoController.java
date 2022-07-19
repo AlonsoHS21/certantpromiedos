@@ -38,9 +38,13 @@ public class PartidoController {
 	@GetMapping("/")
 	public String lista(Model model) {
 		List<Partido> listaPartidos = partidoService.getAll();
-		List<Equipo> listaEquipos = equipoService.getAll();
-		model.addAttribute("partidos",listaPartidos);
-		model.addAttribute("equipos", listaEquipos);
+		if(!listaPartidos.isEmpty()) {
+			List<Equipo> listaEquipos = equipoService.getAll();
+			model.addAttribute("partidos",listaPartidos);
+			model.addAttribute("equipos", listaEquipos);
+			return "partido/lista";
+		}
+		model.addAttribute("info", "No se encontraron partidos para listar");
 		return "partido/lista";
 	}
 	

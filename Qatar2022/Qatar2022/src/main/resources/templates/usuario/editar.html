@@ -9,8 +9,9 @@
 <body>
 	
 	<nav th:replace="components/navbar :: nav_bar"></nav>
-
-	<form th:action="${usuario.id}" th:object="${usuario}" method="post">
+	
+	<div class="container">
+	 <form th:action="${usuario.id}" th:object="${usuario}" method="post">
 		<div class="mb-3 row">
 			<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
 			<div class="col-sm-10">
@@ -20,14 +21,8 @@
 				 <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Ingresar</button>
 			</div>
 		</div>
-		
-		<!-- No funciona -->
-		<div class="alert alert-warning alert-dismissible fade show" role="alert"
-		th:if="${mensaje != null}">
-  			<strong>Error</strong><p th:text="${mensaje}"></p>
-  		<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
-		
-	</form>
+	  </form>
+	 </div>
+	 
 </body>
 </html>

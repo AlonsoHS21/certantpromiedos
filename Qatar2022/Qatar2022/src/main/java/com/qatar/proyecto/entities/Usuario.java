@@ -9,9 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
@@ -50,8 +49,7 @@ public class Usuario {
 			)
 	private List<Apuesta> apuestas = new ArrayList<>();
 	
-	@ManyToOne()
-	@JoinColumn(name="jackpot_idJackpot")
+	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Jackpot jackpot;
 
 	public Usuario() {
