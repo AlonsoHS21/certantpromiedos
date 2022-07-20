@@ -112,14 +112,21 @@ public class UsuarioController {
 	
 	@PostMapping("/guardar")
 	public String guardar(
-			Usuario usuario,
+			@Valid Usuario usuario,	
+			BindingResult result,
 			Model model,
 			RedirectAttributes redirect
 			) {
 		
+		if(result.hasErrors()) {
+			model.addAttribute("usuario", usuario);
+			System.out.println("ERROR: Hubo un error en el formulario de crear usuario");
+			return "redirect:/usuario/agregar";
+		}
+		
 		String mensaje = "Email: " + usuario.getEmail() 
 		+ "\nContraseña: " + usuario.getContrasenia()
-		+ "\nDatos de contacto: " + "rhuarcaya@certant.com";
+		+ "\nDatos de contacto: " + "certantpromiedos22@gmail.com";
 		
 		usuarioService.enviarMail("certantpromiedos22@gmail.com", usuario.getEmail(), mensaje);
 		
@@ -174,12 +181,22 @@ public class UsuarioController {
 	public String editar(
 			@PathVariable Long id,
 			@ModelAttribute("usuario") Usuario usuario,
+			RedirectAttributes redirect,
 			Model model
 			) {
+		
 		Usuario usuarioEncontrado = usuarioService.buscarUsuarioPorId(id);
 		if(usuarioEncontrado != null) {
+			String mensaje = "Hola! " + usuarioEncontrado.getEmail() + " somos nosotros de nuevo"  
+					+ "\nTu nueva contraseña es: " + usuario.getContrasenia()
+					+ "\nDatos de contacto: " + "certantpromiedos22@gmail.com";
+					
+			usuarioService.enviarMailCambioContrasenia("certantpromiedos22@gmail.com", usuarioEncontrado.getEmail(), mensaje);
+			
 			usuarioService.actualizarUsuario(usuario.getContrasenia(), id);
-			return "redirect:/usuario/";
+			
+			redirect.addFlashAttribute("edit", "Contraseña editada con exito!");
+			return "redirect:/usuario/editar/{id}";
 		}
 		return "usuario/editar/{id}";
 	}

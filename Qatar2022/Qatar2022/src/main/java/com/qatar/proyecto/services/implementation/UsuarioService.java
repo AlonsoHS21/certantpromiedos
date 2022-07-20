@@ -78,4 +78,16 @@ public class UsuarioService implements IUsuarioService{
 		
 		javaMailSender.send(mail);
 	}
+
+	@Override
+	public void enviarMailCambioContrasenia(String para, String de, String mensaje) {
+		
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setFrom(para);
+		mail.setTo(de);
+		mail.setSubject("CERTANT: cambio de contrasenia exitosa");
+		mail.setText(mensaje);
+		
+		javaMailSender.send(mail);
+	}
 }

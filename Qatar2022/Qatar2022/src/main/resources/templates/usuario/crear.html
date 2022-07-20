@@ -30,12 +30,16 @@
 			<label for="email" class="form-label">Email</label>
 				<input type="text" id="email"
 					placeholder="rhuarcaya@certant.com" th:field="*{email}"
-					patterm="" class="form-control">
+					class="form-control">
+					<p th:if="${#fields.hasErrors('email')}" th:errorClass="error"
+							th:errors="*{email}" class="text-red" />
 		</div>
 		<div class="col-10">
 			<label for="contrasenia" class="form-label">Password</label>
 				<input type="text" class="form-control" id="contrasenia"	
 					th:field="*{contrasenia}">
+			<p th:if="${#fields.hasErrors('contrasenia')}" th:errorClass="error"
+					th:errors="*{contrasenia}" class="text-red" />
 		</div>
 			<div class="col-12">
 				<button type="submit" class="btn btn-info btn-lg btn-responsive"

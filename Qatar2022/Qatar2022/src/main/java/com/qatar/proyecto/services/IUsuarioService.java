@@ -24,4 +24,6 @@ public interface IUsuarioService {
 	public Usuario buscarUsuarioPorEmail(String email);
 	
 	public void enviarMail (String para, String de, String mensaje);
+	
+	public void enviarMailCambioContrasenia (String para, String de, String mensaje);
 }

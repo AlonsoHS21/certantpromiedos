@@ -9,18 +9,17 @@
 <body>
 	
 	<nav th:replace="components/navbar :: nav_bar"></nav>
+	<div th:replace="components/alerts :: alert_edit"></div>
 	
-	<div class="container">
+	<div class="container" style="width: 100%; display: flex; justify-content: flex-center; align-items: center;">
 	 <form th:action="${usuario.id}" th:object="${usuario}" method="post">
-		<div class="mb-3 row">
-			<label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-			<div class="col-sm-10">
+		<div class="col-10">
+			<label for="inputPassword" class="form-label">Password</label>
 				<input type="password" class="form-control" id="inputPassword" th:field="*{contrasenia}">
-			</div>
-			<div class="mb-3 row">
-				 <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Ingresar</button>
-			</div>
 		</div>
+		<div class="col-10">
+				 <button type="submit" class="btn btn-info">Editar</button>
+			</div>
 	  </form>
 	 </div>
 	 
