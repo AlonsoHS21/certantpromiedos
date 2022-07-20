@@ -76,10 +76,10 @@ insert into jugador (id_jugador, apellido, goles, nombre, equipo_id_equipo , dor
 #CREAMOS UN PARTIDO DESDE THYMELEAF
 # ID PARTIDO 1 - ARGENTINA - BRASIL
 insert into partido (id_partido, estadio, estado_apuesta, fase, fecha,idequipo_local, idequipo_visitante, resultado_equipo_local, resultado_equipo_visitante) 
-values (1,"Qatar", "Apuestas Abiertas", "Fase de Grupos", "2022-07-20T22:00", 1,2,0,0);
+values (1,"Qatar", "Apuestas Abiertas", "Grupo A", "2022-07-20T22:00", 1,2,0,0);
 # ID PARTIDO 1 - ESPAÑA - FRANCIA
 insert into partido (id_partido, estadio, estado_apuesta, fase, fecha,idequipo_local, idequipo_visitante, resultado_equipo_local, resultado_equipo_visitante) 
-values (2,"Qatar", "Apuestas Abiertas", "Fase de Grupos", "2022-07-20T22:00", 4,3,0,0);
+values (2,"Qatar", "Apuestas Abiertas", "Grupo B", "2022-07-20T22:00", 4,3,0,0);
 
 # -------------------------- INSERT INTO APUESTA --------------------------
 
