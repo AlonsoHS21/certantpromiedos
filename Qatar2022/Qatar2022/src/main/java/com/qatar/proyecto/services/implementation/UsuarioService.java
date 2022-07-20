@@ -3,6 +3,8 @@ package com.qatar.proyecto.services.implementation;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +19,9 @@ public class UsuarioService implements IUsuarioService{
 	//Creo una variable de UsuarioRepository
 	@Autowired
 	private IUsuarioRepository usuarioRepository;
+	
+	@Autowired
+	private JavaMailSender javaMailSender;
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -60,5 +65,17 @@ public class UsuarioService implements IUsuarioService{
 	@Override
 	public Usuario buscarUsuarioPorEmail(String email) {
 		return usuarioRepository.buscarUsuarioPorEmail(email);
+	}
+
+	@Override
+	public void enviarMail(String para, String de, String mensaje) {
+		
+		SimpleMailMessage mail = new SimpleMailMessage();
+		mail.setFrom(para);
+		mail.setTo(de);
+		mail.setSubject("CERTANT: envio de datos para el ingreso");
+		mail.setText(mensaje); 
+		
+		javaMailSender.send(mail);
 	}
 }

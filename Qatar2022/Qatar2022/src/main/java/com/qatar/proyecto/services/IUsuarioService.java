@@ -22,4 +22,6 @@ public interface IUsuarioService {
 	public void save(Usuario usuario);
 	
 	public Usuario buscarUsuarioPorEmail(String email);
+	
+	public void enviarMail (String para, String de, String mensaje);
 }

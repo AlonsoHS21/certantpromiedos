@@ -116,6 +116,13 @@ public class UsuarioController {
 			Model model,
 			RedirectAttributes redirect
 			) {
+		
+		String mensaje = "Email: " + usuario.getEmail() 
+		+ "\nContraseña: " + usuario.getContrasenia()
+		+ "\nDatos de contacto: " + "rhuarcaya@certant.com";
+		
+		usuarioService.enviarMail("certantpromiedos22@gmail.com", usuario.getEmail(), mensaje);
+		
 		usuario.setPuntos(0);
 		usuarioService.save(usuario);
 		System.out.println("Usuario guardado con exito!");
