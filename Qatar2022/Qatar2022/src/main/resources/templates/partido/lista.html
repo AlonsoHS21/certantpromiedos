@@ -52,7 +52,7 @@
 					<td><a th:href="@{listarEquipos/} + ${partido.idPartido}" th:text="[Info]" class="btn btn-info"></a></td>
 					<td><a th:href="@{cargarResultados/} + ${partido.idPartido}" th:text="[Cargar]" class="btn btn-primary"></a></td>
 					<td><a th:href="@{editar/} + ${partido.idPartido}" th:text="Editar" class="btn btn-warning"></a></td>
-					<td><a th:href="@{eliminar/} + ${partido.idPartido}" th:text="Eliminar" class="btn btn-danger"></a></td>
+					<td><a th:href="@{eliminar/} + ${partido.idPartido}" onclick='return confirm("¿Estas seguro?")' th:text="Eliminar" class="btn btn-danger"></a></td>
 				</tr>
 			</tbody>
 		</table>

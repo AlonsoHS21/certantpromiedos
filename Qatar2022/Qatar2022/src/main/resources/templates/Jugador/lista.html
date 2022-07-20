@@ -45,7 +45,7 @@
 					<td><a th:href="@{editar/} + ${jugador.idJugador}"
 						th:text="Editar" class="btn btn-warning"></a></td>
 					<td><a th:href="@{eliminar/} + ${jugador.idJugador}"
-						th:text="Eliminar" class="btn btn-danger"></a></td>
+						onclick='return confirm("¿Estas seguro?")' th:text="Eliminar" class="btn btn-danger"></a></td>
 				</tr>
 			</tbody>
 		</table>

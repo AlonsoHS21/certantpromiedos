@@ -41,7 +41,7 @@
 					<td th:text="${usuario.puntos}">Sin datos</td>
 					<td><a th:href="@{listarApuestas/} + ${usuario.id}" th:text="Apuestas" class="btn btn-info"></a></td>
 					<td><a th:href="@{editar/} + ${usuario.id}" th:text="Editar" class="btn btn-warning"></a></td>
-					<td><a th:href="@{eliminar/} + ${usuario.id}" th:text="Eliminar" class="btn btn-danger"></a></td>
+					<td><a th:href="@{eliminar/} + ${usuario.id}" onclick='return confirm("¿Estas seguro?")' th:text="Eliminar" class="btn btn-danger"></a></td>
 				</tr>
 			</tbody>
 		</table>
