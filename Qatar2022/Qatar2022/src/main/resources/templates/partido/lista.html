@@ -36,7 +36,47 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="partido : ${partidos}">
+				<tr th:each="partido : ${partidos}" th:if="${partido.fasePartido == 'Grupo A'}">
+					<td th:text="${partido.fasePartido}"></td>
+					<td th:text="${partido.estadio}"></td>
+					<td th:text="${partido.fechaPartido}"></td>
+					<td th:text="${partido.estadoApuesta}"></td>
+					<td th:each="equipo : ${equipos}" th:if="${equipo.idEquipo == partido.idEquipoLocal}">
+						<img th:src="${equipo.direccionImagen}" style="height: 55px; width: 90px; object-fit: cover"/>
+						<p th:text="${equipo.nombre}"></p>
+					</td>
+					<td th:each="equipo : ${equipos}" th:if="${equipo.idEquipo == partido.idEquipoVisitante}">
+						<img th:src="${equipo.direccionImagen}" style="height: 55px; width: 90px; object-fit: cover"/>
+						<p th:text="${equipo.nombre}"></p>
+					</td>
+					<td><a th:href="@{listarEquipos/} + ${partido.idPartido}" th:text="[Info]" class="btn btn-info"></a></td>
+					<td><a th:href="@{cargarResultados/} + ${partido.idPartido}" th:text="[Cargar]" class="btn btn-primary"></a></td>
+					<td><a th:href="@{editar/} + ${partido.idPartido}" th:text="Editar" class="btn btn-warning"></a></td>
+					<td><a th:href="@{eliminar/} + ${partido.idPartido}" th:text="Eliminar" class="btn btn-danger"></a></td>
+				</tr>
+			</tbody>
+		</table>
+		</div>
+	</div>
+	
+	<div class="container"> 
+		<table class="table table-dark table-striped text-center" style="width: 100%">
+			<thead>
+				<tr>
+					<th>Fase</th>
+					<th>Estadio</th>
+					<th>Fecha Partido</th>
+					<th>Estado</th>
+					<th>Equipo Local</th>
+					<th>Equipo Visitante</th>
+					<th>Mas info</th>
+					<th>Cargar Resultados</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="partido : ${partidos}" th:if="${partido.fasePartido == 'Grupo B'}">
 					<td th:text="${partido.fasePartido}"></td>
 					<td th:text="${partido.estadio}"></td>
 					<td th:text="${partido.fechaPartido}"></td>
