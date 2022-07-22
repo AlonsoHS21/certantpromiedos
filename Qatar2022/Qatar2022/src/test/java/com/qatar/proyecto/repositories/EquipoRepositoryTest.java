@@ -1,4 +1,4 @@
-package com.qatar.proyecto;
+package com.qatar.proyecto.repositories;
 
 import static org.junit.jupiter.api.Assertions.*;
 

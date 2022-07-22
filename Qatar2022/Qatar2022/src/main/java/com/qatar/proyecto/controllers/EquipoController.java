@@ -120,7 +120,7 @@ public class EquipoController {
 			Model model
 			) {
 		Equipo equipoEncontrado = equipoService.buscarPorId(idEquipo);
-		System.out.println("No se encontro el equipo para editar!");
+		System.out.println("Equipo nombre: " + equipoEncontrado.getNombre());
 		if(equipoEncontrado != null) {
 			equipoService.actualizarEquipo(idEquipo, equipo.getDireccionImagen(), equipo.getNombre());
 			System.out.println("Equipo editado con exito!");

@@ -47,6 +47,27 @@ public class Partido {
 	private Long idEquipoGanador;
 	
 	public Partido() {}
+	
+	public Partido(Long idPartido, String fasePartido,
+			@NotEmpty(message = "El campo estadio no puede estar vacio") String estadio, String fechaPartido,
+			String estadoApuesta, Long idEquipoLocal, Long idEquipoVisitante) {
+		super();
+		this.idPartido = idPartido;
+		this.fasePartido = fasePartido;
+		this.estadio = estadio;
+		this.fechaPartido = fechaPartido;
+		this.estadoApuesta = estadoApuesta;
+		this.idEquipoLocal = idEquipoLocal;
+		this.idEquipoVisitante = idEquipoVisitante;
+	}
+
+	public Partido(Long idPartido, int resultaEquipoLocal,
+			int resultadoEquipoVisitante) {
+		super();
+		this.idPartido = idPartido;
+		this.resultaEquipoLocal = resultaEquipoLocal;
+		this.resultadoEquipoVisitante = resultadoEquipoVisitante;
+	}
 
 	public Long getIdPartido() {
 		return idPartido;
