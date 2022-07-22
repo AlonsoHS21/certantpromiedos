@@ -35,16 +35,28 @@ public class Equipo {
 			)
 	private List<Jugador> jugadores = new ArrayList<>();
 	
-	 public Equipo() {
-	    	
-	    }
+	public Equipo() {}
+	
+	public Equipo(Long idEquipo, String nombre) {
+		this.idEquipo = idEquipo;
+		this.nombre = nombre;
+	}
 
 	public Equipo(String nombre, String direccionImagen) {
 		super();
 		this.nombre = nombre;
 		this.direccionImagen = direccionImagen;
 	}
-
+	
+	public Equipo(String nombre) {
+		super();
+		this.nombre = nombre;
+	}
+	
+	public void setIdEquipo(Long idEquipo) {
+		this.idEquipo = idEquipo;
+	}
+	
 	public long getIdEquipo() {
 		return idEquipo;
 	}

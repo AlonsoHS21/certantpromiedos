@@ -46,19 +46,20 @@ public class Jugador {
 	    	
 	    }
 
-	public Jugador(String nombre,String apellido, Equipo equipo, int goles) {
+	public Jugador(String nombre,String apellido, Equipo equipo, int goles, int dorsal) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.equipo = equipo;
 		this.goles = goles;
+		this.dorsal = dorsal;
 	}
 
 	public long getIdJugador() {
 		return idJugador;
 	}
 
-	protected void setIdJugador(long idJugador) {
+	public void setIdJugador(long idJugador) {
 		this.idJugador = idJugador;
 	}
 
