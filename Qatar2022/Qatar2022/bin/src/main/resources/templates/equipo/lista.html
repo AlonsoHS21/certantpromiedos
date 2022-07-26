@@ -1,37 +1,55 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+		<meta charset="UTF-8" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+		<link th:href="@{/css/estilos.css}" rel="stylesheet" />
+		
+		<title>Lista de Equipos</title>
+		
 </head>
-<body>
-	<h2>Lista de Equipos</h2>
+<body style="background-image: url(https://3y3seo1md7o8303qa48ddzzb-wpengine.netdna-ssl.com/wp-content/uploads/2022/01/fondo_qatar2.png); background-size: cover; background-repeat: repeat">	
+	<nav th:replace="components/navbar :: nav_bar"></nav>
+	<div th:replace="components/alerts :: alert_delete"></div>
+	<div th:replace="components/alerts :: alert_info"></div>
 	
-	<!--  <a th:href="@{/crear}">Crear un Equipo</a> -->
-	<a href="http://localhost:8080/equipo/crear">Crear un Equipo</a>
-
-	
-	<div th:if="${equipo != null and !equipo.empty}">
-		<table border="1">
-			<tr>
-				<th>Nombre</th>
-				<th>URL de la imagen del equipo</th>
-				<th>Editar<th>
-				<th>Eliminar<th>
-			</tr>
-			<tr th:each="equipo : ${equipo}">
-				<td th:text="${equipo.nombre}">Nombre</td>
-				<td th:text="${equipo.direccionImagen}">Imagen</td>
-				<td><a th:href="@{editar/} + ${equipo.idEquipo}" th:text="Editar"></a></td> <!-- http://localhost/8090/editar/1 -->
-				<td><a th:href="@{eliminar/} + ${equipo.idEquipo}" th:text="Eliminar"></a></td>
-			<tr>
+		<div th:if="${equipos != null and !equipos.empty}">
+			<div class="text-center py-4">
+				<h2 class="text-white">LISTA DE EQUIPOS</h2>
+			<a th:href="@{agregar}" class="btn btn-success">Ingresar Equipo</a>
+		</div>
+		
+		<div class="container"> 
+		<table class="table table-dark table-striped text-center" style="width: 100%">
+			<thead>
+				<tr>
+					<th>Imagen</th>
+					<th>Nombre</th>
+					<th>Lista de Jugadores</th>
+					<th>Editar</th>
+					<th>Eliminar</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="equipo : ${equipos}">
+					<td>
+						<img th:src="${equipo.direccionImagen}" style="height: 50px !important; width: 75px !important;">
+					</td>
+					<td th:text="${equipo.nombre}"></td>
+					<td><a th:href="@{listarJugadores/} + ${equipo.idEquipo}"
+						th:text="[ver]" class="btn btn-info"></a></td>
+					<td><a th:href="@{editar/} + ${equipo.idEquipo}"
+						th:text="Editar" class="btn btn-warning"></a></td>
+					<td><a th:href="@{eliminar/} + ${equipo.idEquipo}"
+						onclick='return confirm("¿Estas seguro?")' th:text="Eliminar" class="btn btn-danger"></a></td>
+				</tr>
+			</tbody>
 		</table>
-	
+		</div>
 	</div>
 	
-	<div th:if="${equipo == null and equipo.empty}">
-		Sin datos
-	</div>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js"></script>
 	
 </body>
 </html>

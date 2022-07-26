@@ -1,74 +1,62 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="utf-8" />
+       <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Cliente</title>
+        <title>Crear Equipo</title>
         <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
-        <link th:href="@{/https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css}" rel="stylesheet" />
-        <link th:href="@{/css/styles.css}" rel="stylesheet" />
-    </head>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">    
+	</head>
     
-    <body class="py-3 bg-dark">
-       <div class="alert alert-success alert-dismissable" th:if="${success != null}">
-			<label th:text="${success}"></label>
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-		</div>
-		
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container px-5">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    	<li class="nav-item"><a class="nav-link active" aria-current="page" th:href="@{/}">Inicio</a></li>
-             
-                    </ul>
-                </div>
-            </div>
-        </nav>
-       
-    <br>
-    <br>
-    <br>
-        <div class="container" id="advanced-search-form">
-            <form action="#" th:action="@{guardar}" th:object="${jugador}" method="post">
-                <div class="form-group">
-                    <label for="first-name" class="text-white mb-2">Nombre</label>
-                    <input type="text" class="form-control" placeholder="Nombre del jugador" id="first-name" th:field="*{nombre}">
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
-                        th:errors="*{nombre}" >
-                    </small> 
+    <body/>
+	
+       <nav th:replace="components/navbar :: nav_bar"></nav>
+       <div th:replace="components/alerts :: alert_save"></div>
+    	 	
+        <div class="container" style="width: 100%; display: flex; justify-content: flex-start; align-items: center;">
+            <form action="#" th:action="@{guardar}" th:object="${jugador}" method="post" class="row g-3 mt-3" style="width: 70%">
+               
+                <div class="col-10">
+					<h2>INSCRIBIR JUGADOR</h2>
+				</div>
+				
+                <div class="col-10">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" placeholder="Nombre del jugador" id="nombre" th:field="*{nombre}">
+                    <p th:if="${#fields.hasErrors('nombre')}" th:errorClass="error"
+					th:errors="*{nombre}"/>
+				</div>
+				
+                    <div class="col-10"> 
+                    	<label for="apellido" class="form-label">Apellido</label>
+                    	<input type="text" class="form-control" placeholder="Apellido del jugador" th:field="*{apellido}" id="apellido">
+                    	<p th:if="${#fields.hasErrors('apellido')}" th:errorClass="error"
+							th:errors="*{apellido}"/>
+                    </div>
                     
-                    <br>
+                    <div class="col-4"> 
+                    	<label for="dorsal" class="form-label">Dorsal</label>
+                    	<input type="number" class="form-control" placeholder="Dorsal del jugador"  th:field="*{dorsal}">
+                    	<p th:if="${#fields.hasErrors('dorsal')}" th:errorClass="error"
+							th:errors="*{dorsal}"/>
+                    </div>
                     
-                    <label for="first-name" class="text-white mb-2">Apellido</label>
-                    <input type="text" class="form-control" placeholder="Apellido del jugador"  th:field="*{apellido}">
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('apellido')}"
-                        th:errors="*{apellido}" >
-                    </small>
-                    
-                    
-                    <p class="text-white mb-2"> Equipo:</p>
-					<select th:field="*{equipo}" id="equipo">
+                    <div class="col-6"> 
+                    <label for="equipo" class="form-label">Equipo: </label>
+					<select th:field="*{equipo}" id="equipo" class="form-select" required>
 						<option th:each="equipo:${equipos}"
 						th:value="${equipo.idEquipo}"
 						th:text="${equipo.nombre}"/>
 					</select>
+					</div>
 					
-					<small class="form-text text-danger" th:if="${#fields.hasErrors('equipo')}"
-					th:errors="*{equipo}">
-				</small>
-	
-                </div>
-                <div class="clearfix"></div>
-                 <br>
-                <button type="submit" class="btn btn-info btn-lg btn-responsive" id="search"> <span class="glyphicon glyphicon-search"></span>Crear jugador</button>
+					<div class="col-12">
+                		<button type="submit" class="btn btn-success" id="search"> <span class="glyphicon glyphicon-search"></span>INSCRIBIR</button>
+            		</div>
             </form>
         </div>
-
-
        
     <br>
     <br>
@@ -76,9 +64,14 @@
     <br>
     <br>
     <br>
+    <br>
+    <br>
+    <br>
+    
         <footer class="py-5 bg-dark">
             <div class="container px-5"><p class="m-12 text-center text-white">Certant &copy; </p></div>
         </footer>
+        
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/scripts.js"></script>
         <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
