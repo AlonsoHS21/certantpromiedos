@@ -1,0 +1,74 @@
+
+SOAP UI
+
+- Es una herramienta desarrollada en Java y es utilizada para pruebas de aplicaciones con arquitectura SOAP o REST 
+- Contiene un modulo ubicado a la izquierda que se llama Projects, el trabajo ahi se organiza en proyectos, los proyectos conforman el espacio de trabajo o workspace, un proyecto puede contener distinto tipos de pruebas, entre ellas: pruebas funcionales, de carga o simulaciones de servicios necesarios(Mocks)
+- SOAPUI permite trabajar de manera independiente donde todo se almacena en un archivo XML unico que contiene los artefactos del proyecto y los proyectos compuestos permiten a varias personas trabajar al mismo tiempo de forma colaborativa.
+
+¿Que es SOAP?
+
+- Simple Object Acces Protocol
+- Es un protocolo para el diseño y construccion de servicios web usando la tecnologia XML
+- Dado que esta basado en XML, el protocolo SOAP es independiente de lenguaje y plataforma
+
+¿Que es REST?
+
+- Representational State Transfer
+- Es un estilo de arquitectura para el desarrollo de aplicaciones, en donde el mecanismo de comunicacion entre sistemas, se establece a traves de peticiones HTTP
+- Para el intercambio de informacion se puede usar XML, JSON, texto plano entre otros tipos de datos.
+
+DIFERENCIA ENTRE SOAP Y REST
+
+- SOAP es un protocolo para el intercambio de datos y REST es una arquitectura que utiliza el protocolo HTTP para el intercambio de datos
+- SOAP usa WSDL para exponer los metodos y detalles tecnicas y REST expone los metodos a traves de URLs
+- SOAP usa los servicios web y sus clientes usan el WSDL como contrato y en REST no existen los contratos entre el servidor y el cliente.
+- SOAP soporta unicamente formato XML y REST soporta JSON, XML, texto plano y demas
+- SOAP tiene una curva de aprendizaje mas dura dado que se requiere conocimiento para la generacion del WSDL y los clientes del servicio en cambio REST es facil de aprender debido a que trabaja con simples metodos HTTP
+- SOAP es complicado de mantener debido a que un cambio en el WSDL requiere la modificacion del cliente en cambio REST es facil de mantener debido que al agregar un nuevo metodo no es necesario hacer cambios en los clientes del servicio web.
+
+
+¿Que es SonarQube?
+
+- Es una plataforma para evaluar la calidad del codigo fuente, realizando un analisis estatico sobre dicho codigo, con el objetivo de advertirnos sobre diferentes puntos a mejorar y obtener metricas que nos ayudan a mejorar nuestro codigo.
+- El analisis estatico de codigo es aquel que se realiza sin ejecutar el software
+- El analisis dinamico necesitamos ejecutar el software para poder comprobar su comportamiento en tiempo de ejecucion
+
+ FUNCIONALIDADES:
+
+- El principal proposito de esta aplicacion es que podamos invertir en controlar la calidad del codigo, de forma que se empiece a analizar el codigo y ser capaces de detectar code smells y los grandes problemas lo antes posible para poner solucion antes de desplegar nuestro codigo en produccion y que llegue a nuestros clientes.
+
+ESTANDAR DE PROGRAMACION
+
+cada lenguaje de programacion tiene una serie de "buenas practicas" que se deberian desarrollar a cabo a la hora de desarrollar
+
+VULNERABILIDADES
+
+- Esta herramienta cuenta con una gran base de datos que incluyen errores tipicos de programacion base , code smells y seguridad como (inyeccion SQL, scripting, etc).
+
+COBERTURA
+
+- Se puede monitorizar la cobertura de nuestra pruebas, de forma que comprobemos si es suficientemente buena para nuestros estandares de calidad. De esta forma, podemos invertir e incrementar el volumen de pruebas de nuestros proyectos.
+
+CODIGO DUPLICADO 
+
+- La herramiento detecta partes de nuestro codigo que se asemejan mucho, de forma que podamos desacoplar componentes o refactorizar nuestro codigo, siguiendo ya de paso el simple principio DRY "No te repitas".
+
+PERFILES DE CALIDAD
+
+- Por cada lenguaje hay un perfil de calidad por defecto pero tambien hay la posibilidad de crear un perfil personalizado. Se trata de un pack de reglas que se aplican durante el analisis estatico del codigo
+
+QUALITY GATE
+
+- Es el conjunto de condiciones que el proyecto debe cumplir antes de que pueda ser lanzado a produccion. Al igual que ocurre con los qaulity profiles, es posible establecer un quality gate predeterminado.
+
+VERSIONES  
+
+COMMUNITY - DEVELOPERS - BUSINESS
+
+HERRAMIENTAS QUE USA SONARQUBE
+
+- SonarQube usa diversas herramientas de analisis estatico como Checkstyle, PMD o FindBugs para obtener metricas que pueden ayudar a mejorar la calidad, a traves de las reglas que estas definen.
+
++ Chekstyle --> Verifica el cumplimiento de las reglas de codificacion. (Convenciones de nombre, Comentarios javadoc, buenas practicas, convenciones de codigo, parametros del metodo	) 
++ PMD --> Identificacion de problemas potenciales (Codigo muerto, duplicado, legibilidad, complejidad ciclomatica)
++ FindBugs --> Encuentra errores (Malas practicas, Defectos del diseño, vulnerabilidades de codigo)
