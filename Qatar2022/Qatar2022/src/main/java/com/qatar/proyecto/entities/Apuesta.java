@@ -40,6 +40,14 @@ public class Apuesta {
 	
 	public Apuesta() {}
 	
+	public Apuesta(Long idApuesta, int golesEquipo1, int golesEquipo2, Partido partido, Usuario usuario) {
+		this.idApuesta = idApuesta;
+		this.golesEquipo1 = golesEquipo1;
+		this.golesEquipo2 = golesEquipo2;
+		this.partido = partido;
+		this.usuario = usuario;
+	}
+	
 	public Long getIdApuesta() {
 		return idApuesta;
 	}
