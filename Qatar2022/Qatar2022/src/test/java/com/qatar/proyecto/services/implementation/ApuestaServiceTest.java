@@ -33,7 +33,7 @@ class ApuestaServiceTest {
 	}
 	
 	@Test
-	@DisplayName("")
+	@DisplayName("Busca una apuesta por palabra clave si la encuentra trae el listado")
 	void buscarPorPalabraClaveApuestaTest() {
 		
 		List<Apuesta> listaApuestas = new ArrayList<Apuesta>();
@@ -56,7 +56,8 @@ class ApuestaServiceTest {
 	}
 	
 	@Test
-	@DisplayName("")
+	@DisplayName("Busca una lista de apuesta por el id de un usuario si la encuentra "
+			+ "devuelve la lista de apuesta con sus datos correspondientes")
 	void buscarApuestaPorIdUsuarioTest() {
 		
 		List<Apuesta> listaApuestas1 = new ArrayList<Apuesta>();

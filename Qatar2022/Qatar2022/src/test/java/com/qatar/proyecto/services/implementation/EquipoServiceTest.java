@@ -6,12 +6,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
@@ -40,16 +38,7 @@ class EquipoServiceTest {
 	" se encarga de buscar por su nombre y como resultado espera un objeto de tipo Equipo")
 	@Test
 	void buscarPorNombreEquipoTest() {
-		/*
-		when(equipoRepository.findByNombre(any(String.class))).thenReturn(equipo);
 		
-		Equipo equipo = equipoService.buscar("Mexico");
-		
-		assertAll(
-				() -> {assertEquals(1,equipo.getIdEquipo());},
-				() -> {assertEquals("Mexico", equipo.getNombre());},
-				() -> {assertNotNull(equipo);}
-				);*/
 		Equipo simulado = new Equipo(1L, "Mexico"); // Simula lo que traeriamos de la base de datos
 		Equipo esperado = new Equipo(1L, "Mexico"); // Este seria el resultado esperado 
 		
@@ -69,15 +58,7 @@ class EquipoServiceTest {
 	@Test
 	@Disabled
 	void buscarPorIdEquipoTest() {
-		/*
-		when(equipoRepository.findById(any(Long.class))).thenReturn(Optional.of(equipo));
 		
-		Equipo equipo = equipoService.buscarPorId(1L);
-		
-		assertAll(
-				() -> {assertNotNull(equipo, "En buscarPorIdEquipo el equipo buscado es nulo");},
-				() -> {assertEquals(1, equipo.getIdEquipo(), "En buscarPorIdEquipo no se econtro el id");}
-				);*/
 		Equipo simulado = new Equipo(1L, "Mexico");
 		Equipo esperado = new Equipo(1L, "Mexico");
 		

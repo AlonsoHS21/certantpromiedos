@@ -1,5 +1,8 @@
 package com.qatar.proyecto.services.implementation;
 
+import java.util.List;
+
+import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -37,7 +40,8 @@ class UsuarioServiceTest {
 	}
 	
 	@Test
-	@DisplayName("")
+	@DisplayName("Busca un usuario por email y si lo encuentra devuelve un objeto de tipo usuario "
+			+ "con sus datos o nulo en caso contrario")
 	void buscarUsuarioPorEmailTest() {
 		
 		Mockito.when(usuarioRepository.buscarEmailContrasenia("rhuarcaya@certant.com", "1"))
@@ -49,5 +53,7 @@ class UsuarioServiceTest {
 		Assertions.assertEquals("1", usuario.getContrasenia());
 		
 	}
+	
+	
 
 }
