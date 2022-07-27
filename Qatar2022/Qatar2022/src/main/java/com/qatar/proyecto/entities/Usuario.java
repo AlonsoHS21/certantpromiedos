@@ -52,12 +52,28 @@ public class Usuario {
 	@OneToOne(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
 	private Jackpot jackpot;
 
-	public Usuario() {
-		
+	public Usuario() {}
+	
+	public Usuario(String email, String contrasenia) {
+		this.email = email;
+		this.contrasenia = contrasenia;
+	}
+	
+	public Usuario(Long id, String apellido, String contrasenia, String email, String nombre, int puntos) {
+		this.id = id;
+		this.apellido = apellido;
+		this.contrasenia = contrasenia;
+		this.email = email;
+		this.nombre = nombre;
+		this.puntos = puntos;
 	}
 	
 	public Long getId() {
 		return id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getContrasenia() {
