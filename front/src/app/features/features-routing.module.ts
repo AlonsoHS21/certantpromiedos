@@ -15,9 +15,8 @@ const routes: Routes = [
   {
     path: '',
     component: FeaturesComponent,
-    canActivate: [LoginGuard],
     children: [
-      { path: '', component: HomeComponent },
+      { path: 'home', component: HomeComponent },
       { path: 'ranking', component: RankingComponent },
       { path: 'goleadores', component: TopScorersComponent },
       { path: 'apuestas', component: BetListPageComponent },

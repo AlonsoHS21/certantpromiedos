@@ -19,7 +19,7 @@ export class PartidoService {
 
   cookie!: string;
 
-  private headers = new HttpHeaders({
+  headers = new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS',
     'Access-Control-Allow-Headers':
@@ -29,10 +29,7 @@ export class PartidoService {
   });
 
   getPartido(): Observable<any> {
-    return this.http.get('http://workstation03:8060/partidos', {
-      headers: this.headers,
-      withCredentials: true,
-    });
+    return this.http.get('http://workstation03:8060/partidos', {headers:this.headers, withCredentials:true});
   }
 
   putPartido(partido: Partido): Observable<Partido> {
