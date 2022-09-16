@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie';
 import { AlertsService } from 'src/app/core/services/alerts.service';
 import { LoginService } from 'src/app/core/services/login.service';
 
@@ -15,27 +16,23 @@ export class LoginFormComponent implements OnInit {
   constructor(
     private alert: AlertsService,
     private loginService: LoginService,
-    private route: Router
+    private route: Router,
+    private cookieServ: CookieService
   ) {}
 
   submit() {
-    this.loginService.login(this.userLogin.value).subscribe({
-      error: () => this.alert.errorAlert('Hubo un error en el Logueo'),
-      complete: () => {
-        this.alert.confirmAlert('Bienvenido!');
-        localStorage.setItem('token', this.userLogin.get('email')?.value)
+    this.loginService.login(this.userLogin.value).subscribe((res) => {
+      console.log(this.cookieServ.get('Cookie'));
+      if (res.respuesta) {
         this.route.navigate(['home']);
-      },
+      }
     });
   }
 
   ngOnInit(): void {
     this.userLogin = new FormGroup({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^[a-zA-Z]+@certant\.com$/),
-      ]),
-      password: new FormControl('', Validators.required),
+      username: new FormControl('', [Validators.required]),
+      contrasenia: new FormControl('', Validators.required),
     });
   }
 }

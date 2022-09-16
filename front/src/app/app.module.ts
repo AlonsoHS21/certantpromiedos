@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FeaturesModule } from './features/features.module';
+import { CookieModule } from 'ngx-cookie';
 
 import { AppComponent } from './app.component';
 import { LoginFormComponent } from './features/components/login-form/login-form.component';
@@ -18,6 +19,7 @@ import { LoginFormComponent } from './features/components/login-form/login-form.
     FeaturesModule,
     MaterialModule,
     ReactiveFormsModule,
+    CookieModule.withOptions(),
   ],
   providers: [],
   bootstrap: [AppComponent],
